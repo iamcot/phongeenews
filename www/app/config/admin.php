@@ -49,11 +49,11 @@ return array(
             'url'    =>  'comment',
             'title' =>  'LDComment'
         ),
-        'fanpage'     =>  array(
-            'id'    =>  'fanpage',
-            'url'    =>  'fanpage',
-            'title' =>  'LDFanpage'
-        ),
+//        'fanpage'     =>  array(
+//            'id'    =>  'fanpage',
+//            'url'    =>  'fanpage',
+//            'title' =>  'LDFanpage'
+//        ),
 
     ),
 );

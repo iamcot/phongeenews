@@ -15,8 +15,10 @@ class ListController extends  BaseController
         $this->data['caturl'] = $cat;
         $this->data['lists'] = null;
         $actCat = Category::where("laurl",'=',$cat)->get();
+
         $this->data['rootcat'] = true;
         if($actCat->count()==1){
+            $this->data['actCat'] = $actCat[0];
             $this->data['title'] =  $actCat[0]->latitle;
             $this->data['description']=$actCat[0]->lainfo;
             if($actCat[0]->laparent_id>0){

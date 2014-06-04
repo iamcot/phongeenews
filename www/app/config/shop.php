@@ -1,11 +1,11 @@
 <?php
 
 return array(
-    'title' => 'Webmypham',
+    'title' => 'Phongee.vn',
     'pretitle' => '',
-    'suftitle' => '- WebMyPham - Chuyên cung cấp sỉ và lẻ mỹ phẩm Hàn Quốc - Thailand  - USA',
-    'description' => 'Thái Boutique - Webmypham - Chuyên sỉ và lẻ mỹ phẩm Hàn Quốc, Thai lan, USA - Kem trắng da - Trị mụn - son - trang điểm',
-    'keywords'  => 'mỹ phẩm, my pham, thai lan, thailan, the face shop, kem trắng da, kem trị mụn, kem mọc tóc, white, skin, beauty, spa, laila, mood matcher, wet n wild, nyx, revlon, kem dna ',
+    'suftitle' => '- Phongee.vn',
+    'description' => 'Phongee Color - Phongee.vn ',
+    'keywords'  => 'iphone, ipad, mac book',
     'treecatdeep' => 1,
     'tablepp'    =>  18,
     'theme' => 'default',

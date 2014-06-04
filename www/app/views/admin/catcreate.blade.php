@@ -42,6 +42,9 @@
     <label>
         <input type="checkbox" name="ladeleted" {{((isset($catedit) && $catedit->ladeleted==1)?'':'checked=checked')}}> Kích hoạt
     </label>
+    <label>
+        <input type="checkbox" name="isnews" {{((isset($catedit) && $catedit->isnews==0)?'':'checked=checked')}}> Là mục tin tức
+    </label>
     <br>
     <div class="input-group">
     {{ Form::submit("Lưu",array('class'=>'btn btn-success')) }}

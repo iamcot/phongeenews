@@ -28,6 +28,7 @@ class Category extends Eloquent
                 'laicon' => $categorie->laicon,
                 'laimage' => $categorie->laimage,
                 'path' => $path . $categorie->latitle,
+                'isnews' => $path . $categorie->isnews,
 
                 'children' => array()
             );

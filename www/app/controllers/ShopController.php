@@ -12,7 +12,7 @@ class ShopController extends BaseController
 
     }
     public function getIndex(){
-        $this->data['title'] = 'Thái Boutique';
+        $this->data['title'] = 'Phongee Color';
         return View::make(Config::get('shop.theme')."/start/start",$this->data);
     }
 

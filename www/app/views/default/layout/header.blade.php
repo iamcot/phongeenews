@@ -1,4 +1,5 @@
-<div id="header" class="container-fluid wrap">
+<div id="header" >
+    <div class="container-fluid wrap">
     <div class="pull-left col-xs-8 col-sm-8">
 
         <div id="logo" class="pull-left col-xs-12 col-sm-6">
@@ -51,6 +52,10 @@
             </table>
         </div>
         @endif
+
+    </div>
+        <div class="clearfix"></div>
+    @include(Config::get('shop.theme').'/layout/topnav')
 
     </div>
 </div>

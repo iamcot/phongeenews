@@ -44,6 +44,9 @@ class ShopAdminController extends BaseController
                 if (isset($input['ladeleted']) && $input['ladeleted'] == 'on')
                     $dbCat->ladeleted = 0;
                 else $dbCat->ladeleted = 1;
+                if (isset($input['isnews']) && $input['isnews'] == 'on')
+                    $dbCat->isnews = 1;
+                else $dbCat->isnews = 0;
                 $dbCat->save();
 
                 $id = $dbCat->id;

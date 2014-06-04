@@ -23,7 +23,7 @@
     @endif
     @yield('morestyle')
 </head>
-    <body class="{{((isset($error))?'bgwhite':'')}}">
+    <body class="bgphongee">
     <div class="supercontainer">
         @yield('errorpage')
     @if (isset($haveHeader) && $haveHeader == 1)
@@ -33,8 +33,7 @@
 
     @if (isset($typeEnd) && $typeEnd=='admin')
         @include('admin/topnav')
-    @else
-        @include(Config::get('shop.theme').'/layout/topnav')
+
     @endif
     <div class="clearfix"></div>
     <div class=" body">

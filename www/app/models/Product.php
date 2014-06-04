@@ -30,4 +30,5 @@ class Product extends Eloquent
             ->orwhere('laproduct_id','=','all')
             ->orwhere('laproduct_id','like','%,'.$id)->get();
     }
+
 }

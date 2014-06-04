@@ -1,4 +1,5 @@
 @extends('layout')
+{{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
 @section('body')
 <div class="container-fluid wrap ">
     <div id="content">

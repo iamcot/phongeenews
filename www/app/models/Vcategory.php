@@ -38,16 +38,22 @@ class Vcategory extends Eloquent
 
     public static function shopCatTree($id = 0, $categories = null, $level = 0)
     {
-        $html = "<ul class='" . (($level == 0) ? 'menu' : '') . "'  " . (($level == 0) ? 'itemscope itemtype="http://schema.org/ItemList"' : '') . ">";
-        foreach ($categories as $cat) {
-            $html .= "<li " . (($level == 0) ? 'itemprop="name"' : 'itemprop="itemListElement"') . ">
-            <a itemprop='url' ".(($cat['numproduct'] > 0)?"href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "":"")." >
-                    " . (($level == 0) ? '<i class="' . $cat['laicon'] . '"></i>' : '') . " " . $cat['latitle'] . " <span><b>" . $cat['numproduct'] . "</b></span>
-            </a>
-            </li>";
-            $html .= Vcategory::shopCatTree($id, $cat['children'], $level + 1);
+        $html = "";
+        if (count($categories) > 0) {
+            $html = "<ul class='" . (($level == 0) ? 'nav navbar-nav' : 'nav-child') . "'  " . (($level == 0) ? 'itemscope itemtype="http://schema.org/ItemList"' : '') . ">";
+            if($level == 0) $html.="<li><a href='".URL::to('/')."'>Trang chủ</a></li>";
+            foreach ($categories as $cat) {
+                $html .= "<li " . (($level == 0) ? 'itemprop="name"' : 'itemprop="itemListElement"') . ">
+            <a itemprop='url' href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "  >
+                     " . $cat['latitle'] . "
+            </a>";
+
+                $html .= Vcategory::shopCatTree($id, $cat['children'], $level + 1);
+                $html.="</li>";
+            }
+
+            $html .= "</ul>";
         }
-        $html .= "</ul>";
         return $html;
     }
 
@@ -78,8 +84,8 @@ class Vcategory extends Eloquent
         $array = array();
         foreach ($parentcat as $cat) {
             $ranproduct = DB::table('v_products')
-                ->where('ladeleted','!=','1')
-                ->where(function($query) use ($cat){
+                ->where('ladeleted', '!=', '1')
+                ->where(function ($query) use ($cat) {
                     $query->where('cat1id', '=', $cat->id)
                         ->orwhere('cat2id', '=', $cat->id)
                         ->orwhere('cat3id', '=', $cat->id);

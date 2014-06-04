@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'la_shop',
+			'database'  => 'phongeenews',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

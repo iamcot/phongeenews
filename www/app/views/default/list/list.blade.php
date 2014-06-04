@@ -1,7 +1,7 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
 <div class="container-fluid lists" itemscope itemtype="http://schema.org/ItemList">
-    @if(!$rootcat && $caturl !='tin-tuc' && !isset($issearch))
+    @if(!$rootcat && $actCat->isnews==0 && !isset($issearch))
     <div class="text-right container-fluid">
         {{ Form::open() }}
              <button name="giatang" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-sort-by-attributes"></span> Giá</button>
@@ -11,7 +11,7 @@
         <p></p>
         {{ Form::close() }}
     </div>
-    @elseif ($caturl =='tin-tuc')
+    @elseif ($actCat->isnews==1)
         @if(count($lists)>0)
             @foreach($lists as $news)
             <div class="media">
@@ -39,7 +39,7 @@
     @if(isset($catchildren) && $catchildren != null)
     <div class="row-fluid parentcat">
         @foreach($catchildren as $children)
-            <a class="col-xs-6 col-sm-6 col-md-4" href="{{URL::to($children->laurl)}}">
+            <a class="col-xs-4 col-sm-4 col-md-3" href="{{URL::to($children->laurl)}}">
                 @if($children->laimage!='')
                 <img class="media-object" src="{{URL::to('/uploads/cat/'.$children->id.'/'.$children->laimage)}}" alt="{{$children->latitle}} - {{$children->lainfo}}">
                 @else
@@ -54,7 +54,7 @@
     <div class="clearfix"></div>
     <br>
     @endif
-    @if($caturl !='tin-tuc')
+    @if($actCat->isnews==0)
         @if( isset($lists) && $lists != null && count($lists)>0 )
         <div class="row-fluid ">
             @foreach($lists as $list)
