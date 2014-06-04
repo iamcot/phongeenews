@@ -29,7 +29,7 @@
         @endif
     </a>
     <div id="info" class="pull-right col-xs-12  col-sm-3 text-right hidden-xs nopaddingright hidden-print">
-        <span class="small"><span class="glyphicon glyphicon-phone-alt "> </span> Hotline: <strong>098.3717.098</strong></span>
+        <span class="small"><span class="glyphicon glyphicon-phone-alt "> </span> Hotline: <strong>xxx.xxx.xxxx</strong></span>
         <div class="cartinfo">
             <span class="cartsum">@if(Session::has('uid'))
             <a href="{{ URL::to('cart/uid/'.Session::get('uid')) }}">Các đơn hàng cũ</a>
