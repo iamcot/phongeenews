@@ -1,4 +1,4 @@
-<div class="col-sm-4 col-md-3 " itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
+<div class="col-sm-4 col-md-4 " itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
     <div class="thumbnail product">
         <a itemprop="url" href="{{URL::to($list->cat1url.'/'.$list->laurl.'.html')}}">
             <img itemprop="image" src="{{URL::to('/uploads/thumbnails/product/'.$list->laimage)}}"

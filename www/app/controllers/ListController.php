@@ -44,25 +44,24 @@ class ListController extends  BaseController
                 $this->data['lists'] = $lists;
                 $this->data['rootcat'] = false;
             }
-            else if($cat == 'tin-tuc'){
-                $lists = Vproduct::where('cat1url','=',$cat)->paginate(Config::get('shop.tablepp'));
-                $this->data['lists'] = $lists;
-                $this->data['rootcat'] = false;
-            }
+//            else if($cat == 'tin-tuc'){
+//                $lists = Vproduct::where('cat1url','=',$cat)->paginate(Config::get('shop.tablepp'));
+//                $this->data['lists'] = $lists;
+//                $this->data['rootcat'] = true;
+//            }
             else {
                 $catchildren = Category::where('laparent_id','=',$actCat[0]->id)
                     ->orderBy('latitle')
                     ->get();
                 $this->data['catchildren'] = $catchildren;
                 $this->data['oActCat'] =$actCat[0];
-//                $ranproduct = DB::table('v_products')
-//                    ->where('cat1id', '=', $actCat[0]->id)
-//                    ->orwhere('cat2id', '=', $actCat[0]->id)
-//                    ->orwhere('cat3id', '=', $actCat[0]->id)
-//                    ->orderBy(DB::raw('RAND()'))
-//                    ->take(6)
-//                    ->get();
-//                $this->data['lists'] = $ranproduct;
+                $ranproduct = DB::table('v_products')
+                    ->where('cat1id', '=', $actCat[0]->id)
+                    ->orwhere('cat2id', '=', $actCat[0]->id)
+                    ->orwhere('cat3id', '=', $actCat[0]->id)
+                    ->orderBy('id','desc')
+                    ->paginate(6);
+                $this->data['lists'] = $ranproduct;
             }
 
         }

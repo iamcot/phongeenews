@@ -562,7 +562,7 @@ img {
     text-align: center;
 }
 .product a{
-    color:#000;
+    color:#fff;
 }
 .product h4 {
     margin-top: 10px;
@@ -570,12 +570,19 @@ img {
 
 .product p {
     line-height: 1.5em;
+
     margin: 0;
 }
 
 .product strong {
-    min-height: 75px;
+    min-height: 48px;
     display: block;
+    font-size: 20px;
+}
+.thumbnail.product img:hover{
+    border:6px solid #eee;
+    -webkit-transition: all 0.5s;
+
 }
 
 .price {
@@ -585,7 +592,7 @@ img {
     text-align: center;
     font-weight: 700;
     font-size: 150%;
-    color: #3c763d;
+    color: #8e8e8e;
 }
 
 #detailsPrice {
@@ -608,6 +615,11 @@ img {
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
     -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    background: #3f3f3f;
+    color: #8e8e8e;
+    padding: 20px;
+    border: none;
+    border-radius: 0;
 }
 
 .product .oldPrice {
@@ -999,6 +1011,16 @@ label.error {
     padding: 0 0 13px 0;
     display: block;
     line-height: 16px;
+}
+.border-right{
+    border-right: 1px solid #000;
+}
+.newsroot li{
+    border-bottom: 1px dotted #000;
+    margin-right: 50px;
+}
+.newsroot li:last-child{
+    border-bottom: none;
 }
 
 @media screen and (max-width : 450px){
