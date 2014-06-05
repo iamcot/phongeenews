@@ -2,7 +2,7 @@
 <div id="footer" class="hidden-print">
     <div class="container wrap">
         <div class="col-xs-12 col-md-6 hidden-xs hidden-sm">
-            <div class="fb-like-box" data-href="https://www.facebook.com/phongee.vn" data-width="445" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+<!--            <div class="fb-like-box" data-href="https://www.facebook.com/phongee.vn" data-width="445" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>-->
         </div>
         <div class="col-xs-6 col-md-3">
             <dl>

@@ -1,7 +1,7 @@
 @extends('layout')
 @section('body')
 {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
-<div class="container-fluid wrap">
+<div class="mycontainer">
     <div id="content" class="">
         @if($typeEnd == 'list' || $typeEnd=='details')
         @include(Config::get('shop.theme').'/layout/barcum')
