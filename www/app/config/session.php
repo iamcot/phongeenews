@@ -96,7 +96,7 @@ return array(
 	|
 	*/
 
-	'cookie' => 'lashop_session',
+	'cookie' => 'phongeenews_session',
 
 	/*
 	|--------------------------------------------------------------------------

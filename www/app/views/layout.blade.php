@@ -41,6 +41,8 @@
         <div class="bg-danger text-center">{{Session::get('message')}}</div>
         @endif
         @yield('body')
+        <div class="clearfix"></div>
+        <div class="subfooter-bar"></div>
     </div>
         <div class="clearfix"></div>
     @if (isset($typeEnd) && $typeEnd!='admin')
