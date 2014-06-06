@@ -35,12 +35,14 @@
          @else
             <div id="productinfo" class="col-sm-7 col-md-7">
             @endif
-            <h3  itemprop="name">{{$oProduct->latitle}}</h3>
-            <p >
-                <span class="glyphicon glyphicon-usd"></span>
-                <span id="detailsPrice" >{{number_format($oProduct->laprice,0,',','.')}}</span>
+<!--            <h3  itemprop="name">{{$oProduct->latitle}}</h3>-->
+            <p>
+<!--                <span class="glyphicon glyphicon-usd"></span>-->
+                <div id="detailsPrice" >{{number_format($oProduct->laprice,0,',','.')}}</div>
+            </p>
+                <br>
                 @if($oProduct->laprice < $oProduct->laoldprice)
-            ( <span class="detailsOldPrice"> {{number_format($oProduct->laoldprice,0,',','.')}} </span> )
+<!--            ( <span class="detailsOldPrice"> {{number_format($oProduct->laoldprice,0,',','.')}} </span> )-->
             @endif
             @if($oProduct->sumvariant > 0)
                   {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
@@ -116,8 +118,8 @@
 
             </dl>
             @if($oProduct->laprice < $oProduct->laoldprice)
-            <p class="detailsOldPriceBlock badge">{{number_format(($oProduct->laoldprice-$oProduct->laprice)/$oProduct->laoldprice*100,0,'.',',')}}%
-             </p>
+<!--            <p class="detailsOldPriceBlock badge">{{number_format(($oProduct->laoldprice-$oProduct->laprice)/$oProduct->laoldprice*100,0,'.',',')}}%-->
+<!--             </p>-->
             @endif
                 <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
@@ -125,16 +127,11 @@
 
     <div class="clearfix"></div>
 
-    <div id="comment">
-
-    </div>
-        <br>
-    <div id="productcontent" class="clearfix">
+    <div id="productcontent" class="clearfix col-xs-12 col-sm-7">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#tabinfo" data-toggle="tab">Thông tin sản phẩm</a></li>
             <li><a href="#tabhdsd" data-toggle="tab">Hướng dẫn sử dụng</a></li>
-            <li><a href="#tabcomment" data-toggle="tab">Bình luận</a></li>
             <li><a href="#tabnews" data-toggle="tab">Tin tức liên quan </a></li>
         </ul>
 
@@ -143,9 +140,7 @@
             <div class="tab-pane active" id="tabinfo">{{$oProduct->lainfo}}</div>
 
             <div class="tab-pane" id="tabhdsd">{{$oProduct->lauseguide}}</div>
-            <div class="tab-pane text-center" id="tabcomment">
-                <div class="fb-comments" data-href="{{Request::url()}}" data-numposts="5" data-colorscheme="light"></div>
-            </div>
+
             <div class="tab-pane" id="tabnews">
                 {{--*/ $productNews = Product::getProductNews($oProduct->id) /*--}}
                 @if(count($productNews)>0)
@@ -170,6 +165,16 @@
         </div>
 
     </div>
+        <div class="col-xs-12 col-sm-5">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active"><a href="#tabinfo" data-toggle="tab">Bình luận</a></li>
+            </ul>
+            <div class="tab-content">
+            <div class="tab-pane text-center active" id="tabcomment">
+                <div class="fb-comments" data-width="100%" data-href="{{Request::url()}}" data-numposts="5" data-colorscheme="light"></div>
+            </div>
+                </div>
+        </div>
     <div id="ralate"></div>
 </div>
 @stop

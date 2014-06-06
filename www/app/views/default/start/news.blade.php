@@ -16,6 +16,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 {{--*/ $i = 0 /*--}}
+                @if(count($news) > 0 )
                 @foreach($news as $newitem)
                     @if($i%2==0)
                         <div class="item @if($i==0) active @endif">
@@ -23,14 +24,14 @@
                     @endif
                         <li class=" col-xs-6">
                             @if($newitem->laimage !='')
-                            <a href="#" class="text-center block">
-                                <img src="{{URL::to('/uploads/thumbnails/product/'.$newitem->laimage)}}">
+                            <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}" class="text-center block">
+                                <img src="{{URL::to('/uploads/medium/product/'.$newitem->laimage)}}">
                             </a>
                             @endif
                             <figcaption>
                                 <div class="entry-header">
                                     <h4 class="entry-title">
-                                        <a href="">
+                                        <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}">
                                             {{$newitem->latitle}}
                                         </a></h4>
 
@@ -58,8 +59,9 @@
                         </div>
                     @endif
                 @endforeach
-                </ul>
-            </div>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -70,18 +72,19 @@
             <h3>Khuyến mãi</h3>
         </div>
         {{--*/ $news = Vproduct::getLastestTinKhuyenMai() /*--}}
+        @if(count($news) > 0 )
         <ul>
             @foreach($news as $newitem)
             <li class="col date-type-big mini">
                 <figure>
                     <div class="imgHolder">
-                        <a href="#">
+                        <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}">
                             <img src="{{URL::to('/uploads/thumbnails/product/'.$newitem->laimage)}}">
                         </a>
                     </div>
                     <figcaption>
                         <div class="entry-header">
-                            <h4 class="entry-title"><a href="#">{{$newitem->latitle}}</a></h4>
+                            <h4 class="entry-title"><a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}">{{$newitem->latitle}}</a></h4>
 
                             <div class="entry-format">
                                 <div class="cell-date">
@@ -103,6 +106,7 @@
             </li>
             @endforeach
         </ul>
+        @endif
     </div>
 </div>
 </div>

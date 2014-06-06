@@ -6,7 +6,7 @@
     <span class="{{$newitem->lakeyword}}"></span>
     <h4 class="col-title">{{$newitem->latitle}}</h4>
     <p>{{nl2br($newitem->lashortinfo)}}</p>
-    <p><a href="#">Xem thêm</a></p>
+    <p><a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}">Xem thêm</a></p>
 </li>
 @endforeach
 </ul>

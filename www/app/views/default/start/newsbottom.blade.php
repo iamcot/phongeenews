@@ -15,34 +15,37 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             {{--*/ $i = 0 /*--}}
-            @foreach($news as $newitem)
-            @if($i%3==0)
-            <div class="item @if($i==0) active @endif">
-                <ul>
-                    @endif
-                    <li class=" col-xs-4">
-                        @if($newitem->laimage !='')
-                        <a href="#">
-                            <img src="{{URL::to('/uploads/thumbnails/product/'.$newitem->laimage)}}">
-                        </a>
+            @if(count($news)>0)
+                @foreach($news as $newitem)
+                @if($i%4==0)
+                <div class="item @if($i==0) active @endif">
+                    <ul>
                         @endif
-                        <figcaption>
-                            <h4 class="item-title">
-                                <a href="#">{{$newitem->latitle}}
-                                </a></h4>
-                            @if($newitem->laoldprice > $newitem->laprice)
-                            <del>{{number_format($newitem->laoldprice,0,',','.') }}</del>
+                        <li class=" col-xs-3">
+                            @if($newitem->laimage !='')
+                            <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}">
+                                <img src="{{URL::to('/uploads/thumbnails/product/'.$newitem->laimage)}}">
+                            </a>
                             @endif
-                            <p class="current-price">{{number_format($newitem->laprice,0,',','.')}}</p>
-                        </figcaption>
-                    </li>
-                    {{--*/ $i +=1 /*--}}
-                    @if($i%3==0)
-                </ul>
-            </div>
+                            <figcaption>
+                                <h4 class="item-title">
+                                    <a href="#">{{$newitem->latitle}}
+                                    </a></h4>
+                                @if($newitem->laoldprice > $newitem->laprice)
+                                <del>{{number_format($newitem->laoldprice,0,',','.') }}</del>
+                                @endif
+                                <p class="current-price">{{number_format($newitem->laprice,0,',','.')}}</p>
+                            </figcaption>
+                        </li>
+                        {{--*/ $i +=1 /*--}}
+                        @if($i%4==0)
+                    </ul>
+                </div>
+                @endif
+                @endforeach
+                    </ul>
+                </div>
             @endif
-            @endforeach
-            </ul>
         </div>
     </div>
 </div>

@@ -100,7 +100,7 @@ class UploadHandler
             // Set to 0 to use the GD library to scale and orient images,
             // set to 1 to use imagick (if installed, falls back to GD),
             // set to 2 to use the ImageMagick convert binary directly:
-            'image_library' => 1,
+            'image_library' => 0,
             // Uncomment the following to define an array of resource limits
             // for imagick:
             /*
@@ -126,12 +126,17 @@ class UploadHandler
                     'auto_orient' => true
                 ),
                 // Uncomment the following to create medium sized images:
-                /*
+
                 'medium' => array(
-                    'max_width' => 800,
-                    'max_height' => 600
+                    'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/thumb/',
+                    'upload_url' => $this->get_full_url().'/thumb/',
+                    // Uncomment the following to force the max
+                    // dimensions and e.g. create square thumbnails:
+                    'crop' => true,
+                    'max_width' => 300,
+                    'max_height' => 200
                 ),
-                */
+
                 'thumbnail' => array(
                     // Uncomment the following to use a defined directory for the thumbnails
                     // instead of a subdirectory based on the version identifier.
@@ -673,10 +678,15 @@ class UploadHandler
             default:
                 return false;
         }
+//        $src_img = $this->gd_get_image_object(
+//            $file_path,
+//            $src_func,
+//            !empty($options['no_cache'])
+//        );
         $src_img = $this->gd_get_image_object(
             $file_path,
             $src_func,
-            !empty($options['no_cache'])
+            true
         );
         $image_oriented = false;
         if (!empty($options['auto_orient']) && $this->gd_orient_image(
@@ -751,6 +761,7 @@ class UploadHandler
             $img_height
         ) && $write_func($new_img, $new_file_path, $image_quality);
         $this->gd_set_image_object($file_path, $new_img);
+
         return $success;
     }
 

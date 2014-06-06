@@ -1,10 +1,10 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
 <div class="container-fluid lists" itemscope itemtype="http://schema.org/ItemList">
-    @if($actCat->isnews==1)
+    @if($actCat!='search' && $actCat->isnews==1)
         @include(Config::get('shop.theme').'/list/listnews')
     @else
-        @if(!$rootcat && $actCat->isnews==0 && !isset($issearch))
+        @if($actCat!='search' && !$rootcat && $actCat->isnews==0 && !isset($issearch))
         <div class="text-right container-fluid">
             {{ Form::open() }}
             <button name="giatang" class="btn btn-success btn-xs"><span
@@ -24,15 +24,22 @@
         </div>
 
         @else
-            @if(isset($oActCat) && $oActCat != null && $oActCat->lainfo!='')
-            <blockquote>{{$oActCat->lainfo}}</blockquote>
+            @if($actCat!='search' && $oActCat->lainfo!='')
+    <div class="cat-info">
+            <p>{{$oActCat->lainfo}}</p>
+            <div class="widget-header">
+                <h3>Sản phẩm </h3>
+            </div>
+        <div class="clearfix"></div>
+    </div>
+
             @endif
         @endif
 
         @if(isset($catchildren) && $catchildren != null)
         <div class="row-fluid parentcat">
             @foreach($catchildren as $children)
-            <a class="col-xs-4 col-sm-4 col-md-3" href="{{URL::to($children->laurl)}}">
+            <a class="col-xs-4 col-sm-4 col-md-4" href="{{URL::to($children->laurl)}}">
                 @if($children->laimage!='')
                 <img class="media-object"
                      src="{{URL::to('/uploads/cat/'.$children->id.'/'.$children->laimage)}}"
@@ -50,7 +57,7 @@
         <br>
         @endif
 
-        @if( isset($lists) && $lists != null && count($lists)>0 )
+        @if(!$rootcat && isset($lists) && $lists != null && count($lists)>0 )
             <div class="row-fluid ">
                 @foreach($lists as $list)
                 @include(Config::get('shop.theme').'/list/listitem')

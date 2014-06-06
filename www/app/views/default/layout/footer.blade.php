@@ -30,7 +30,7 @@
 
         </div>
     </div>
-    </div>
+
     <div class="clearfix"></div>
     <div id="copyright" class="">
         <small> Copyright &copy; {{date("Y")}} by phongee.vn - một sản phẩm của <a class="label label-success" href="https://www.facebook.com/phongee.vn">PhonGee Color</a>
@@ -45,6 +45,7 @@
             <li><a class="delicious" href="#" target="_blank"></a></li>
             <li><a class="rss" href="#" target="_blank"></a></li>
         </ul><!-- end socials -->
+    </div>
     </div>
 </div>
 @show

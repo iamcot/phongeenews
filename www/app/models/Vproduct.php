@@ -21,5 +21,11 @@ class Vproduct extends Eloquent{
             ->take(4)->get();
 
     }
+    public static function getHotNews(){
+        return Vproduct::where('isnews','1')
+            ->orderby('laview','desc')
+            ->take(5)->get();
+
+    }
 
 }

@@ -1,23 +1,117 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
-<div id="details" class="text-justify">
-    <h1>{{$oProduct->latitle}}</h1>
-    @if($oProduct->lashortinfo !='')
-    <blockquote>
-        <p>{{$oProduct->lashortinfo}}</p>
-    </blockquote>
-    @endif
-    <div id="newsimage">
-        @if($oProduct->laimage !='')
-              {{HTML::image('/uploads/product/'.$oProduct->laimage,$oProduct->latitle)}}
+{{--*/ $news = $oProduct /*--}}
+<div class="col-xs-8 border-right detais-news">
+
+            <article class="list-news" role="article">
+                @if($news->laimage!='')
+                <div class="entry-media">
+                    <div class="imgHolder">
+                        <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
+                            <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
+                    </div>
+                    <div class="sep hbar"> </div>
+                </div>
+                 @endif
+                <div class="entry-main">
+
+                    <div class="entry-header">
+                        <h3 class="entry-title">
+                            <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">{{$news->latitle}}</a>
+                            <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+                        </h3>
+                        <div class="cell-date left">
+                            <em> </em><em> </em>
+                            <time datetime="{{date('Y-m-d',strtotime($news->created_at))}}" title="{{date('Y-m-d',strtotime($news->created_at))}}">
+                                <strong>{{date('d',strtotime($news->created_at))}}</strong>
+                                <span>{{date('M',strtotime($news->created_at))}}</span>
+                            </time>
+                        </div>
+
+                    </div>
+
+                    <div class="entry-content">
+                        {{$news->lainfo}}
+
+                    </div>
+
+                    <div class="entry-meta">
+                        <div class="entry-meta-wrapper clearfix">
+
+                            <a href="#" class="label label-default">{{$news->laview}}</a>
+
+                            <a href="#" class="label label-default" rel="category">{{$news->cat1name}}</a>
+                        </div>
+
+                        <div class="readmore right">
+
+                        </div>
+
+
+
+                    </div>
+                </div><!-- end entry-main -->
+                <div>
+                    <div class="fb-comments" data-width="100%" data-href="{{Request::url()}}" data-numposts="5" data-colorscheme="light"></div>
+
+                </div>
+
+            </article>
+
+</div>
+<div class="col-xs-4">
+    <div class="sidebar-widget">
+        <h4>Chuyên mục</h4>
+        {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
+        @foreach($categories as $cate)
+        @if($cate['laurl'] == 'tin-tuc')
+        {{--*/ $newtree = $cate['children']/*--}}
         @endif
+        @endforeach
+        <ul>
+            @foreach($newtree as $cat)
+            <li>
+                <a href="{{URL::to($cat['laurl'])}}">{{$cat['latitle']}}</a>
+            </li>
+            @endforeach
+        </ul>
     </div>
-    <p></p>
-    <div id="newscontent" class="text-justify">
-        {{$oProduct->lainfo}}
-    </div>
-    <div class="author text-right">
-        <em>Cập nhật lần cuối: {{date('d/m/Y H:i',strtotime($oProduct->updated_at))}} </em>
+    <div class="sidebar-widget">
+        {{--*/ $hotnews = Vproduct::getHotNews()/*--}}
+        <h4>Tin hot</h4>
+        <ul>
+            @foreach($hotnews as $news)
+            <li>
+                <figure>
+                    <div class="imgHolder">
+                        <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
+                            <img src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt=""></a>
+                    </div>
+                    <figcaption>
+                        <div class="entry-header">
+                            <h4 class="entry-title">
+                                <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">{{$news->latitle}}</a>
+                            </h4>
+
+                            <div class="entry-format">
+                                <div class="post-format image-format"> </div>
+                            </div>
+                        </div>
+
+                        <div class="entry-content">
+
+                            <time datetime="{{date('Y-m-d',strtotime($news->created_at))}}" title="{{date('Y-m-d',strtotime($news->created_at))}}">
+                                {{date('M d, Y',strtotime($news->created_at))}}
+                            </time>
+
+                        </div>
+                    </figcaption>
+                </figure>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
+
 @stop

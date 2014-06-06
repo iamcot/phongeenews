@@ -2,6 +2,7 @@
     @if(isset($typeEnd) && $typeEnd == 'shop')
         <li>Chào mừng đến với thế giới làm đẹp - Thái Boutique - webmypham.net</li>
     @elseif(isset($typeEnd) && $typeEnd == 'list')
+    {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
         {{--*/ $breadcrumcat = Vcategory::makeBreadcrumCat($categories,$caturl) /*--}}
         <li><a href="{{URL::to('/')}}"><span class="glyphicon glyphicon-home"></span></a></li>
         {{--*/ $breadcrumlv = count($breadcrumcat) /*--}}
