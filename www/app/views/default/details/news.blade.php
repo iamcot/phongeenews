@@ -3,7 +3,7 @@
 {{--*/ $news = $oProduct /*--}}
 <div class="col-xs-8 border-right detais-news">
 
-            <article class="list-news" role="article">
+            <article class="" role="article">
                 @if($news->laimage!='')
                 <div class="entry-media">
                     <div class="imgHolder">

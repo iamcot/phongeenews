@@ -11,7 +11,8 @@ class Vproduct extends Eloquent{
             ->take(8)->get();
     }
     public static function getLastestTincongty(){
-        return Vproduct::where('cat1url','tin-cong-ty')
+        return Vproduct::where('isnews','1')
+            ->where('cat1url','!=','tin-tuc')
             ->orderby('id','desc')
             ->take(8)->get();
     }
@@ -23,6 +24,7 @@ class Vproduct extends Eloquent{
     }
     public static function getHotNews(){
         return Vproduct::where('isnews','1')
+            ->where('cat1url','!=','tin-tuc')
             ->orderby('laview','desc')
             ->take(5)->get();
 

@@ -3,7 +3,7 @@ CREATE OR REPLACE
     AS
     SELECT p.*,
     (SELECT COUNT(p2.id) FROM laproducts p2 WHERE p2.lavariant_id = p.id) sumvariant,
-    c1.id cat1id, c1.latitle cat1name, c1.laurl cat1url,
+    c1.id cat1id, c1.latitle cat1name, c1.laurl cat1url,c1.ladeleted cat1deleted,
     c1.isnews,
     COALESCE(c2.id,0) cat2id, COALESCE(c2.latitle,'') cat2name,COALESCE(c2.laurl,'') cat2url,
     COALESCE(c3.id,0) cat3id, COALESCE(c3.latitle,'') cat3name,COALESCE(c3.laurl,'') cat3url,

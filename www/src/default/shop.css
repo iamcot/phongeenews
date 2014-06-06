@@ -764,6 +764,11 @@ date-type-big .imgHolder img {
     top: 0px;
     /*left: -50px;*/
 }
+.detais-news .cell-date{
+    position: absolute;
+    top: 0px;
+    /*left: -50px;*/
+}
 .entry-main{
     position: relative;
 }
@@ -859,4 +864,7 @@ date-type-big .imgHolder img {
 
 }
 
+#variantselectname{
+    display: inline-block;
+}
 

@@ -26,7 +26,7 @@
         </div>
         @else
         <div id="picbox" class="col-xs-12 col-sm-5 col-md-5"  itemprop="image">
-            <img rel="image_src" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
+            <img rel="image_src"  id="mainpicimg"  src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
         </div>
         @endif
 
@@ -66,6 +66,7 @@
             </dl>
             @endif
                 <div>
+                    <!--
                     {{ Form::open(array(
                         'url' => '/cart/add',
                         'class'=>'form-inline',
@@ -79,7 +80,7 @@
                     <button id="addtocart" class="btn btn-default btn-success" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}} ><span class="glyphicon glyphicon-shopping-cart"></span> Mua</button>
                     </div>
                     {{ Form::close() }}
-
+                  -->
                 </div>
                 <div class="clearfix"></div>
                 <br>
@@ -104,11 +105,11 @@
                     @endif
                 @endif
                 @if($oProduct->lakhoiluong != '')
-                <dt>Khối lượng (cả vỏ)</dt>
+                <dt>Khối lượng</dt>
                 <dd>{{$oProduct->lakhoiluong}} (gram)</dd>
                 @endif
                 @if($oProduct->ladungtich != '')
-                <dt>Dung lượng</dt>
+                <dt>Kích thước</dt>
                 <dd>{{$oProduct->ladungtich}}</dd>
                 @endif
                 @if(trim($oProduct->lashortinfo) != '')
@@ -131,7 +132,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#tabinfo" data-toggle="tab">Thông tin sản phẩm</a></li>
-            <li><a href="#tabhdsd" data-toggle="tab">Hướng dẫn sử dụng</a></li>
+            <li><a href="#tabhdsd" data-toggle="tab">Thông số kỹ thuật</a></li>
             <li><a href="#tabnews" data-toggle="tab">Tin tức liên quan </a></li>
         </ul>
 
