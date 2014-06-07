@@ -14,8 +14,8 @@
     <div id="carousel-example-genericnews" class="carouselnews slide widget-product" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            {{--*/ $i = 0 /*--}}
-            @if(count($news)>0)
+            {{--*/ $i = 0;$countnews = count($news); /*--}}
+            @if($countnews >0)
                 @foreach($news as $newitem)
                 @if($i%4==0)
                 <div class="item @if($i==0) active @endif">
@@ -38,7 +38,7 @@
                             </figcaption>
                         </li>
                         {{--*/ $i +=1 /*--}}
-                        @if($i%4==0)
+                        @if($i%4==0 && $i< $countnews)
                     </ul>
                 </div>
                 @endif
