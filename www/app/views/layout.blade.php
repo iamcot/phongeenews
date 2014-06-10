@@ -11,6 +11,7 @@
     <meta property="fb:app_id" content="753308934688020"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,900,700&subset=vietnamese' rel='stylesheet' type='text/css'>
     <!-- Bootstrap -->
     {{HTML::style('src/bootstrap/css/bootstrap.min.css')}}
     {{HTML::style('src/bootstrap/css/bootstrap-responsive.min.css')}}

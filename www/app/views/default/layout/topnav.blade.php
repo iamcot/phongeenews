@@ -1,4 +1,4 @@
-<div class="navbar navbarphongee hidden-print navbar-right" role="navigation">
+<div class="navbar navbarphongee hidden-print" role="navigation">
     <div class="">
         <div class="navbar-inner">
             {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}

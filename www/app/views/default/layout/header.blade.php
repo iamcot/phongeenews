@@ -1,45 +1,40 @@
-<div id="top-header">
-    <div class="mycontainer fold">
+<div id="top-header" role="banner">
+    <div class="mycontainer fold" >
 
-        <p>Call us : +xxx xxx xxxx</p>
-        <div class="header-tools">
-
-            <div id="searchform">
-                {{ Form::open(array(
-                'url' => 'search',
-                'method'=>'post',
-                )) }}
-                    <input type="text" id="s" placeholder="Search .." name="s">
-                {{Form::close()}}
-            </div><!-- end searchform -->
-
-            <ul class="socials">
-                <li><a class="facebook" href="#" target="_blank"></a></li>
-                <li><a class="twitter" href="#" target="_blank"></a></li>
-                <li><a class="gplus" href="#" target="_blank"></a></li>
-                <li><a class="dribble" href="#" target="_blank"></a></li>
-                <li><a class="youtube" href="#" target="_blank"></a></li>
-                <li><a class="vimeo" href="#" target="_blank"></a></li>
-                <li><a class="delicious" href="#" target="_blank"></a></li>
-                <li><a class="rss" href="#" target="_blank"></a></li>
-            </ul><!-- end socials -->
-
-        </div><!-- end header tools -->
-
-    </div><!-- end container -->
-</div>
-<header id="siteheader" role="banner" >
-    <div class="mycontainer">
-        <div id="logo" class="col-xs-3">
+        <div id="logo" class="col-xs-5 col-md-2">
             <a href="{{URL::to('/')}}">
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
-        <div class="col-xs-9">
+        <div class="header-tools col-xs-6 col-md-3">
+            <ul class="socials col-xs-4 hidden-phone">
+                <li><a class="facebook" href="#" target="_blank"></a></li>
+                <li><a class="youtube" href="#" target="_blank"></a></li>
+                <li><a class="rss" href="#" target="_blank"></a></li>
+            </ul><!-- end socials -->
+            <div id="searchform" class="col-xs-6">
+                {{ Form::open(array(
+                'url' => 'search',
+                'method'=>'post',
+                )) }}
+                <input type="text" id="s" placeholder="" name="s">
+                {{Form::close()}}
+            </div><!-- end searchform -->
+
+
+
+        </div><!-- end header tools -->
+
+        <div class="col-xs-12  col-md-7 hidden-phone nav-outer">
             @include(Config::get('shop.theme').'/layout/topnav')
 
         </div>
-    </div>
+
+
+    </div><!-- end container -->
+    <div class="clearfix"></div>
+</div>
+
 <!--    <a title="Xem giỏ hàng" href="{{URL::to('/cart/')}}" class="bag pull-right col-sm-1 col-xs-4 hidden-print" >-->
 <!--        {{--*/ $sumcart = Orders::getSumCartItem()/*--}}-->
 <!--        @if($sumcart>0)-->
@@ -72,7 +67,6 @@
 <!--        @endif-->
 <!---->
 <!--    </div>-->
-</header>
 @section('jscript')
 <script>
     @if(Session::get('actionstatus', 0) == Config::get('actionstatus.cart_has_new'))

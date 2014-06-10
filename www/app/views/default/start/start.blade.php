@@ -2,9 +2,7 @@
 @section('pagecontent')
     @include(Config::get('shop.theme').'/start/slider')
 <div class="widget">
-    @include(Config::get('shop.theme').'/start/newsnoibat')
-    @include(Config::get('shop.theme').'/start/news')
-    @include(Config::get('shop.theme').'/start/newsbottom')
-    @include(Config::get('shop.theme').'/start/manufactor')
+    @include(Config::get('shop.theme').'/start/newarrive')
+    @include(Config::get('shop.theme').'/start/store')
 </div>
 @stop

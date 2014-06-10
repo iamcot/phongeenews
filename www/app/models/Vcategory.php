@@ -41,7 +41,7 @@ class Vcategory extends Eloquent
         $html = "";
         if (count($categories) > 0) {
             $html = "<ul class='" . (($level == 0) ? 'nav navbar-nav' : 'nav-child') . "'  " . (($level == 0) ? 'itemscope itemtype="http://schema.org/ItemList"' : '') . ">";
-            if($level == 0) $html.="<li><a href='".URL::to('/')."'>Trang chủ</a></li>";
+           // if($level == 0) $html.="<li><a href='".URL::to('/')."'>Trang chủ</a></li>";
             foreach ($categories as $cat) {
                 $html .= "<li " . (($level == 0) ? 'itemprop="name"' : 'itemprop="itemListElement"') . ">
             <a itemprop='url' href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "  >

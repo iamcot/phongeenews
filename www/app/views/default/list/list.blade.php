@@ -58,11 +58,11 @@
         @endif
 
         @if(!$rootcat && isset($lists) && $lists != null && count($lists)>0 )
-            <div class="row-fluid ">
+            <ul class="row-fluid ">
                 @foreach($lists as $list)
                 @include(Config::get('shop.theme').'/list/listitem')
                 @endforeach
-            </div>
+            </ul>
             <div class="text-center clearfix">
                 @if(!$rootcat)
                 {{$lists->links()}}
