@@ -432,6 +432,9 @@ textarea, select {
     display: block;
     position: absolute;
     bottom: 50px;
+    left:15px;
+    font-weight: 400;
+    font-size: 12pt;
     min-height: 40px;
     padding: 5px 15px 5px 15px;
     margin: 0 !important;
