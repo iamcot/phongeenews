@@ -1,6 +1,6 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
-<div id="details">
+<div id="details" class="mycontainer wrap">
     <div id="maininfo"  itemscope itemtype="http://schema.org/Product">
         {{--*/ $morepic = Image::where("laproduct_id",'=',$oProduct->id)
         ->where('lapic','!=',$oProduct->laimage)

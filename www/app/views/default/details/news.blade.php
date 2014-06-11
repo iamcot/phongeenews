@@ -1,6 +1,7 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
 {{--*/ $news = $oProduct /*--}}
+<div class="mycontainer wrap">
 <div class="col-xs-8 border-right detais-news">
 
             <article class="" role="article">
@@ -112,6 +113,7 @@
             @endforeach
         </ul>
     </div>
+</div>
 </div>
 
 @stop

@@ -32,12 +32,12 @@
         <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>
-<div class="sep hbar clearfix"></div>
 @section('jscript')
 @parent
 <script>
     $('.carousel').carousel({
-        animation: 'fast'
+        animation: 'fast',
+        interval: 2000
     });
 </script>
 

@@ -5,12 +5,13 @@
             <img src="{{URL::to('/uploads/medium/product/'.$list->laimage)}}">
         </a>
         @endif
+        <div class="product-overlay"></div>
         <figcaption>
             <p>{{$list->latitle}}</p>
             <p class="current-price">{{number_format($list->laprice,0,',','.')}}</p>
             <p class="color-light">Available on Store</p>
-
+            <a class="buttoncart" href="{{URL::to($list->cat1url.'/'.$list->laurl.'.html')}}">View Details</a>
         </figcaption>
-        <button class="buttoncart">View Details</button>
+
     </div>
 </li>

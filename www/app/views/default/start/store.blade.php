@@ -1,5 +1,5 @@
 <div id="start-store">
-    <img src="{{URL::to('public/imagestore.png')}}">
+    <img src="{{URL::to('public/imagestore.jpg')}}">
     <div id="storetext">
         <p class="text-verybold">We love what we do & We do it with passion</p>
         <p class="text-light">We love what we do & We do it with passion<br>We love what we do & We do it with passion</p>

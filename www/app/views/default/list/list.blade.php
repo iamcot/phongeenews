@@ -1,6 +1,6 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
-<div class="container-fluid lists" itemscope itemtype="http://schema.org/ItemList">
+<div class="mycontainer wrap lists" itemscope itemtype="http://schema.org/ItemList">
     @if($actCat!='search' && $actCat->isnews==1)
         @include(Config::get('shop.theme').'/list/listnews')
     @else
