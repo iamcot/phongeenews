@@ -150,7 +150,7 @@ class ShopAdminController extends BaseController
                             mkdir($destinationPath, 0777, true);
                         }
                         $ext = strtolower($file->getClientOriginalExtension());
-                        if ($input['id'] > 0) {
+                        if ($input['id'] > 0 && $dbCat->laimage != '') {
                             if (file_exists($destinationPath . '/' . $dbCat->laimage))
                                 unlink($destinationPath . '/' . $dbCat->laimage);
                         }

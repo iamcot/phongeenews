@@ -297,7 +297,7 @@ header#siteheader #logo img{
     height: 86px;
     line-height: 60px;
     text-align: center;
-    min-width: 100px;
+    /*min-width: 100px;*/
     font-size: 13px;
     font-weight: 600;
     text-shadow: none;
@@ -323,10 +323,26 @@ header#siteheader #logo img{
 .nav-child>li{
 
 }
+.navbarphongee .nav>li:hover>.nav-child>li:hover>.nav-child{
+    display: block;
+    position: absolute;
+    width: 150px;
+    background: #373737;
+    left: 150px;
+    z-index: 999;
+    list-style: none;
+    padding-left: 0;
+    margin-top: -40px;
+    /*border:#fff 1px solid;*/
+    box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
+    border-left:  1px solid #555;;
+}
 .navbarphongee .nav>li:hover>.nav-child{
     display: block;
     position: absolute;
-    width: 200px;
+    width: 150px;
     background: #373737;
     left: 0;
     z-index: 999;
@@ -337,13 +353,19 @@ header#siteheader #logo img{
     -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
 }
-.navbarphongee .nav>li:last-child:hover>.nav-child{
-    left: -100px;
+.navbarphongee .nav>li{
+    min-width: 100px;
 }
-.navbarphongee .nav>li:hover>.nav-child>li{
+.navbarphongee .nav>li:last-child:hover>.nav-child{
+    left: -50px;
+}
+.navbarphongee .nav>li:last-child:hover>.nav-child>li:hover>.nav-child{
+    left: -150px;
+}
+.navbarphongee .nav-child>li{
     margin-bottom: 0;
 }
-.navbarphongee .nav>li:hover>.nav-child>li>a{
+.navbarphongee .nav-child>li>a{
     color: #fff;
     display: block;
     padding: 10px;
@@ -354,13 +376,13 @@ header#siteheader #logo img{
     -o-transition: background-color 150ms linear, color 150ms linear;
     transition: background-color 150ms linear, color 150ms linear;
 }
-.navbarphongee .nav>li:hover>.nav-child>li:last-child>a{
+.navbarphongee .nav-child>li:last-child>a{
      border-bottom: none;
 }
-.navbarphongee .nav>li:hover>.nav-child>li:first-child>a{
+.navbarphongee .nav-child>li:first-child>a{
     border-top: none;
 }
-.navbarphongee .nav>li:hover>.nav-child>li>a:hover{
+.navbarphongee .nav-child>li>a:hover{
     background: #222;
     text-decoration: none;
 }
@@ -655,6 +677,11 @@ date-type-big .imgHolder img {
 .start-manufactor li{
     display: inline-block;
     margin-right: 20px;
+   max-height:28px;
+    width: 100px;
+}
+.start-manufactor img{
+    width: 100%;
 }
 .start-manufactor li:last-child{
     margin-right: 0;
