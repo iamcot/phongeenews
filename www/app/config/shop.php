@@ -1,14 +1,14 @@
 <?php
 
 return array(
-    'title' => 'Phongee.vn',
+    'title' => 'Thanh Trường Sơn Print store',
     'pretitle' => '',
-    'suftitle' => '- Phongee.vn',
-    'description' => 'Phongee Color - Phongee.vn ',
+    'suftitle' => '- Thanh Trường Sơn Print store',
+    'description' => 'Thanh Trường Sơn Print store',
     'keywords'  => 'iphone, ipad, mac book',
     'treecatdeep' => 1,
     'tablepp'    =>  18,
-    'theme' => 'default',
+    'theme' => 'print1',
     'orderstatus' => array(
         '0' => array('value'=>'Mới đặt','color'=>'danger'),
         '1' => array('value'=>'Xác nhận','color'=>'warning'),
