@@ -28,7 +28,7 @@ class Category extends Eloquent
                 'laicon' => $categorie->laicon,
                 'laimage' => $categorie->laimage,
                 'path' => $path . $categorie->latitle,
-                'isnews' => $path . $categorie->isnews,
+                'isnews' => $categorie->isnews,
 
                 'children' => array()
             );
@@ -39,61 +39,95 @@ class Category extends Eloquent
         return $categories_array;
     }
 
-    public static function adminListCat($categories,$level=0)
+    public static function adminListCat($categories, $level = 0)
     {
         $html = "";
         $sLevel = "";
-        switch($level){
-            case 0: $sLevel="";break;
-            case 1: $sLevel="---";break;
-            case 2: $sLevel="------";break;
-            default: $sLevel="";break;
+        switch ($level) {
+            case 0:
+                $sLevel = "";
+                break;
+            case 1:
+                $sLevel = "---";
+                break;
+            case 2:
+                $sLevel = "------";
+                break;
+            default:
+                $sLevel = "";
+                break;
         }
         foreach ($categories as $cat) {
             $html .= "<tr>
                     <td>" . $cat['id'] . "</td>
-                    <td>" . $sLevel . " " . link_to('admin/editcat/' . $cat['id'], $cat['latitle']) . "</td>
-                    <td>" . $cat['laurl'] . "</td>
-                    <td>" . str_limit($cat['lainfo'],40) . "</td>
-                    <td class='imgthumb'>" . HTML::image('uploads/cat/' . $cat['id'] . '/' . $cat['laimage'], 'IMG') . "</td>
+                    <td>" . $sLevel . " " . link_to('admin/editcat/' . $cat['id'], $cat['latitle']) . "</td><td>";
+            switch ($cat['isnews']) {
+                case 0:
+                    $html .= "Sản phẩm";
+                    break;
+                case 1:
+                    $html .= "Tin tức";
+                    break;
+                case 2:
+                    $html .= "Trang";
+                    break;
+                case 3:
+                    $html .= "Liên kết";
+                    break;
+            }
+            $html .= "</td><td>" . $cat['laurl'] . "</td>
+                    <td>" . str_limit($cat['lainfo'], 40) . "</td>
+                    <td class='imgthumb'>" . (($cat['laimage'] != '') ? HTML::image('uploads/cat/' . $cat['id'] . '/' . $cat['laimage'], 'IMG') : '') . "</td>
                     <td>" . $cat['laorder'] . "</td>
                 </tr>";
-            $html .= Category::adminListCat($cat['children'],$level+1);
+            $html .= Category::adminListCat($cat['children'], $level + 1);
         }
 
         return $html;
     }
-    public static function adminSelectCat($categories,$full=false,$select=0,$level=0){
-        $html="";
-        if($level==0) $html = "<option value='0' ".(($select==0)?'selected':'').">Thư mục gốc</option>";
+
+    public static function adminSelectCat($categories, $full = false, $select = 0, $level = 0)
+    {
+        $html = "";
+        if ($level == 0) $html = "<option value='0' " . (($select == 0) ? 'selected' : '') . ">Thư mục gốc</option>";
         $sLevel = "";
-        switch($level){
-            case 0: $sLevel="---";break;
-            case 1: $sLevel="------";break;
-            case 2: $sLevel="---------";break;
-            default: $sLevel="";break;
+        switch ($level) {
+            case 0:
+                $sLevel = "---";
+                break;
+            case 1:
+                $sLevel = "------";
+                break;
+            case 2:
+                $sLevel = "---------";
+                break;
+            default:
+                $sLevel = "";
+                break;
         }
         foreach ($categories as $cat) {
-            if($level < Config::get('shop.treecatdeep') || $full){
-                $html .= "<option value='" . $cat['id'] . "'  ".(($select==$cat['id'])?'selected':'').">
-                    " . $sLevel . " " .  $cat['latitle'] . "
+            if ($level < Config::get('shop.treecatdeep') || $full) {
+                $html .= "<option value='" . $cat['id'] . "'  " . (($select == $cat['id']) ? 'selected' : '') . ">
+                    " . $sLevel . " " . $cat['latitle'] . "
                 </option>";
-                $html .= Category::adminSelectCat($cat['children'],$full,$select,$level+1);
+                $html .= Category::adminSelectCat($cat['children'], $full, $select, $level + 1);
             }
 
         }
 
         return $html;
     }
-    public static function shopCatTree($categories,$level = 0){
-        $html="<ul class='".(($level==0)?'menu':'')."'>";
+
+    public static function shopCatTree($categories, $level = 0)
+    {
+        $html = "<ul class='" . (($level == 0) ? 'menu' : '') . "'>";
         foreach ($categories as $cat) {
-                $html .= "<li><a href='" . $cat['laurl'] . "' >
-                    ".(($level==0)?'<i class="'.$cat['laicon'].'"></i>':'')." ". $cat['latitle'] . " <span>340</span>
+            $html .= "<li><a href='" . $cat['laurl'] . "' >
+                    " . (($level == 0) ? '<i class="' . $cat['laicon'] . '"></i>' : '') . " " . $cat['latitle'] . " <span>340</span>
             </a> </li>";
-                $html .= Category::shopCatTree($cat['children'],$level+1);
+            $html .= Category::shopCatTree($cat['children'], $level + 1);
         }
-        $html.="</ul>";
+        $html .= "</ul>";
         return $html;
     }
 

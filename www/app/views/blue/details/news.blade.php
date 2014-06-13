@@ -4,11 +4,13 @@
 <div class="col-xs-8 border-right detais-news">
 
             <article class="" role="article">
-                @if($news->laimage!='')
+                @if($news->laimage!='' && $news->youtubeid =='')
                 <div class="entry-media">
                     <div class="imgHolder">
                         <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
-                            <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
+
+                            <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">
+                        </a>
                     </div>
                     <div class="sep hbar"> </div>
                 </div>
@@ -18,6 +20,7 @@
                     <div class="entry-header">
                         <h3 class="entry-title">
                             <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">{{$news->latitle}}</a>
+                            <br>
                             <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
 
                         </h3>
@@ -32,7 +35,7 @@
                     </div>
 
                     <div class="entry-content">
-                        {{$news->lainfo}}
+                        {{str_replace("[CLIP]",'<iframe width="100%" height="315" src="//www.youtube.com/embed/'.$news->youtubeid.'" frameborder="0" allowfullscreen></iframe>', $news->lainfo)}}
 
                     </div>
 
@@ -86,7 +89,12 @@
                 <figure>
                     <div class="imgHolder">
                         <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
-                            <img src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt=""></a>
+                            @if($news->laimage!='')
+                            <img src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt="">
+                            @elseif($news->youtubeid!='')
+                            <img src="http://img.youtube.com/vi/{{$news->youtubeid}}/1.jpg" alt="">
+                            @endif
+                        </a>
                     </div>
                     <figcaption>
                         <div class="entry-header">

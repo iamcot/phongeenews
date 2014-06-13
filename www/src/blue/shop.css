@@ -621,6 +621,7 @@ figcaption{
     display: block;
     width: 100%;
     z-index: 20;
+    position: relative;
 }
 .list-news .imgHolder img{
     max-width: 100%;
@@ -760,10 +761,32 @@ date-type-big .imgHolder img {
     font-weight: 600;
     line-height: 100%;
 }
+#tabhdsd ul{
+    list-style: url(img/eighth-note_small.jpg);
+    margin-left:20px;
+
+}
+#tabhdsd ul>li{
+    line-height: 22px;
+    margin-bottom: 0;
+}
 .tab-content{
     min-height: 100px;
     margin-bottom: 40px;
     padding-top: 15px;
+}
+.videoplay{
+    background: url(img/play.png);
+    width: 429px;
+    height: 230px;
+    display: block;
+    position: absolute;
+    top:20%;
+    left: 10%;
+    z-index: 999;
+}
+.tab-content img{
+    max-width: 500px !important;
 }
 #productinfo .dl-horizontal dt {
     width: auto;

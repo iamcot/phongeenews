@@ -26,6 +26,7 @@ class Vcategory extends Eloquent
                 'laimage' => $categorie->laimage,
                 'path' => $path . $categorie->latitle,
                 'numproduct' => $categorie->numproduct,
+                'isnews' => $categorie->isnews,
 
                 'children' => array()
             );

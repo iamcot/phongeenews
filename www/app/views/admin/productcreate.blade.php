@@ -136,6 +136,11 @@ array(
         {{ Form::text('lavariant_id',$variant_id,array("class"=>"form-control",'title'=>'ID của Sản phẩm gốc' ) ) }}
     </div>
     <br>
+    <div class="input-group">
+        {{ Form::label('youtubeid','Youtube ID',array("class"=>"input-group-addon"))
+        }}
+        {{ Form::text('youtubeid',(($catedit != null)?$catedit->youtubeid:''),array("class"=>"form-control",'title'=>'ID của youtube, clip sẽ tự chèn vào vị trí có thẻ [CLIP]' ) ) }}
+    </div>
 
 
 

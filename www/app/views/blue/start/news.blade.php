@@ -23,11 +23,13 @@
                             <ul>
                     @endif
                         <li class=" col-xs-6">
-                            @if($newitem->laimage !='')
-                            <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}" class="text-center block">
+                            <a href="{{URL::to($newitem->cat1url.'/'.$newitem->laurl.'.html')}}" class="text-center block" style="max-height: 180px">
+                                @if($newitem->laimage!='')
                                 <img src="{{URL::to('/uploads/medium/product/'.$newitem->laimage)}}">
+                                @elseif($newitem->youtubeid!='')
+                                <img src="http://img.youtube.com/vi/{{$newitem->youtubeid}}/0.jpg" alt="">
+                                @endif
                             </a>
-                            @endif
                             <figcaption>
                                 <div class="entry-header">
                                     <h4 class="entry-title">

@@ -1,4 +1,10 @@
-<div class="col-xs-8 border-right newsroot">
+﻿{{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
+        @foreach($categories as $cate)
+            @if($cate['isnews'] == 1)
+                    {{--*/ $newtree = $cate['children']/*--}}
+            @endif
+        @endforeach
+<div class="@if(isset($newtree)) col-xs-8 @else col-xs-12 @endif border-right newsroot">
     <ul>
     @foreach($lists as $news)
       <li>
@@ -7,7 +13,14 @@
               <div class="entry-media">
                   <div class="imgHolder">
                       <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
-                          <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
+                          @if($news->laimage!='')
+                          <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">
+                          @elseif($news->youtubeid!='')
+                          <img src="http://img.youtube.com/vi/{{$news->youtubeid}}/0.jpg" alt="">
+                          <a class="videoplay" href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}"></a>
+
+                          @endif
+                      </a>
                   </div>
                   <div class="sep hbar"> </div>
               </div>
@@ -28,7 +41,7 @@
                   </div>
 
                   <div class="entry-content">
-                      <p>{{$news->lashortinfo}} …</p>
+                      <p>{{$news->lashortinfo}}</p>
 
                   </div>
 
@@ -57,15 +70,12 @@
     </ul>
     {{$lists->links()}}
 </div>
+@if(isset($newtree))
 <div class="col-xs-4">
     <div class="sidebar-widget">
         <h4>Chuyên mục</h4>
-        {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
-        @foreach($categories as $cate)
-            @if($cate['laurl'] == 'tin-tuc')
-                    {{--*/ $newtree = $cate['children']/*--}}
-            @endif
-        @endforeach
+        
+
         <ul>
             @foreach($newtree as $cat)
             <li>
@@ -73,6 +83,7 @@
             </li>
             @endforeach
         </ul>
+
     </div>
     <div class="sidebar-widget">
     {{--*/ $hotnews = Vproduct::getHotNews()/*--}}
@@ -83,7 +94,12 @@
                 <figure>
                     <div class="imgHolder">
                         <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
-                            <img src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt=""></a>
+                            @if($news->laimage!='')
+                            <img src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt="">
+                            @elseif($news->youtubeid!='')
+                            <img src="http://img.youtube.com/vi/{{$news->youtubeid}}/1.jpg" alt="">
+                            @endif
+                        </a>
                     </div>
                     <figcaption>
                         <div class="entry-header">
@@ -110,3 +126,4 @@
     </ul>
         </div>
 </div>
+@endif

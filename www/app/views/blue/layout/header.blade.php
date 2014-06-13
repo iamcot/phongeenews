@@ -1,7 +1,7 @@
 <div id="top-header">
     <div class="mycontainer fold">
 
-        <p>Call us : +xxx xxx xxxx</p>
+        <p>Call us : Thịnh 0906 947 847</p>
         <div class="header-tools">
 
             <div id="searchform">
@@ -14,13 +14,13 @@
             </div><!-- end searchform -->
 
             <ul class="socials">
-                <li><a class="facebook" href="#" target="_blank"></a></li>
-                <li><a class="twitter" href="#" target="_blank"></a></li>
-                <li><a class="gplus" href="#" target="_blank"></a></li>
-                <li><a class="dribble" href="#" target="_blank"></a></li>
-                <li><a class="youtube" href="#" target="_blank"></a></li>
-                <li><a class="vimeo" href="#" target="_blank"></a></li>
-                <li><a class="delicious" href="#" target="_blank"></a></li>
+                <li><a class="facebook" href="https://www.facebook.com/nhaccuphukien" target="_blank"></a></li>
+                <li><a class="youtube" href="https://www.youtube.com/user/GuitarAndGears" target="_blank"></a></li>
+<!--                <li><a class="twitter" href="#" target="_blank"></a></li>-->
+<!--                <li><a class="gplus" href="#" target="_blank"></a></li>-->
+<!--                <li><a class="dribble" href="#" target="_blank"></a></li>-->
+<!--                <li><a class="vimeo" href="#" target="_blank"></a></li>-->
+<!--                <li><a class="delicious" href="#" target="_blank"></a></li>-->
                 <li><a class="rss" href="#" target="_blank"></a></li>
             </ul><!-- end socials -->
 
@@ -32,7 +32,8 @@
     <div class="mycontainer">
         <div id="logo" class="col-xs-3">
             <a href="{{URL::to('/')}}">
-                <img src="{{URL::to('/public/logo.png')}}">
+<!--                <img src="{{URL::to('/public/logo.png')}}">-->
+                <h1 style="color:#fff">GuitarAndGears</h1>
             </a>
         </div>
         <div class="col-xs-9">

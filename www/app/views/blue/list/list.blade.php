@@ -3,6 +3,8 @@
 <div class="container-fluid lists" itemscope itemtype="http://schema.org/ItemList">
     @if($actCat!='search' && $actCat->isnews==1)
         @include(Config::get('shop.theme').'/list/listnews')
+    @elseif($actCat!='search' && $actCat->isnews==2)
+        @include(Config::get('shop.theme').'/list/listpage')
     @else
         @if($actCat!='search' && !$rootcat && $actCat->isnews==0 && !isset($issearch))
         <div class="text-right container-fluid">

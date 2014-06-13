@@ -44,8 +44,9 @@ class ShopAdminController extends BaseController
                 if (isset($input['ladeleted']) && $input['ladeleted'] == 'on')
                     $dbCat->ladeleted = 0;
                 else $dbCat->ladeleted = 1;
-                if (isset($input['isnews']) && $input['isnews'] == 'on')
-                    $dbCat->isnews = 1;
+                if (isset($input['isnews'])){
+                    $dbCat->isnews = $input['isnews'];
+                }
                 else $dbCat->isnews = 0;
                 $dbCat->save();
 
@@ -231,6 +232,7 @@ class ShopAdminController extends BaseController
             $dbCat->lachucnang = $input['lachucnang'];
             $dbCat->lavariant_id = $input['lavariant_id'];
             $dbCat->laproduct_id = $input['laproduct_id'];
+            $dbCat->youtubeid = $input['youtubeid'];
             $dbCat->lamanufactor_id = $input['lamanufactor_id'];
             if (isset($input['ladeleted']) && $input['ladeleted'] == 'on')
                 $dbCat->ladeleted = 0;
@@ -244,6 +246,7 @@ class ShopAdminController extends BaseController
                     $dbCat->find($id);
                     if (isset($input['laimage']))
                         $dbCat->laimage = $input['laimage'];
+                    else $dbCat->laimage="";
                     $dbCat->save();
                     for ($i = 0; $i <= $input['currmorepic']; $i++) {
                         if (isset($input['morepic' . $i]) && $input['morepic' . $i] != '' && $input['mprepictype' . $i] == 'new') {

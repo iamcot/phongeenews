@@ -42,8 +42,19 @@
     <label>
         <input type="checkbox" name="ladeleted" {{((isset($catedit) && $catedit->ladeleted==1)?'':'checked=checked')}}> Kích hoạt
     </label>
+    <br>
     <label>
-        <input type="checkbox" name="isnews" {{((isset($catedit) && $catedit->isnews==0)?'':'checked=checked')}}> Là mục tin tức
+        <input type="radio" name="isnews" value="0" {{((!isset($catedit) || $catedit->isnews==0)?'checked=checked':'')}}> Là mục sản phẩm
+    </label>
+    <label>
+        <input type="radio" name="isnews" value="1" {{((isset($catedit) && $catedit->isnews==1)?'checked=checked':'')}}> Là mục tin tức
+    </label>
+    <br>
+    <label>
+        <input type="radio" name="isnews"  value="2" {{((isset($catedit) && $catedit->isnews==2)?'checked=checked':'')}}> Là trang
+    </label>
+    <label>
+        <input type="radio" name="isnews"  value="3" {{((isset($catedit) && $catedit->isnews==3)?'checked=checked':'')}}> Là liên kết
     </label>
     <br>
     <div class="input-group">
