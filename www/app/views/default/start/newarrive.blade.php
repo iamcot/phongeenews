@@ -8,7 +8,7 @@
     {{--*/ $lists = Vproduct::where('isnews','0')->orderby('laview','desc')->orderby('id','desc')->take(12)->get(); /*--}}
     {{--*/ $noInfo = true; /*--}}
     @foreach($lists as $list)
-    @include(Config::get('shop.theme').'/list/listitem')
+    @include(Config::get('shop.theme').'/list/startlistitem')
     @endforeach
     </ul>
     <div class="clearfix"></div>

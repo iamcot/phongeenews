@@ -21,6 +21,8 @@ class DetailsController extends BaseController
             ->where('ladeleted', '!=', '1')
             ->get();
         if ($product->count() > 0) {
+            $actCat = Vcategory::where('laurl',$cat)->get();
+            $this->data['actCat'] = $actCat[0];
             $this->data['oProduct'] = $product[0];
             $this->data['title'] = $this->data['oProduct']->latitle . ' - ' . $this->data['oProduct']->cat1name;
             $this->data['description'] = $this->data['oProduct']->lashortinfo;

@@ -403,6 +403,7 @@ textarea, select {
 .widget-product figcaption,
 .widget-product .buttoncart{
     display: none;
+    position: relative;
 }
 .widget-product:hover figcaption{
     display: block;
@@ -501,11 +502,13 @@ textarea, select {
     float:right;
 }
 .page-title{
+    color: #E23E1C;
     overflow: hidden;
     display: inline-block;
     margin: 0;
     padding-top: 20px;
     padding-left: 30px;
+    margin-bottom: 30px;
 }
 .lists{
     padding-bottom: 40px;
@@ -767,6 +770,51 @@ textarea, select {
     width: auto;
     position: relative;
     font-weight: 600;
+}
+.listpage .widget-product{
+    margin-bottom: 10px;
+    background: rgb(239,239,239);
+}
+.listpage{
+    margin-bottom: 20px;
+}
+.list-item-title{
+    color: #000;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+.list-item-price{
+    color: #565656;
+}
+.listpage .widget-product:hover .product-overlay{
+    background: rgb(239,239,239);
+    opacity: .7;
+}
+.listpage figcaption{
+    text-align: center;
+}
+.listpage .widget-product:hover .buttoncart{
+    padding: 5px 10px 5px 10px;
+    margin: 55px auto;
+    text-align: center;
+}
+.topcatlist{
+    overflow: hidden;
+    margin-bottom:40px;
+    font-weight: 300;
+}
+.topcatlist li{
+    padding-top: 15px;
+    border-right: 1px solid #AFAAAC;
+    border-bottom: 1px solid #AFAAAC;
+}
+.topcatlist li img{
+    max-height: 150px;
+}
+.topcatlist li a p{
+    color: #565656;
+    text-align: center;
+    margin-top: 10px;
 }
 @media screen and (max-width:800px){
     #storetext{

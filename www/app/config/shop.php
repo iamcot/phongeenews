@@ -8,7 +8,7 @@ return array(
     'keywords'  => 'iphone, ipad, mac book',
     'treecatdeep' => 1,
     'tablepp'    =>  18,
-    'theme' => 'blue',
+    'theme' => 'default',
     'orderstatus' => array(
         '0' => array('value'=>'Mới đặt','color'=>'danger'),
         '1' => array('value'=>'Xác nhận','color'=>'warning'),
