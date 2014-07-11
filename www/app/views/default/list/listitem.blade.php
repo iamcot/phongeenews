@@ -7,9 +7,7 @@
         @endif
 
         <div class="product-overlay"></div>
-        <figcaption>
             <a class="buttoncart" href="{{URL::to($list->cat1url.'/'.$list->laurl.'.html')}}">View Details</a>
-        </figcaption>
 
     </div>
     <p class="list-item-title">{{$list->latitle}}</p>

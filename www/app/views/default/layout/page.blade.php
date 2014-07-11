@@ -10,7 +10,7 @@
             <ul class="topcatlist">
                 @foreach($catListSameParent as $catitem)
                 <li class="col-xs-2">
-                    <a>
+                    <a href="{{URL::to($catitem->laurl)}}">
                         <img src="{{URL::to('/uploads/cat/'.$catitem->id.'/'.$catitem->laimage)}}">
                         <p>{{$catitem->latitle}}</p>
                     </a>

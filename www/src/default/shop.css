@@ -795,8 +795,12 @@ textarea, select {
 }
 .listpage .widget-product:hover .buttoncart{
     padding: 5px 10px 5px 10px;
-    margin: 55px auto;
+    /*margin: 55px auto;*/
+    position: absolute;
+    top:35%;
+    left:25%;
     text-align: center;
+    z-index: 999;
 }
 .topcatlist{
     overflow: hidden;
