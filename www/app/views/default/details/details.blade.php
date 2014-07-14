@@ -5,45 +5,42 @@
         {{--*/ $morepic = Image::where("laproduct_id",'=',$oProduct->id)
         ->where('lapic','!=',$oProduct->laimage)
         ->orderBy(DB::Raw('RAND()'))
-        ->take(6)
+        ->take(3)
         ->get() /*--}}
 
 
-        @if(count($morepic)>0)
-        <div id="picbox" class="col xs-12 col-sm-5 col-md-5" itemprop="image">
-            <img rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
-        </div>
-            <div  class="col-md-1 morepic hidden-sm hidden-xs">
-                <a href="javascript:changepic('{{$oProduct->laimage}}')">
+        <div id="picbox" class="col xs-12 col-sm-6 col-md-6" itemprop="image">
+            <div id="picbox-mainimg">
+                <img rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
+
+            </div>
+            <div  class="" id="picbox-morepic">
+                <a href="javascript:changepic('{{$oProduct->laimage}}')" >
                     <img src="{{URL::to('/uploads/thumbnails/product/'.$oProduct->laimage)}}">
                 </a>
                 @foreach($morepic as $pic)
-                <a href="javascript:changepic('{{$pic->lapic}}')">
-                <img src="{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}">
+                <a href="javascript:changepic('{{$pic->lapic}}')" >
+                    <img src="{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}">
                 </a>
                 @endforeach
 
+            </div>
+            <div class="clearfix"></div>
         </div>
-        @else
-        <div id="picbox" class="col-xs-12 col-sm-5 col-md-5"  itemprop="image">
-            <img rel="image_src"  id="mainpicimg"  src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
-        </div>
-        @endif
 
-        @if(count($morepic)>0)
+
+
         <div id="productinfo" class="col-xs-12 col-sm-6 col-md-6">
-         @else
-            <div id="productinfo" class="col-sm-7 col-md-7">
-            @endif
 <!--            <h3  itemprop="name">{{$oProduct->latitle}}</h3>-->
-            <p>
-<!--                <span class="glyphicon glyphicon-usd"></span>-->
-                <div id="detailsPrice" >{{number_format($oProduct->laprice,0,',','.')}}</div>
+            <p id="detailsTitle" >
+              {{$oProduct->latitle}}
             </p>
-                <br>
-                @if($oProduct->laprice < $oProduct->laoldprice)
-<!--            ( <span class="detailsOldPrice"> {{number_format($oProduct->laoldprice,0,',','.')}} </span> )-->
-            @endif
+            <hr>
+            <p id="detailsPrice">
+               {{number_format($oProduct->laprice,0,',','.')}} VNĐ
+            </p>
+               <hr>
+
             @if($oProduct->sumvariant > 0)
                   {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
             <dl>
@@ -66,6 +63,7 @@
             </dl>
             @endif
                 <div>
+
                     <!--
                     {{ Form::open(array(
                         'url' => '/cart/add',
@@ -83,7 +81,7 @@
                   -->
                 </div>
                 <div class="clearfix"></div>
-                <br>
+            <hr>
              <dl class="dl-horizontal">
                  @if($oProduct->factorname != '')
                 <dt>Xuất xứ</dt>
@@ -119,64 +117,14 @@
 
             </dl>
             @if($oProduct->laprice < $oProduct->laoldprice)
-<!--            <p class="detailsOldPriceBlock badge">{{number_format(($oProduct->laoldprice-$oProduct->laprice)/$oProduct->laoldprice*100,0,'.',',')}}%-->
-<!--             </p>-->
             @endif
                 <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
     </div>
 
     <div class="clearfix"></div>
+     <br><br>
 
-    <div id="productcontent" class="clearfix col-xs-12 col-sm-7">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#tabinfo" data-toggle="tab">Thông tin sản phẩm</a></li>
-            <li><a href="#tabhdsd" data-toggle="tab">Thông số kỹ thuật</a></li>
-            <li><a href="#tabnews" data-toggle="tab">Tin tức liên quan </a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="tabinfo">{{$oProduct->lainfo}}</div>
-
-            <div class="tab-pane" id="tabhdsd">{{$oProduct->lauseguide}}</div>
-
-            <div class="tab-pane" id="tabnews">
-                {{--*/ $productNews = Product::getProductNews($oProduct->id) /*--}}
-                @if(count($productNews)>0)
-                @foreach($productNews as $news)
-                <div class="media">
-                    @if($news->laimage != '')
-                    <a class="pull-left" href="{{URL::to('/tin-tuc/'.$news->laurl)}}.html">
-                        <img class="media-object" src="{{URL::to('/uploads/thumbnails/product/'.$news->laimage)}}" alt="{{$news->latitle}}">
-                    </a>
-                    @endif
-                    <div class="media-body">
-
-                        <h2 class="media-heading"><a href="{{URL::to('/tin-tuc/'.$news->laurl)}}.html">{{$news->latitle}} </a></h2>
-
-                        {{$news->lashortinfo}}
-                    </div>
-                </div>
-                @endforeach
-
-                @endif
-            </div>
-        </div>
-
-    </div>
-        <div class="col-xs-12 col-sm-5">
-            <ul class="nav nav-tabs" id="myTab">
-                <li class="active"><a href="#tabinfo" data-toggle="tab">Bình luận</a></li>
-            </ul>
-            <div class="tab-content">
-            <div class="tab-pane text-center active" id="tabcomment">
-                <div class="fb-comments" data-width="100%" data-href="{{Request::url()}}" data-numposts="5" data-colorscheme="light"></div>
-            </div>
-                </div>
-        </div>
-    <div id="ralate"></div>
 </div>
 @stop
 @section('jscript')

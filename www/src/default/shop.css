@@ -525,12 +525,12 @@ textarea, select {
     padding-top: 20px;
 
 }
-#detailsPrice{
-    color: #2583cf;
-    font-size: 30px;
-    font-weight: 600;
-    line-height: 100%;
-}
+/*#detailsPrice{*/
+    /*color: #2583cf;*/
+    /*font-size: 30px;*/
+    /*font-weight: 600;*/
+    /*line-height: 100%;*/
+/*}*/
 .tab-content{
     min-height: 100px;
     margin-bottom: 40px;
@@ -544,12 +544,47 @@ textarea, select {
     margin-left: 100px;
 }
 #maininfo .morepic img {
-    width: 80%;
+    width: 100%;
     margin-bottom: 10px;
     -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
     -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
     padding: 0;
+}
+#picbox-mainimg{
+    background: rgb(239,239,239);
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    margin-bottom: 20px;
+    padding: 80px;
+}
+#picbox-mainimg img{
+
+}
+#productinfo p{
+    overflow: hidden;
+}
+#detailsTitle,#detailsPrice{
+    font-weight: 900;
+    font-size: 30px;
+}
+#picbox{
+    margin-bottom: 40px;
+}
+#picbox-morepic a{
+    background: rgb(239,239,239);
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(225, 102, 147, 0.12);
+    padding: 15px;
+    margin-right:4.8%;
+    width: 21%;
+    overflow: hidden;
+    float:left;
+}
+#picbox-morepic a:last-child{
+    margin-right: 0;
 }
 .left{
     float:left;

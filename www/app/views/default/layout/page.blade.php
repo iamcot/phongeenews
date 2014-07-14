@@ -23,7 +23,13 @@
         <header id="page-title" class="mycontainer wrap">
             <div >
                 @if(!isset($actCat) || $actCat!='search')
-                <h1 class="page-title">{{($typeEnd == 'list')?$actCat->latitle:$oProduct->latitle}}</h1>
+                    @if($typeEnd=='details')
+                <h1 class="page-title">
+                    Product Details
+                   </h1>
+                    @else
+                    <h1 class="page-title">{{($typeEnd == 'list')?$actCat->latitle:$oProduct->latitle}}</h1>
+                    @endif
                 @else
                 <h1 class="page-title">Tìm kiếm</h1>
                 @endif
