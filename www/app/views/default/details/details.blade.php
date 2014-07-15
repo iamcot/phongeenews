@@ -81,43 +81,49 @@
                   -->
                 </div>
                 <div class="clearfix"></div>
-            <hr>
-             <dl class="dl-horizontal">
-                 @if($oProduct->factorname != '')
-                <dt>Xuất xứ</dt>
-                <dd  itemprop="manufacturer"><a class="label label-success" href="{{URL::to('hastag/'.$oProduct->factorurl)}}">{{$oProduct->factorname}}</a></dd>
-                 @endif
-                @if($oProduct->lachucnang != '')
-                <dt>Chức năng</dt>
-                <dd><a class="label label-warning" href="{{URL::to('hastag/'.$oProduct->lachucnang)}}">{{$oProduct->lachucnang}}</a></dd>
-                @endif
-                @if($oProduct->lakeyword !='')
-                {{--*/ $aKeys = explode(',',$oProduct->lakeyword) /*--}}
-                    @if(count($aKeys)>0)
-                     <dt>Từ khóa</dt>
-                     <dd>
-                         @foreach($aKeys as $key)
-                         <a class="label label-primary" href="{{URL::to('hastag/'.$key)}}">{{$key}}</a>
-                         @endforeach
-                     </dd>
-                    @endif
-                @endif
-                @if($oProduct->lakhoiluong != '')
-                <dt>Khối lượng</dt>
-                <dd>{{$oProduct->lakhoiluong}} (gram)</dd>
-                @endif
-                @if($oProduct->ladungtich != '')
-                <dt>Kích thước</dt>
-                <dd>{{$oProduct->ladungtich}}</dd>
-                @endif
-                @if(trim($oProduct->lashortinfo) != '')
-                <dt>Mô tả</dt>
-                <dd>{{$oProduct->lashortinfo}}</dd>
-                @endif
-
-            </dl>
+            <p>
+                {{$oProduct->lainfo}}
+            </p>
+<!--            <hr>-->
+<!--             <dl class="dl-horizontal">-->
+<!--                 @if($oProduct->factorname != '')-->
+<!--                <dt>Xuất xứ</dt>-->
+<!--                <dd  itemprop="manufacturer"><a class="label label-success" href="{{URL::to('hastag/'.$oProduct->factorurl)}}">{{$oProduct->factorname}}</a></dd>-->
+<!--                 @endif-->
+<!--                @if($oProduct->lachucnang != '')-->
+<!--                <dt>Chức năng</dt>-->
+<!--                <dd><a class="label label-warning" href="{{URL::to('hastag/'.$oProduct->lachucnang)}}">{{$oProduct->lachucnang}}</a></dd>-->
+<!--                @endif-->
+<!--                @if($oProduct->lakeyword !='')-->
+<!--                {{--*/ $aKeys = explode(',',$oProduct->lakeyword) /*--}}-->
+<!--                    @if(count($aKeys)>0)-->
+<!--                     <dt>Từ khóa</dt>-->
+<!--                     <dd>-->
+<!--                         @foreach($aKeys as $key)-->
+<!--                         <a class="label label-primary" href="{{URL::to('hastag/'.$key)}}">{{$key}}</a>-->
+<!--                         @endforeach-->
+<!--                     </dd>-->
+<!--                    @endif-->
+<!--                @endif-->
+<!--                @if($oProduct->lakhoiluong != '')-->
+<!--                <dt>Khối lượng</dt>-->
+<!--                <dd>{{$oProduct->lakhoiluong}} (gram)</dd>-->
+<!--                @endif-->
+<!--                @if($oProduct->ladungtich != '')-->
+<!--                <dt>Kích thước</dt>-->
+<!--                <dd>{{$oProduct->ladungtich}}</dd>-->
+<!--                @endif-->
+<!--                @if(trim($oProduct->lashortinfo) != '')-->
+<!--                <dt>Mô tả</dt>-->
+<!--                <dd>{{$oProduct->lashortinfo}}</dd>-->
+<!--                @endif-->
+<!---->
+<!--            </dl>-->
             @if($oProduct->laprice < $oProduct->laoldprice)
             @endif
+            <br>
+            <p><b>Category: </b>{{$oProduct->cat1name}}</p>
+            <p><b>Tags: </b>{{$oProduct->lakeyword}}</p>
                 <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
     </div>

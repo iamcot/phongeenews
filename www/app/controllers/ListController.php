@@ -27,14 +27,14 @@ class ListController extends  BaseController
                 $lists = Vproduct::where('ladeleted','!=','1')
                     ->Where('cat1url','=',$cat);
                 $input = Input::all();
-                if (count($input) > 0 && isset($input['_token'])) {
-                    if(isset($input['giatang']))
+                if (isset($input['listorder'])) {
+                    if($input['listorder'] == 'giatang')
                         $lists->orderBy('laprice');
-                    else if(isset($input['giagiam']))
+                    else if($input['listorder'] == 'giagiam')
                         $lists->orderBy('laprice','DESC');
-                    else if(isset($input['tentang']))
+                    else if($input['listorder'] == 'tentang')
                         $lists->orderBy('latitle');
-                    else if(isset($input['tengiam']))
+                    else if($input['listorder'] == 'tengiam')
                         $lists->orderBy('latitle','DESC');
                 }
                 else{
