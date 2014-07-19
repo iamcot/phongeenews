@@ -7,6 +7,12 @@
             </a>
         </div>
         <div class="header-tools col-xs-6 col-md-3">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <ul class="socials col-xs-4 hidden-phone">
                 <li><a class="facebook" href="#" target="_blank"></a></li>
                 <li><a class="youtube" href="#" target="_blank"></a></li>
@@ -25,8 +31,13 @@
 
         </div><!-- end header tools -->
 
-        <div class="col-xs-12  col-md-7 hidden-phone nav-outer">
-            @include(Config::get('shop.theme').'/layout/topnav')
+        <div class="col-xs-12  col-md-7  nav-outer">
+            <div class="navbar-header">
+
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse">
+                @include(Config::get('shop.theme').'/layout/topnav')
+            </nav>
 
         </div>
 

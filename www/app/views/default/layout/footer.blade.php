@@ -10,11 +10,11 @@
         </div>
         <div class="col-xs-12 col-md-4">
             <h2>Get in touch</h2>
-            <p>PhonGee 1: 12 Tôn Thất Tùng, Q1</p>
-            <p>PhonGee 2: 12 Trần Quốc Hoàn, TB</p>
-            <p>PhonGee 3: 2A Nguyễn Văn Đậu, BTh</p>
+            <p><strong>PhonGee 1</strong>: 12 Tôn Thất Tùng, Q1</p>
+            <p><strong>PhonGee 2</strong>: 12 Trần Quốc Hoàn, TB</p>
+            <p><strong>PhonGee 3</strong>: 2A Nguyễn Văn Đậu, BTh</p>
             <p>http://phongee.vn</p>
-            <p>092 345 6789</p>
+            <p class="txt-color-red">092 345 6789</p>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
     </div>
     <div class="clearfix"></div>
     <div id="copyright" class="">
-        &copy; {{date("Y")}} PhonGee. All rights reserved. Made with Passion.</a>
+        &copy; {{date("Y")}} PhonGee. All rights reserved.</a>
 
     </div>
 </div>

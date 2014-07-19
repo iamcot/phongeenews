@@ -5,7 +5,7 @@
     <ol class="carousel-indicators">
         {{--*/ $i = 0 /*--}}
         @foreach($slider as $itemslide)
-            <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" ></li>
+            <li data-target="#carousel-example-generic" data-slide-to="{{$i}}" @if($i==0) class="active" @endif ></li>
         {{--*/ $i +=1 /*--}}
         @endforeach
     </ol>
@@ -37,7 +37,7 @@
 <script>
     $('.carousel').carousel({
         animation: 'fast',
-        interval: 2000
+        interval: 3000
     });
 </script>
 

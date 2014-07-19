@@ -8,6 +8,7 @@ class Myconfig extends Eloquent{
             $lines = explode("\n",$slider);
             $i=0;
             $arr = array();
+            shuffle($lines);
             foreach($lines as $line){
                 if(trim($line)!=''){
                     $items = explode("|",$line);

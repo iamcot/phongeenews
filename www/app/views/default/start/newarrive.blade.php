@@ -2,7 +2,7 @@
     <h1 class="text-center">
         Latest Arrivals
     </h1>
-    <p class="text-center">This time we have something very hot for you!</p>
+    <p class="text-center" style=" color:#676767;">This time we have something very hot for you!</p>
     <br>
     <ul class="grid">
     {{--*/ $lists = Vproduct::where('isnews','0')->orderby('laview','desc')->orderby('id','desc')->take(12)->get(); /*--}}
