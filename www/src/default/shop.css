@@ -13,6 +13,8 @@ body {
     margin: 0px;
     font-size: 12pt;
     line-height: 1.4;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 
@@ -119,7 +121,6 @@ textarea, select {
 #top-header #searchform{
     margin: 0!important;
     padding-left: 0!important;
-    padding-right: 0!important;
 }
 
 #top-header p {
@@ -140,6 +141,7 @@ textarea, select {
 #top-header #searchform {
     float: right;
     padding-top: 20px;
+    padding-right:10px;
 }
 
 #top-header #searchform form, #top-header #searchform #s {
@@ -186,8 +188,7 @@ textarea, select {
     float: right;
     line-height: 80px;
     border-left: 1px dotted #AFB0B0;
-    padding-left: 0;
-    margin-left: 0;
+    padding-left: 10px;
     display: block;
 }
 #footer .socials {
@@ -388,6 +389,22 @@ textarea, select {
     display: inline-block;
      /*border-radius:15px;*/
 }
+.newarrivercontrol {
+    position: relative;
+    height: 31px;
+    margin-top:-15px;
+}
+.newarrivercontrol .carousel-control{
+    display: block;
+}
+.newarrivercontrol .carousel-control.left{
+    background: url('img/slidecontrolleft.png') no-repeat top left;
+    left:47%;
+}
+.newarrivercontrol .carousel-control.right{
+    background: url('img/slidecontrolright.png') no-repeat top left;
+    right:34%;
+}
 .carousel-control{
     display: none;
 }
@@ -401,7 +418,7 @@ textarea, select {
 }
 #newarriver{
     padding-top: 20px;
-    padding-bottom: 55px;
+    padding-bottom: 30px;
    
 }
 .grid{
