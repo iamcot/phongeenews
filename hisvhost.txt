@@ -1,0 +1,15 @@
+#phongeenews
+<VirtualHost *:80>
+    ServerAdmin admin@phongeenews
+    DocumentRoot "/Users/cot/www/phongeenews/www"
+    ServerName mywww.phongeenews
+    ServerAlias mywww.phongeenews
+    ErrorLog "/Users/cot/www/log/phongeenews_error_log.txt"
+    CustomLog "/Users/cot/www/log/phongeenews_access_log.txt" common
+    <Directory /Users/cot/www/phongeenews/www/>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+    </Directory>
+</VirtualHost>

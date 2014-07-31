@@ -1,10 +1,9 @@
 <ol class="breadcrumb ">
     @if(isset($typeEnd) && $typeEnd == 'shop')
-        <li>Chào mừng đến với thế giới làm đẹp - Thái Boutique - webmypham.net</li>
     @elseif(isset($typeEnd) && $typeEnd == 'list')
     {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
         {{--*/ $breadcrumcat = Vcategory::makeBreadcrumCat($categories,$caturl) /*--}}
-        <li><a href="{{URL::to('/')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li>You were here: </li>
         {{--*/ $breadcrumlv = count($breadcrumcat) /*--}}
         @for($i=0;$i< $breadcrumlv;$i++)
         {{--*/ $cat = $breadcrumcat[$i] /*--}}
@@ -24,7 +23,7 @@
         @endif
     @elseif(isset($typeEnd) && $typeEnd == 'details')
         @if($oProduct !=null)
-        <li><a href="{{URL::to('/')}}"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li>You were here: </li>
             @if($oProduct->cat3id>0 && $oProduct->cat3url!='')
                 <li><a href="{{URL::to('/'.$oProduct->cat3url)}}">{{$oProduct->cat3name}}</a></li>
             @endif

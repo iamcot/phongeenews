@@ -6,24 +6,24 @@
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
-        <div class="header-tools col-xs-6 col-md-3">
+        <div class="header-tools col-xs-6 col-md-3 col-lg-3" style="margin-right:-30px">
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <ul class="socials col-xs-4 hidden-phone">
+            <ul class="socials col-xs-4 hidden-phone" style="padding-left:20px;margin-top:-2px;">
                 <li><a class="facebook" href="#" target="_blank"></a></li>
                 <li><a class="youtube" href="#" target="_blank"></a></li>
                 <li><a class="rss" href="#" target="_blank"></a></li>
             </ul><!-- end socials -->
-            <div id="searchform" class="col-xs-6">
+            <div id="searchform" class="col-xs-6" style="padding-right:20px;">
                 {{ Form::open(array(
                 'url' => 'search',
                 'method'=>'post',
                 )) }}
-                <input type="text" id="s" placeholder="" name="s">
+                <input type="text" id="s" placeholder="" name="s" style="margin-left:-20px;">
                 {{Form::close()}}
             </div><!-- end searchform -->
 
@@ -31,7 +31,7 @@
 
         </div><!-- end header tools -->
 
-        <div class="col-xs-12  col-md-7  nav-outer">
+        <div class="col-xs-12  col-md-7 col-lg-7  nav-outer" style="">
             <div class="navbar-header">
 
             </div>
