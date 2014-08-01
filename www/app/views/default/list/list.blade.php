@@ -51,6 +51,9 @@
         $("input[name=listorder]").val(select);
             $("#listorderform").submit();
     }
+    function opendropdown(){
+        $('#ordermenu').addClass("open");
+    }
     $('.dropdown-toggle').dropdown()
 </script>
 @stop
@@ -59,9 +62,9 @@
     <form name="listorderform" id="listorderform">
         <input type="hidden" name="listorder">
 
-        <div class="dropdown">
-            <a data-toggle="dropdown" href="#" class="dropdown-toggle">Sorting by <span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <div class="dropdown" id="ordermenu">
+            <a data-toggle="dropdown" href="#" class="dropdown-toggle" onmouseover="opendropdown()">Sorting by <span class="caret"></span></a>
+            <ul  class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 <li>
                     <a href="javascript:changeOrder('giatang')">Giá tăng</a>
                 </li>
