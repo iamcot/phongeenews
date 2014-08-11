@@ -1,14 +1,15 @@
 <?php
 
 return array(
-    'title' => 'Thanh Trường Sơn Print store',
+    'title' => 'Phongee',
     'pretitle' => '',
-    'suftitle' => '- Thanh Trường Sơn Print store',
-    'description' => 'Thanh Trường Sơn Print store',
+    'suftitle' => '- Phongee',
+    'description' => 'Phongee',
     'keywords'  => 'iphone, ipad, mac book',
     'treecatdeep' => 2,
     'tablepp'    =>  18,
-    'theme' => 'default',
+    'theme' => 'phongeev2',
+    'phone' => '(08) 222 2222 88',
     'orderstatus' => array(
         '0' => array('value'=>'Mới đặt','color'=>'danger'),
         '1' => array('value'=>'Xác nhận','color'=>'warning'),
@@ -17,29 +18,27 @@ return array(
         '9' => array('value'=>'Đã hủy','color'=>'default'),
     ),
     'topnav' => array(
-        'home' => array(
-            'id' => 'home',
-            'url' => '/',
-            'title' => 'Trang chủ',
-            'icon' => 'glyphicon glyphicon-home',
+        'news' => array(
+            'id' => 'news',
+            'url' => '/tin-tuc',
+            'title' => 'Tin tức',
         ),
-        'moi-ve' => array(
-            'id' => 'moi-ve',
-            'url' => '/fav/moi-ve',
-            'title' => 'Hàng mới về',
-            'icon' => 'glyphicon glyphicon-star',
+        'mua-sam' => array(
+            'id' => 'mua-sam',
+            'url' => '/mua-sam',
+            'title' => 'Mua sắm',
         ),
-        'dang-hot' => array(
-            'id' => 'dang-hot',
-            'url' => '/fav/dang-hot',
-            'title' => 'Hàng đang hot',
-            'icon' => 'glyphicon glyphicon-thumbs-up',
+        'tv' => array(
+            'id' => 'tv',
+            'url' => '/phongeetv',
+            'title' => 'Phongee Color TV',
         ),
-        'dang-sale' => array(
-            'id' => 'dang-sale',
-            'url' => '/fav/dang-sale',
-            'title' => 'Hàng khuyến mãi',
-            'icon' => 'glyphicon glyphicon-gift',
+
+    ),
+    'accountmenu' => array(
+        array(
+            'url'=>'account/',
+            'title'=>'Thông tin tài khoản'
         ),
     ),
     'shipping' => array(
