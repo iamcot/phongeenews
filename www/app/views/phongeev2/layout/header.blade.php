@@ -1,10 +1,10 @@
-<div id="top-menu" class="row-fluid  padding-top-5">
-    <ul id="top-cat" class="list-inline col col-xs-6">
+<div id="top-menu" class="padding-top-5">
+    <ul id="top-cat" class="list-inline col-xs-12 col-md-6">
     @foreach(Config::get('shop.topnav') as $cat)
              <li class="col"><a href="{{$cat['url']}}">{{$cat['title']}}</a></li>
     @endforeach
     </ul>
-    <div  class="col col-xs-6 pull-right" style="padding-right:45px;">
+    <div  class="col col-xs-12 col-md-6 pull-right" style="padding-right:45px;">
         <div class="top-function pull-right col-xs-4">
             <a data-toggle="dropdown" href="#">TÀI KHOẢN VÀ ĐƠN HÀNG</a>
             <span class="caret"></span>
@@ -33,16 +33,17 @@
             </ul>
         </div>
     </div>
+    <div class="clear"></div>
 </div>
 <div id="top-header" role="banner" class="row-fluid">
     <div class="mycontainer fold" >
 
-        <div id="logo" class="col-xs-5 col-md-2">
+        <div id="logo" class="col-xs-6 col-md-4 col-lg-2">
             <a href="{{URL::to('/')}}">
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
-        <div class="header-tools col-xs-12 col-md-5">
+        <div class="header-tools col-xs-12 col-md-7 col-lg-5">
 
             <div id="searchform" class="col-xs-5">
                 {{ Form::open(array(
@@ -50,8 +51,8 @@
                 'method'=>'post',
 
                 )) }}
-                <a id="searchbutton"></a>
-                <input type="text" id="s"  name="s" placeholder="Tìm sản phẩm">
+                <a id="searchbutton" style="z-index: 100"></a>
+                <input type="text" id="s"  name="s" placeholder="Tìm sản phẩm" style="z-index: 99">
                 {{Form::close()}}
             </div>
               <div id="cart" class="col-xs-7">
@@ -85,11 +86,11 @@
 
         </div><!-- end header tools -->
 
-        <div class="col-xs-12  col-md-5 nav-outer" style="">
+        <div class="col-xs-12  col-md-12 col-lg-5 nav-outer ">
             <div class="navbar-header">
 
             </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse">
+            <nav class="collapse navbar-collapse bs-navbar-collapse pull-right" style="padding-left: 0">
                 @include(Config::get('shop.theme').'/layout/topnav')
             </nav>
 

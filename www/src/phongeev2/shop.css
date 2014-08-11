@@ -1,6 +1,8 @@
 html {
     overflow-y: scroll;
     min-height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     font-size: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
@@ -91,7 +93,7 @@ textarea, select {
 }
 #top-cat{
     margin-bottom: 0px;
-    padding:10px 15px 12px 15px;
+    padding:10px 30px 12px 30px;
     line-height: 11px;
 }
 #top-cat>li{
@@ -385,6 +387,7 @@ textarea, select {
     border-radius: 0 !important;
     border: none !important;
     margin-bottom: 0 !important;
+    padding-left:15px;
 }
 
 .navbarphongee .nav>li>a{
@@ -398,7 +401,7 @@ textarea, select {
     text-shadow: none;
     /* text-transform: uppercase; */
     line-height: 40px;
-    padding-left: 10px;
+    padding-left: 0;
     text-transform: uppercase;
 }
 .navbarphongee .navbar-right li>a{
@@ -441,13 +444,16 @@ textarea, select {
     -webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
 }
+.no-padding{
+    padding: 0;
+}
 .navbarphongee .nav>li:hover>.nav-child{
 
     display: block;
     position: absolute;
     width: 200px;
     background: #fff;
-    left: 0;
+    left: -10px;
     z-index: 999;
     list-style: none;
     padding-left: 0;
@@ -555,6 +561,35 @@ textarea, select {
     background: #fff;
     padding:0;
 }
+.top-footer{
+    /*background: transparent;*/
+    text-align: center;
+    line-height: 50px;
+}
+.top-footerouter{
+    padding-bottom: 20px;
+    z-index:1;
+}
+.giaohangicon{
+   background: url('img/giaohangicon.png') top left no-repeat;
+    background-size: 100%;
+    height: 45px;
+    width: 82px;
+    display: inline-block;
+    margin-right:20px;
+}
+.top-footer>div{
+    vertical-align: top;
+    line-height: 50px;
+}
+.hotlineicon{
+   background: url('img/hotlineicon.png') top left no-repeat;
+    background-size: 100%;
+    height: 45px;
+    width: 50px;
+    margin-right:20px;
+    display: inline-block;
+}
 .khuyenmaiheader{
     background: url('img/startkhuyenmai-bg.png') no-repeat top left;
     background-size: 100%;
@@ -596,6 +631,7 @@ textarea, select {
     -webkit-box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.5);
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 .widgetblock .title-sub{
     color:#676767;
@@ -705,7 +741,6 @@ padding-right:22px;
 }
 
 #start-store{
-    margin-top: 20px;
     min-height: 400px;
     display: block;
     position: relative;
@@ -794,12 +829,23 @@ margin-bottom: 18px;
     margin: 0;
     padding-top: 0;
     padding-left: 30px;
-    margin-bottom: 60px;
+    margin-bottom: 0px;
     font-weight: 300;
     float:left;
 }
 .lists{
     padding-bottom: 40px;
+}
+.padding-top-20{
+    padding-top: 20px;
+}
+#cattoggle{
+    background: url('img/catlisttoggle.png') no-repeat;
+    background-size: 100%;
+    width: 48px;
+    height: 48px;
+    display: block;
+    float:left;
 }
 .breadcrumb a{
     color: #000;
@@ -1211,6 +1257,11 @@ margin-bottom: 18px;
 .navbar-collapse{
     max-height: 100%;
 }
+.clear{
+    clear:both;
+    display: block;
+    min-height: 1px;
+}
 @media screen and (min-width: 1300px){
     #mainpicimg{
         /*width: auto !important;*/
@@ -1221,11 +1272,11 @@ margin-bottom: 18px;
     }
 
     .navbarphongee .nav>li>a{
-        padding-left: 25px;
+        /*padding-left: 25px;*/
         /*padding-right: 25px;*/
     }
     .nav-outer{
-        position: absolute;left:15%;
+        /*position: absolute;left:15%;*/
     }
     #s{
         width: 250px;
@@ -1254,7 +1305,7 @@ margin-bottom: 18px;
         margin-right:0;
     }
     .nav-outer{
-        position: absolute;left:15%;
+        /*position: absolute;left:15%;*/
     }
 }
 @media screen and (max-width:1000px){

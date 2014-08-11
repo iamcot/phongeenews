@@ -15,7 +15,7 @@
     ->orwhere('cat2id', '=', $actCat->id)
     ->orwhere('cat3id', '=', $actCat->id);
     })
-    ->orderBy(DB::raw('RAND()'))
+    ->orderBy('id','DESC')
     ->take(12)
     ->get(); /*--}}
     <ul class="row-fluid">
@@ -82,4 +82,11 @@
     </form>
     <br><br>
 </div>
+@stop
+@section('shorcut')
+<div class="listcartouter">
+<a id="cattoggle"></a>
+    <ul></ul>
+</div>
+
 @stop
