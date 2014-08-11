@@ -6,7 +6,7 @@ return array(
     'suftitle' => '- Thanh Trường Sơn Print store',
     'description' => 'Thanh Trường Sơn Print store',
     'keywords'  => 'iphone, ipad, mac book',
-    'treecatdeep' => 1,
+    'treecatdeep' => 2,
     'tablepp'    =>  18,
     'theme' => 'default',
     'orderstatus' => array(

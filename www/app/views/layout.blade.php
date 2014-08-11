@@ -17,6 +17,7 @@
     {{HTML::style('src/bootstrap/css/bootstrap-responsive.min.css')}}
     {{HTML::style('src/bootstrap/css/bootstrap-theme.min.css')}}
     {{HTML::style('src/bootstrap/css/datepicker.css')}}
+    {{HTML::style('src/'.Config::get('shop.theme').'/jquery.raty.css')}}
     @if (isset($typeEnd) && $typeEnd=='admin')
     {{HTML::style('src/style.css')}}
     @else
@@ -54,6 +55,7 @@
     </html>
 <script src="http://code.jquery.com/jquery.js"></script>
 {{HTML::script('src/bootstrap/js/bootstrap.min.js')}}
+{{HTML::script('src/'.Config::get('shop.theme').'/jquery.raty.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap-datepicker.js')}}
 @yield('jscript')
         @if (isset($typeEnd) && $typeEnd!='admin')

@@ -36,9 +36,12 @@
               {{$oProduct->latitle}}
             </p>
             <hr>
-            <p id="detailsPrice">
+            <p id="detailsPrice" class="col-xs-12 col-sm-7"  style="padding-left: 0">
                {{number_format($oProduct->laprice,0,',','.')}} VNĐ
+
             </p>
+            <p class="col-xs-12 col-sm-5" id="rating" style="padding-right: 0"></p>
+            <div style="clear:both"></div>
                <hr>
 
             @if($oProduct->sumvariant > 0)
@@ -136,6 +139,7 @@
 @section('jscript')
     @parent
  <script>
+     $("#rating").raty({score:3,starType : 'i'  });
      $(".variantthumb").tooltip();
      $('#myTab a').click(function (e) {
          e.preventDefault()

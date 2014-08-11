@@ -18,7 +18,7 @@
             <div class="item @if($i==0) active @endif">
                 <ul class="grid">
             @endif
-                        @include(Config::get('shop.theme').'/list/startlistitem')
+                        @include(Config::get('shop.theme').'/list/listitem')
                         {{--*/ $i +=1 /*--}}
                         @if($i%12==0 && $i< $countnews)
                     </ul>
@@ -26,6 +26,7 @@
             @endif
             @endforeach
             </ul>
+            </div>
         </div>
         <div class="newarrivercontrol">
             <a class="left carousel-control" href="#carousel-example-genericnews" data-slide="prev">
