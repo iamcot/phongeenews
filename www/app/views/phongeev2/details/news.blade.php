@@ -2,18 +2,9 @@
 @section('pagecontent')
 {{--*/ $news = $oProduct /*--}}
 <div class="mycontainer wrap">
-<div class="col-xs-8 border-right detais-news">
-
+<div class="col-xs-12 col-md-9 pull-right detais-news">
             <article class="" role="article">
-                @if($news->laimage!='')
-                <div class="entry-media">
-                    <div class="imgHolder">
-                        <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
-                            <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
-                    </div>
-                    <div class="sep hbar"> </div>
-                </div>
-                 @endif
+
                 <div class="entry-main">
 
                     <div class="entry-header">
@@ -31,7 +22,14 @@
                         </div>
 
                     </div>
-
+                    @if($news->laimage!='')
+                    <div class="entry-media">
+                        <div class="imgHolder">
+                            <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
+                                <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
+                        </div>
+                    </div>
+                    @endif
                     <div class="entry-content">
                         {{$news->lainfo}}
 
@@ -61,7 +59,7 @@
             </article>
 
 </div>
-<div class="col-xs-4">
+<div class="col-xs-12 col-md-3">
     <div class="sidebar-widget">
         <h4>Chuyên mục</h4>
         {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
@@ -102,9 +100,9 @@
 
                         <div class="entry-content">
 
-                            <time datetime="{{date('Y-m-d',strtotime($news->created_at))}}" title="{{date('Y-m-d',strtotime($news->created_at))}}">
-                                {{date('M d, Y',strtotime($news->created_at))}}
-                            </time>
+<!--                            <time datetime="{{date('Y-m-d',strtotime($news->created_at))}}" title="{{date('Y-m-d',strtotime($news->created_at))}}">-->
+<!--                                {{date('M d, Y',strtotime($news->created_at))}}-->
+<!--                            </time>-->
 
                         </div>
                     </figcaption>

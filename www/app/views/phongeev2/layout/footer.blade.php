@@ -36,6 +36,14 @@
             </div>
             <div class="col-xs-12">
                 <h2 class="txt-color-red">Chấp nhận các hình thức thanh toán</h2>
+                <ul>
+                    <li class="icon icon-cash"></li>
+                    <li class="icon icon-visa"></li>
+                    <li class="icon icon-mcard"></li>
+                    <li class="icon icon-atm"></li>
+                    <li class="icon icon-ck"></li>
+                    <li class="icon icon-ib"></li>
+                </ul>
             </div>
           </div>
 

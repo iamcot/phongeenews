@@ -3,7 +3,7 @@
     @elseif(isset($typeEnd) && $typeEnd == 'list')
     {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
         {{--*/ $breadcrumcat = Vcategory::makeBreadcrumCat($categories,$caturl) /*--}}
-        <li>You were here: </li>
+        <li>Bạn đang ở: </li>
         {{--*/ $breadcrumlv = count($breadcrumcat) /*--}}
         @for($i=0;$i< $breadcrumlv;$i++)
         {{--*/ $cat = $breadcrumcat[$i] /*--}}
@@ -23,7 +23,7 @@
         @endif
     @elseif(isset($typeEnd) && $typeEnd == 'details')
         @if($oProduct !=null)
-        <li>You were here: </li>
+        <li>Bạn đang ở: </li>
             @if($oProduct->cat3id>0 && $oProduct->cat3url!='')
                 <li><a href="{{URL::to('/'.$oProduct->cat3url)}}">{{$oProduct->cat3name}}</a></li>
             @endif

@@ -57,6 +57,25 @@ class Vcategory extends Eloquent
         }
         return $html;
     }
+    public static function subcattree($id=0,$categories = null,$level = 0){
+        $html = "";
+        if (count($categories) > 0) {
+            $html = "<ul ".($level==0?"id='listsubmenu'' ":"").">";
+            // if($level == 0) $html.="<li><a href='".URL::to('/')."'>Trang chủ</a></li>";
+            foreach ($categories as $cat) {
+                $html .= "<li>
+             <a href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "  >
+                     ".($level==0?"":">")." " . $cat['latitle'] . "
+            </a>";
+
+                $html .= Vcategory::subcattree($id, $cat['children'], $level + 1);
+                $html.="</li>";
+            }
+
+            $html .= "</ul>";
+        }
+        return $html;
+    }
 
     public static function makeBreadcrumCat($categories, $caturl, $level = 0, $path = array())
     {
