@@ -5,7 +5,7 @@
     <div id="content" class="">
         @if($typeEnd == 'list' || $typeEnd=='details')
         @if(!isset($actCat) || $actCat!='search')
-        <div style="position: relative">
+        <div >
             <div class="pagetitleouter row-fluid">
                 <div class="col-xs-12">
                     @if($typeEnd=='details')
@@ -23,23 +23,26 @@
             <div class="clear"></div>
         </div>
         @endif
-        <header id="page-title" class="mycontainer wrap">
-            <div class="padding-top-20">
-                @if(!isset($actCat) || $actCat!='search')
+        <div class="containinner">
+            <header id="page-title" class="mycontainer wrap">
+                <div class="padding-top-20">
+                    @if(!isset($actCat) || $actCat!='search')
 
-                @else
-                <h1 class="page-title">Tìm kiếm</h1>
-                @endif
+                    @else
+                    <h1 class="page-title">Tìm kiếm</h1>
+                    @endif
 
-                @if($typeEnd == 'list' && $actCat!='search' && $actCat->isnews==0 && !isset($issearch))
-                    @include(Config::get('shop.theme').'/list/submenu')
-                    @include(Config::get('shop.theme').'/list/dropdown')
-                @endif
-            </div>
-        </header>
-        <div class="clearfix"></div>
-        @endif
-        @yield('pagecontent')
+                    @if($typeEnd == 'list' && $actCat!='search' && $actCat->isnews==0 && !isset($issearch))
+                        @include(Config::get('shop.theme').'/list/submenu')
+                        @include(Config::get('shop.theme').'/list/dropdown')
+                    @endif
+                </div>
+            </header>
+            <div class="clearfix"></div>
+            @endif
+            @yield('pagecontent')
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>
 @stop

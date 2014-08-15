@@ -1,6 +1,7 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
 <div id="details" class="mycontainer wrap">
+
     <div id="maininfo"  itemscope itemtype="http://schema.org/Product">
         {{--*/ $morepic = Image::where("laproduct_id",'=',$oProduct->id)
         ->where('lapic','!=',$oProduct->laimage)
@@ -9,7 +10,17 @@
         ->get() /*--}}
 
 
-        <div id="picbox" class="col xs-12 col-sm-6 col-md-6" itemprop="image">
+        <div class="col xs-12 col-sm-6 col-md-6" itemprop="image">
+            <!-- Nav tabs -->
+            <ul id="detailsinfotab" class="nav nav-tabs" role="tablist">
+                <li>&nbsp;</li>
+                <li class="active"><a href="#info" role="tab" data-toggle="tab">Chi tiết</a></li>
+                <li><a href="#video" role="tab" data-toggle="tab">Videos</a></li>
+                <li><a href="#news" role="tab" data-toggle="tab">Bài viết</a></li>
+                <li><a href="#gear" role="tab" data-toggle="tab">Phụ kiện</a></li>
+                <li><a href="#comment" role="tab" data-toggle="tab">Đánh giá</a></li>
+            </ul>
+            <div id="picbox" class="col xs-12">
             <div id="picbox-mainimg">
                 <img rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
 
@@ -26,6 +37,31 @@
 
             </div>
             <div class="clearfix"></div>
+                <div class="col-xs-12 col-sm-6"></div>
+                <div class="col-xs-12 col-sm-6">
+                    @if($oProduct->sumvariant > 0)
+                    {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
+                    <dl>
+                        <dt>Chọn mẫu</dt>
+                        <dd>
+                            <ul id="variant" class="list-inline">
+                                @foreach($variants as $vari)
+                                <li>
+                                    <a href="javascript:changevariant({{$vari->id}})">
+                                        <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}" title="{{$vari->lashortinfo}}" class="variantthumb">
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </dd>
+<!--                        <dt>Mẫu đã chọn:</dt>-->
+<!--                        <dd id="variantselectname">-->
+<!---->
+<!--                        </dd>-->
+                    </dl>
+                    @endif
+                </div>
+            </div>
         </div>
 
 
@@ -36,35 +72,24 @@
               {{$oProduct->latitle}}
             </p>
             <hr>
-            <p id="detailsPrice" class="col-xs-12 col-sm-7"  style="padding-left: 0">
+            <div class="priceblock" style="position: relative">
+            <p  class="detailsPrice col-xs-12 col-sm-8"  style="padding-left: 0">
                {{number_format($oProduct->laprice,0,',','.')}} VNĐ
 
             </p>
-            <p class="col-xs-12 col-sm-5" id="rating" style="padding-right: 0"></p>
+            <p  class="detailsPrice col-xs-12 col-sm-8 txt-color-red"  style="padding-left: 0">
+               {{number_format($oProduct->laprice,0,',','.')}} VNĐ <span class="text-10">(Online)</span>
+            </p>
+            <div class="ratingblock" class="col-xs-12 col-sm-4 ">
+                <p id="rating" style="padding-right: 0"></p>
+                <span class="text-10 pull-right">(Phongee đánh giá)</span>
+            </div>
+
             <div style="clear:both"></div>
+            </div>
                <hr>
 
-            @if($oProduct->sumvariant > 0)
-                  {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
-            <dl>
-                <dt>Chọn mẫu</dt>
-                <dd>
-                    <ul id="variant" class="list-inline">
-                        @foreach($variants as $vari)
-                        <li>
-                            <a href="javascript:changevariant({{$vari->id}})">
-                                <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}" title="{{$vari->lashortinfo}}" class="variantthumb">
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </dd>
-                    <dt>Mẫu đã chọn:</dt>
-                    <dd id="variantselectname">
 
-                    </dd>
-            </dl>
-            @endif
                 <div>
 
                     <!--
@@ -84,9 +109,9 @@
                   -->
                 </div>
                 <div class="clearfix"></div>
-            <p>
+            <div id="productinfoouter">
                 {{$oProduct->lainfo}}
-            </p>
+            </div>
 <!--            <hr>-->
 <!--             <dl class="dl-horizontal">-->
 <!--                 @if($oProduct->factorname != '')-->

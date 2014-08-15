@@ -54,7 +54,7 @@
     </div>
     </body>
     </html>
-<script src="http://code.jquery.com/jquery.js"></script>
+{{HTML::script('src/jquery.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap.min.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/jquery.raty.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap-datepicker.js')}}
