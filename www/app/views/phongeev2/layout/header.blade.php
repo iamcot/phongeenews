@@ -1,11 +1,12 @@
 <div id="top-menu" class="padding-top-5">
-    <ul id="top-cat" class="list-inline col-xs-12 col-md-6">
+    <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
+        {{--*/ $active = 'mua-sam'; /*--}}
     @foreach(Config::get('shop.topnav') as $cat)
-             <li class="col"><a href="{{$cat['url']}}">{{$cat['title']}}</a></li>
+             <li class="col"><a href="{{$cat['url']}}" class="{{($cat['id']==$active)?'active':''}}">{{$cat['title']}}</a></li>
     @endforeach
     </ul>
-    <div  class="col col-xs-12 col-md-6 pull-right" style="padding-right:45px;">
-        <div class="top-function pull-right col-xs-4">
+    <div  class="col col-xs-12 col-md-7 pull-right" style="padding-right:45px;">
+        <div class="top-function pull-right margin-left-15">
             <a data-toggle="dropdown" href="#">TÀI KHOẢN VÀ ĐƠN HÀNG</a>
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -14,7 +15,7 @@
                 @endforeach
             </ul>
         </div>
-        <div class="top-function pull-right col-xs-4">
+        <div class="top-function pull-right margin-left-15">
             <a data-toggle="dropdown" href="#">HƯỚNG DẪN MUA HÀNG</a>
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -23,7 +24,7 @@
                 @endforeach
             </ul>
         </div>
-        <div class="top-function pull-right col-xs-4">
+        <div class="top-function pull-right margin-left-15">
             <a data-toggle="dropdown" href="#">CHĂM SÓC KHÁCH HÀNG</a>
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -38,59 +39,63 @@
 <div id="top-header" role="banner" class="row-fluid">
     <div class="mycontainer fold" >
 
-        <div id="logo" class="col-xs-6 col-md-4 col-lg-2">
+        <div id="logo" class="col-xs-6 col-sm-4 col-md-2">
             <a href="{{URL::to('/')}}">
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
-        <div class="header-tools col-xs-12 col-md-7 col-lg-5">
+        <div class="header-tools col-xs-12 col-sm-7 col-md-5">
+            <div id="cart" class="">
+                <div class="cartinfo pull-right" >
+                    <div id="catoutter">
+                        <span class="carticon"></span>
+                        <a href="javascript:showflybasket()">
+                            <span id="cart-name"><b>GIỎ HÀNG</b></span> ({{isset($sumcart)?$sumcart:0}})
+                        </a>
+                    </div>
+                    <div style="float:right;">
+                    <span class="phoneicon"></span>
+                    <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
+                        </div>
+                </div>
+                @if(Session::has('cart'))
+                <div id="basketflybox">
+                    <span class="flybutton glyphicon glyphicon-eject" style="right:10px"></span>
+                    <table class="table flybasketcontent">
+                        {{--*/ $sumprice = 0 /*--}}
 
-            <div id="searchform" class="col-xs-5">
-                {{ Form::open(array(
-                'url' => 'search',
-                'method'=>'post',
+                        @foreach(Session::get('cart') as $item)
+                        <tr><td class="col-xs-8 text-left"><strong>{{$item['latitle']}}</strong> {{$item['variantname']}} x {{$item['amount']}}</td><td class="text-right"><span class="glyphicon glyphicon-usd"></span> {{number_format($item['amount'] * $item['laprice'],0,',','.')}}</td></tr>
+                        {{--*/ $sumprice += ($item['amount'] * $item['laprice']) /*--}}
+                        @endforeach
 
-                )) }}
-                <a id="searchbutton" style="z-index: 100"></a>
-                <input type="text" id="s"  name="s" placeholder="Tìm sản phẩm" style="z-index: 99">
-                {{Form::close()}}
+                        <tr><td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}">Thanh toán <span class="glyphicon glyphicon-play"></span></a></td></tr>
+                    </table>
+                </div>
+                @endif
+                <div id="searchform" class="pull-right">
+                    {{ Form::open(array(
+                    'url' => 'search',
+                    'method'=>'post',
+
+                    )) }}
+                    <a id="searchbutton" style="z-index: 100"></a>
+                    <input type="text" id="s"  name="s" placeholder="Tìm kiếm sản phẩm..." style="z-index: 99">
+                    {{Form::close()}}
+                </div>
             </div>
-              <div id="cart" class="col-xs-7">
-                  <div class="cartinfo">
-                            <span class="carticon"></span>
-                          <a href="javascript:showflybasket()">
-                               GIỎ HÀNG ({{isset($sumcart)?$sumcart:0}})
-                          </a>
-                      <span class="phoneicon"></span>
-                      <a class=""> {{Config::get('shop.phone')}}</a>
-                  </div>
-                  @if(Session::has('cart'))
-                  <div id="basketflybox">
-                      <span class="flybutton glyphicon glyphicon-eject" style="right:10px"></span>
-                      <table class="table flybasketcontent">
-                          {{--*/ $sumprice = 0 /*--}}
 
-                          @foreach(Session::get('cart') as $item)
-                          <tr><td class="col-xs-8 text-left"><strong>{{$item['latitle']}}</strong> {{$item['variantname']}} x {{$item['amount']}}</td><td class="text-right"><span class="glyphicon glyphicon-usd"></span> {{number_format($item['amount'] * $item['laprice'],0,',','.')}}</td></tr>
-                          {{--*/ $sumprice += ($item['amount'] * $item['laprice']) /*--}}
-                          @endforeach
 
-                          <tr><td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}">Thanh toán <span class="glyphicon glyphicon-play"></span></a></td></tr>
-                      </table>
-                  </div>
-                  @endif
-
-              </div>
 
 
 
         </div><!-- end header tools -->
 
-        <div class="col-xs-12  col-md-12 col-lg-5 nav-outer ">
+        <div class="col-xs-12  col-sm-12 col-md-5 nav-outer ">
             <div class="navbar-header">
 
             </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse pull-right" style="padding-left: 0">
+            <nav class="collapse navbar-collapse bs-navbar-collapse pull-right no-padding">
                 @include(Config::get('shop.theme').'/layout/topnav')
             </nav>
 

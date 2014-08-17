@@ -1,48 +1,49 @@
 <div id="footer" class="hidden-print">
     <div class="mycontainer">
-        <div class="subfooter">
-        <div class="col-xs-12 col-md-3 hidden-xs hidden-sm">
+        <div class="subfooter row-fluid">
+        <div class="col-xs-12 col-md-3 hidden-xs hidden-sm" style="overflow: hidden">
             <div class="fb-like-box" data-href="https://www.facebook.com/phongee.vn" data-width="100%" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
         </div>
         <div class="col-xs-12 col-md-9">
-            <div class="col-xs-12 col-md-2">
-                <h2 class="txt-color-red">About US</h2>
+            <div class="footbox">
+                <h2 class="txt-color-red">Tài khoản của bạn</h2>
                 <p><a>Trạng thái đơn hàng</a></p>
                 <p><a>Lịch sử đơn hàng</a></p>
-                <p><a>Quên mật khẩu</a></p>
+                <p><a>Danh sách yêu thích</a></p>
                 <p><a>Thông tin tài khoản</a></p>
+                <p><a>Quên mật khẩu</a></p>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="footbox">
                 <h2  class="txt-color-red">Hỗ trợ khách hàng</h2>
-                <p>Chính sách bán hàng.</p>
-                <p>Chính sách thành viên.</p>
-                <p>Chính sách đổi trả.</p>
-                <p>Câu hỏi thường gặp.</p>
-                <p>Hướng dẫn đặt/mua hàng.</p>
+                <p>Câu hỏi thường gặp</p>
+                <p>Chính sách thành viên</p>
+                <p>Chính sách bảo hành</p>
+                <p>Chính sách đổi trả</p>
+                <p>Hướng dẫn đặt/mua hàng</p>
             </div>
-            <div class="col-xs-12 col-md-3">
+            <div class="footbox">
                 <h2 class="txt-color-red">Về Phongee Color</h2>
-                <p>Giới thiệu.</p>
-                <p>Hợp tác liên kết.</p>
-                <p>Chính sách bảo mật.</p>
-                <p>Điều khoản sử dụng.</p>
-                <p>Tuyển dụng.</p>
+                <p>Giới thiệu & Hình ảnh</p>
+                <p>Hợp tác & Liên kết</p>
+                <p>Chính sách bảo mật</p>
+                <p>Điều khoản sử dụng</p>
+                <p>Tuyển dụng</p>
             </div>
-            <div class="col-xs-12 col-md-4">
+            <div class="footbox">
                 <h2 class="txt-color-red">Hệ thống chi nhánh</h2>
-                <p>> Hotline 24/7: (08) 222 2222 88</p>
-                <p>> 12 Tôn Thất Tùng, P.Bến thành, Q1. <br>Điện thoại: (08) 222 2222 99</p>
-                <p>> 12 Trần Quốc Hoàn, P.4, Q.Tân Bình. <br>Điện thoại: (08) 222 2222 66</p>
+                <p><b>></b> Hotline 24/7:  (08) 222 222 88</p>
+                <p><b>></b> 12 Tôn Thất Tùng, P. Bến Thành, Q1, TP.HCM <br>Điện thoại: (08) 222 222 99</p>
+                <p><b>></b> 12 Trần Quốc Hoàn, P.4, Q. Tân Bình, TP. HCM <br>Điện thoại: (08) 222 222 66</p>
             </div>
             <div class="col-xs-12">
                 <h2 class="txt-color-red">Chấp nhận các hình thức thanh toán</h2>
                 <ul>
-                    <li class="icon icon-cash"></li>
-                    <li class="icon icon-visa"></li>
-                    <li class="icon icon-mcard"></li>
-                    <li class="icon icon-atm"></li>
-                    <li class="icon icon-ck"></li>
-                    <li class="icon icon-ib"></li>
+                    <li class="tticon icon-cash"></li>
+                    <li class="tticon icon-visa"></li>
+                    <li class="tticon icon-mcard"></li>
+                    <li class="tticon icon-atm"></li>
+                    <li class="tticon icon-ck"></li>
+                    <li class="tticon icon-ib"></li>
                 </ul>
             </div>
           </div>
@@ -53,7 +54,7 @@
     </div>
     <div class="clearfix"></div>
     <div id="copyright" class="">
-        Copyright &copy; {{date("Y")}} PhonGee.vn, All rights reserved. Giấy phép số 0309051786</a>
+        © 2014 Bản quyền thuộc về Công ty CPTM Dịch vụ Nhất Phong. Giấy chứng ĐKKD số 0309051786 do Sở Kế Hoạch và Đầu Tư TPHCM cấp ngày 22/06/2009
 
     </div>
 </div>

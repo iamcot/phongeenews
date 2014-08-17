@@ -37,14 +37,17 @@
 
             </div>
             <div class="clearfix"></div>
-                <div class="col-xs-12 col-sm-6"></div>
-                <div class="col-xs-12 col-sm-6">
+                <br>
+                <div class="col-xs-12 col-sm-4 addtowishlist no-padding">
+                    Thêm vào yêu thích
+                </div>
+                <div class="col-xs-12 col-sm-8 text-right">
                     @if($oProduct->sumvariant > 0)
                     {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
                     <dl>
-                        <dt>Chọn mẫu</dt>
                         <dd>
                             <ul id="variant" class="list-inline">
+                                <li>Chọn mẫu</li>
                                 @foreach($variants as $vari)
                                 <li>
                                     <a href="javascript:changevariant({{$vari->id}})">
@@ -61,6 +64,24 @@
                     </dl>
                     @endif
                 </div>
+                <div class="clear"></div>
+                <hr>
+                <div class="col-xs-6 no-padding">
+                    <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+                </div
+                    <div class="col-xs-6">
+                        <ul class="lisocial pull-right">
+                            <li>Chia sẻ</li>
+                            <li class="detailssocical face"></li>
+                            <li class="detailssocical gplus"></li>
+                            <li class="detailssocical zing"></li>
+                            <li class="detailssocical twitter"></li>
+                        </ul>
+                    </div>
+
+                <div class="clear"></div>
+
             </div>
         </div>
 
@@ -74,24 +95,39 @@
             <hr>
             <div class="priceblock" style="position: relative">
             <p  class="detailsPrice col-xs-12 col-sm-8"  style="padding-left: 0">
-               {{number_format($oProduct->laprice,0,',','.')}} VNĐ
+               <b>{{number_format($oProduct->laprice,0,',','.')}} VNĐ</b> <span class="text-10">(Cửa hàng)</span>
 
             </p>
             <p  class="detailsPrice col-xs-12 col-sm-8 txt-color-red"  style="padding-left: 0">
-               {{number_format($oProduct->laprice,0,',','.')}} VNĐ <span class="text-10">(Online)</span>
+               <b>{{number_format($oProduct->laprice,0,',','.')}} VNĐ</b> <span class="text-10">(Online)</span>
             </p>
             <div class="ratingblock" class="col-xs-12 col-sm-4 ">
                 <p id="rating" style="padding-right: 0"></p>
-                <span class="text-10 pull-right">(Phongee đánh giá)</span>
+                <span class="text-10 pull-right">(Đánh giá bởi PhonGee)</span>
             </div>
 
-            <div style="clear:both"></div>
+            <div class="clear"></div>
             </div>
                <hr>
-
-
+            <div>
+                <ul class="">
+                    <li class="col-xs-6 no-padding">
+                        <strong>Tình trạng:</strong> đang có hàng
+                    </li>
+                    <li class="col-xs-6 no-padding">
+                        <strong>Giao hàng:</strong> trong vòng 48 giờ
+                    </li>
+                    <li class="col-xs-6 no-padding">
+                        <strong>Bảo hành:</strong> 12  tháng
+                    </li>
+                    <li class="col-xs-6 no-padding">
+                        <strong>Lượt xem:</strong> {{$oProduct->laview}}
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
+            <hr>
                 <div>
-
                     <!--
                     {{ Form::open(array(
                         'url' => '/cart/add',
@@ -108,58 +144,97 @@
                     {{ Form::close() }}
                   -->
                 </div>
-                <div class="clearfix"></div>
-            <div id="productinfoouter">
+            @if(trim($oProduct->lainfo) != '')
+            <div id="productinfocontent">
                 {{$oProduct->lainfo}}
             </div>
-<!--            <hr>-->
-<!--             <dl class="dl-horizontal">-->
-<!--                 @if($oProduct->factorname != '')-->
-<!--                <dt>Xuất xứ</dt>-->
-<!--                <dd  itemprop="manufacturer"><a class="label label-success" href="{{URL::to('hastag/'.$oProduct->factorurl)}}">{{$oProduct->factorname}}</a></dd>-->
-<!--                 @endif-->
-<!--                @if($oProduct->lachucnang != '')-->
-<!--                <dt>Chức năng</dt>-->
-<!--                <dd><a class="label label-warning" href="{{URL::to('hastag/'.$oProduct->lachucnang)}}">{{$oProduct->lachucnang}}</a></dd>-->
-<!--                @endif-->
-<!--                @if($oProduct->lakeyword !='')-->
-<!--                {{--*/ $aKeys = explode(',',$oProduct->lakeyword) /*--}}-->
-<!--                    @if(count($aKeys)>0)-->
-<!--                     <dt>Từ khóa</dt>-->
-<!--                     <dd>-->
-<!--                         @foreach($aKeys as $key)-->
-<!--                         <a class="label label-primary" href="{{URL::to('hastag/'.$key)}}">{{$key}}</a>-->
-<!--                         @endforeach-->
-<!--                     </dd>-->
-<!--                    @endif-->
-<!--                @endif-->
-<!--                @if($oProduct->lakhoiluong != '')-->
-<!--                <dt>Khối lượng</dt>-->
-<!--                <dd>{{$oProduct->lakhoiluong}} (gram)</dd>-->
-<!--                @endif-->
-<!--                @if($oProduct->ladungtich != '')-->
-<!--                <dt>Kích thước</dt>-->
-<!--                <dd>{{$oProduct->ladungtich}}</dd>-->
-<!--                @endif-->
-<!--                @if(trim($oProduct->lashortinfo) != '')-->
-<!--                <dt>Mô tả</dt>-->
-<!--                <dd>{{$oProduct->lashortinfo}}</dd>-->
-<!--                @endif-->
-<!---->
-<!--            </dl>-->
-            @if($oProduct->laprice < $oProduct->laoldprice)
             @endif
-            <br>
-            <p><b>Category: </b>{{$oProduct->cat1name}}</p>
-            <p><b>Tags: </b>{{$oProduct->lakeyword}}</p>
-                <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
+            {{ Form::open(array(
+            'url' => '/cart/add',
+            'class'=>'form-inline',
+            )) }}
+            {{Form::hidden('laproduct_id',$oProduct->id)}}
+            {{Form::hidden('variantname','',array('id'=>'variantselectnameinput'))}}
+            {{Form::hidden('caturl',$oProduct->cat1url)}}
+            {{Form::hidden('producturl',$oProduct->laurl)}}
+            <div class="btn-group col-xs-12 col-sm-4">
+                <button type="button" class="btn btn-white">-</button>
+                <input type="text" id="cartamount" name="amount" style="" value="1">
+                <button type="button" class="btn btn-white">+</button>
+            </div>
+            <div class="col-xs-6 col-md-4 no-padding">
+                <button class=" details-cart-button buynow" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}><span class="glyphicon glyphicon-shopping-cart"></span> Mua ngay</button>
+            </div>
+            <div class="col-xs-6 col-md-4 no-padding">
+                <button id="addtocart" class="  details-cart-button addcart" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>Thêm vào giỏ</button>
+            </div>
+            {{ Form::close() }}
+
+            <div class="clear"></div>
+
+            <hr>
+            <div class="clear"></div>
+          <div class="col-xs-6 mhtq">
+
+          </div>
+          <div class="col-xs-1 delim">
+
+          </div>
+          <div class="col-xs-5 ghtn">
+
+          </div>
+            <div class="clear"></div>
+
+            <hr class="dotted">
+            <div class="detailsthanhtoan">
+                <h2 class="txt-color-red">Chấp nhận thanh toán</h2>
+                <ul>
+                    <li class="tticon icon-cash"></li>
+                    <li class="tticon icon-visa"></li>
+                    <li class="tticon icon-mcard"></li>
+                    <li class="tticon icon-atm"></li>
+                    <li class="tticon icon-ck"></li>
+                    <li class="tticon icon-ib"></li>
+                </ul>
+                <div class="clear"></div>
+
+            </div>
+            <hr>
+            <div class="col-xs-6 no-padding"><b>Category: </b>{{$oProduct->cat1name}}</div>
+            <div class="col-xs-6 no-padding"><b>Tags: </b>{{$oProduct->lakeyword}}</div>
+            <div class="clear"></div>
         </div>
+
     </div>
 
-    <div class="clearfix"></div>
+    <div class="clear"></div>
      <br><br>
 
 </div>
+<div  class="mycontainer wrap widgetblock">
+    <h2>
+        Sản phẩm liên quan
+    </h2>
+
+    <div class="row-fluid widgetcontent">
+        {{--*/ $lists = Vproduct::where('isnews','0')
+        ->orderby('laview','desc')
+        ->orderby('id','desc')
+        ->take(4)
+        ->get();
+        /*--}}
+
+        <ul class="grid row">
+            @foreach($lists as $list)
+            @include(Config::get('shop.theme').'/list/listitem')
+            @endforeach
+        </ul>
+    </div>
+
+</div>
+@include(Config::get('shop.theme').'/start/topfooter')
+
 @stop
 @section('jscript')
     @parent

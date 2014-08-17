@@ -65,7 +65,7 @@ class Vcategory extends Eloquent
             foreach ($categories as $cat) {
                 $html .= "<li>
              <a href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "  >
-                     ".($level==0?"":">")." " . $cat['latitle'] . "
+                     ".($level==0?"":"<span class='subindicator'>></span>")."&nbsp;&nbsp;" . $cat['latitle'] . "
             </a>";
 
                 $html .= Vcategory::subcattree($id, $cat['children'], $level + 1);

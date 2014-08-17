@@ -9,7 +9,7 @@ return array(
     'treecatdeep' => 2,
     'tablepp'    =>  18,
     'theme' => 'phongeev2',
-    'phone' => '(08) 222 2222 88',
+    'phone' => '(08) 222 222 88',
     'orderstatus' => array(
         '0' => array('value'=>'Mới đặt','color'=>'danger'),
         '1' => array('value'=>'Xác nhận','color'=>'warning'),

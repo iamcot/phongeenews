@@ -16,15 +16,15 @@
     ->orwhere('cat3id', '=', $actCat->id);
     })
     ->orderBy('id','DESC')
-    ->take(12)
-    ->get(); /*--}}
+    ->paginate(12);
+     /*--}}
     <ul class="row-fluid">
         @foreach($ranproduct as $list)
         @include(Config::get('shop.theme').'/list/listitem')
         @endforeach
     </ul>
     <div class="clearfix"></div>
-    <br>
+<!--    <div class="pull-right">{{ $ranproduct->links() }}</div>-->
     @endif
 
     @if(!$rootcat && isset($lists) && $lists != null && count($lists)>0 )
@@ -61,5 +61,9 @@
     $('body').click(function() {
         $('#listsubmenu').hide();
     });
+    function hidedropmenu(){
+        //$('#ordermenu').removeClass("open");
+        alert("dd");
+    }
 </script>
 @stop

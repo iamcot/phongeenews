@@ -19,7 +19,7 @@
         </ul>
         <div class="navigation  pull-right">
             <ul class="list-inline">
-                <li><a href="">1</a></li>
+                <li><a href="" class="active">1</a></li>
                 <li><a href="">2</a></li>
                 <li><a href="">3</a></li>
                 <li><a href=""><i class="fa fa-angle-right"></i></a></li>
@@ -28,7 +28,3 @@
     </div>
 
 </div>
-@section('jscript')
-@parent
-
-@stop
