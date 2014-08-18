@@ -209,8 +209,13 @@ class ShopAdminController extends BaseController
         $input = Input::all();
         if (count($input) > 0 && isset($input['_token'])) {
 
-            if ($input['id'] == '')
+            if ($input['id'] == '') {
                 $dbCat = new Product();
+                $dbCat->layear = date("Y");
+                $dbCat->lamonth = date("m");
+            }
+
+
             else {
                 $dbCat = Product::find($input['id']);
                 if ($dbCat == null)

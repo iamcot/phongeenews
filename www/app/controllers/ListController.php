@@ -11,7 +11,7 @@ class ListController extends  BaseController
     function __construct(){
 
     }
-    public function showList($cat=""){
+    public function showList($cat="",$year='',$month=''){
         $this->data['caturl'] = $cat;
         $this->data['lists'] = null;
         $actCat = Category::where("laurl",'=',$cat)->get();
@@ -56,12 +56,21 @@ class ListController extends  BaseController
                     ->get();
                 $this->data['catchildren'] = $catchildren;
                 $this->data['oActCat'] =$actCat[0];
-                $ranproduct = DB::table('v_products')
-                    ->where('cat1id', '=', $actCat[0]->id)
-                    ->orwhere('cat2id', '=', $actCat[0]->id)
-                    ->orwhere('cat3id', '=', $actCat[0]->id)
+                $ranproduct = DB::table('v_products');
+                if($year!='')
+                    $ranproduct = $ranproduct->where('layear','=',$year);
+                if($month!='')
+                    $ranproduct = $ranproduct->where('lamonth','=',$month);
+                $ranproduct = $ranproduct->where(function($query) use ($actCat){
+                    $query->where('cat1id', '=', $actCat[0]->id)
+                        ->orwhere('cat2id', '=', $actCat[0]->id)
+                        ->orwhere('cat3id', '=', $actCat[0]->id);
+
+                })
                     ->orderBy('id','desc')
                     ->paginate(6);
+
+
                 $this->data['lists'] = $ranproduct;
             }
 

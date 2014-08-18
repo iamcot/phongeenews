@@ -24,6 +24,8 @@ Route::post('search','ListController@showsearch');
 Route::get('/{cat}/{product}.html','DetailsController@showDetails');
 Route::any('/fav/{type}','ListController@showfav');
 Route::any('/{cat}','ListController@showList');
+Route::any('/{cat}/{year}','ListController@showList');
+Route::any('/{cat}/{year}/{month}','ListController@showList');
 Route::controller('ajax','AjaxController');
 
 Route::get('/','ShopController@getIndex');
