@@ -16,7 +16,7 @@
     ->orwhere('cat3id', '=', $actCat->id);
     })
     ->orderBy('id','DESC')
-    ->paginate(12);
+    ->paginate(8);
      /*--}}
     <ul class="row-fluid">
         @foreach($ranproduct as $list)
@@ -24,7 +24,7 @@
         @endforeach
     </ul>
     <div class="clearfix"></div>
-<!--    <div class="pull-right">{{ $ranproduct->links() }}</div>-->
+    <div class="pull-right">{{ $ranproduct->links() }}</div>
     @endif
 
     @if(!$rootcat && isset($lists) && $lists != null && count($lists)>0 )
@@ -35,7 +35,9 @@
     </ul>
     <div class="text-center clearfix">
         @if(!$rootcat)
+        <div class="pull-right">
         {{$lists->links()}}
+            </div>
         @endif
     </div>
     @elseif(!$rootcat)

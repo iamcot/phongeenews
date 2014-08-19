@@ -495,7 +495,7 @@ textarea, select {
     position: absolute;
     width: 200px;
     background: #fff;
-    left: 15px;
+    left: 0;
     z-index: 999;
     list-style: none;
     padding-left: 0;
@@ -751,7 +751,8 @@ textarea, select {
     color: #000;
     font-weight: bold;
     background: none;
-    border:1px solid rgba(215, 215, 215, 0.66);
+    /*border:1px solid rgba(215, 215, 215, 0.66);*/
+    border-color: rgba(215, 215, 215, 0.66);
 }
 .btn-white{
     background: #fff;

@@ -7,7 +7,7 @@ return array(
     'description' => 'Phongee',
     'keywords'  => 'iphone, ipad, mac book',
     'treecatdeep' => 2,
-    'tablepp'    =>  18,
+    'tablepp'    =>  8,
     'theme' => 'phongeev2',
     'phone' => '(08) 222 222 88',
     'orderstatus' => array(
