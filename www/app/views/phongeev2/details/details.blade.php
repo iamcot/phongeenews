@@ -210,29 +210,29 @@
 
     <div class="clear"></div>
      <br><br>
+    <div  class="mycontainer wrap widgetblock">
+        <h2>
+            Sản phẩm liên quan
+        </h2>
 
-</div>
-<div  class="mycontainer wrap widgetblock">
-    <h2>
-        Sản phẩm liên quan
-    </h2>
+        <div class="row-fluid widgetcontent">
+            {{--*/ $lists = Vproduct::where('isnews','0')
+            ->orderby('laview','desc')
+            ->orderby('id','desc')
+            ->take(4)
+            ->get();
+            /*--}}
 
-    <div class="row-fluid widgetcontent">
-        {{--*/ $lists = Vproduct::where('isnews','0')
-        ->orderby('laview','desc')
-        ->orderby('id','desc')
-        ->take(4)
-        ->get();
-        /*--}}
+            <ul class="grid row">
+                @foreach($lists as $list)
+                @include(Config::get('shop.theme').'/list/listitem')
+                @endforeach
+            </ul>
+        </div>
 
-        <ul class="grid row">
-            @foreach($lists as $list)
-            @include(Config::get('shop.theme').'/list/listitem')
-            @endforeach
-        </ul>
     </div>
-
 </div>
+
 @include(Config::get('shop.theme').'/start/topfooter')
 
 @stop

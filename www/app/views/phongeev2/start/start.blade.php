@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="widget row-fluid">
+<div class="widget row-fluid" ng-controller="startController">
     @include(Config::get('shop.theme').'/start/bestsell')
     <div class="clear"></div>
 
@@ -32,4 +32,21 @@
 </div>
     @include(Config::get('shop.theme').'/start/topfooter')
     @include(Config::get('shop.theme').'/start/store')
+@stop
+@section('jscript')
+    @parent
+    <script>
+    app.controller('startController',['$scope','$http',function($scope,$http){
+        $scope.bestsell = [];
+        $scope.loadwideget = function(type,page,pp){
+            $http.get('ajax/startwidget/'+type+'/'+page+'/'+pp)
+                .success(function(data){
+                    if(type=='bestsell'){
+                        $scope.bestsell = data;
+                    }
+                });
+        }
+        $scope.loadwideget('bestshell',0,8);
+    }]);
+    </script>
 @stop
