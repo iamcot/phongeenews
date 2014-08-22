@@ -37,16 +37,51 @@
     @parent
     <script>
     app.controller('startController',['$scope','$http',function($scope,$http){
-        $scope.bestsell = [];
+        $scope.bestsell = {
+            per_page:4,
+            page:{},
+            current_page:1,
+            last_page:1
+        };
+        $scope.new = {
+            per_page:4,
+            page:{},
+            current_page:1,
+            last_page:1
+        };
         $scope.loadwideget = function(type,page,pp){
-            $http.get('ajax/startwidget/'+type+'/'+page+'/'+pp)
-                .success(function(data){
-                    if(type=='bestsell'){
-                        $scope.bestsell = data;
-                    }
-                });
+            var request = false;
+            if(type=='bestsell'){
+                if(!$scope.bestsell.page[page]) request = true;
+                else{
+                    $scope.bestsell.current_page = page;
+                }
+            }
+            if(type=='new'){
+                if(!$scope.new.page[page]) request = true;
+                else{
+                    $scope.new.current_page = page;
+                }
+            }
+            if(request){
+                $http.get('ajax/startwidget/'+type+'/'+pp+'?page='+page)
+                    .success(function(response){
+                        if(type=='bestsell'){
+                            $scope.bestsell.page[page] = response;
+                            $scope.bestsell.current_page = response.current_page;
+                            $scope.bestsell.last_page = response.last_page;
+                        }
+                        if(type=='new'){
+                            $scope.new.page[page] = response;
+                            $scope.new.current_page = response.current_page;
+                            $scope.new.last_page = response.last_page;
+                        }
+                    });
+            }
+
         }
-        $scope.loadwideget('bestshell',0,8);
+        $scope.loadwideget('bestsell',1,$scope.bestsell.per_page);
+        $scope.loadwideget('new',1,$scope.new.per_page);
     }]);
     </script>
 @stop

@@ -711,6 +711,23 @@ textarea, select {
     padding-bottom: 30px;
    
 }
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img{
+    width:100%;
+}
+
+/**
+   Transition slide angular switch
+**/
+.sample-show-hide {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+    opacity:0;
+}
+/***/
 .grid{
 
 }
@@ -764,6 +781,7 @@ textarea, select {
 }
 .navigation .active{
 }
+
 .widgetblock .navigation li a,
 .pagination li a,
 .pagination li span{

@@ -21,6 +21,7 @@
     {{HTML::style('src/bootstrap/css/bootstrap-theme.min.css')}}
     {{HTML::style('src/bootstrap/css/datepicker.css')}}
     {{HTML::style('src/'.Config::get('shop.theme').'/jquery.raty.css')}}
+    {{HTML::style('src/'.Config::get('shop.theme').'/angular-motion.min.css')}}
     @if (isset($typeEnd) && $typeEnd=='admin')
     {{HTML::style('src/style.css')}}
     @else
@@ -61,9 +62,18 @@
 {{HTML::script('src/bootstrap/js/bootstrap.min.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/jquery.raty.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/angular.min.js')}}
+{{HTML::script('src/'.Config::get('shop.theme').'/angular-animate.min.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap-datepicker.js')}}
 <script>
    app = angular.module('shopApp', []);
+   app.filter('paging', function() {
+       return function(input, total) {
+           total = parseInt(total);
+           for (var i=1; i<=total; i++)
+               input.push(i);
+           return input;
+       };
+   });
    app.controller('mainController',['$scope',function($scope){
 
    }]);

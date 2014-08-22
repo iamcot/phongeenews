@@ -18,7 +18,7 @@ class AjaxController extends BaseController{
         return View::make(Config::get('shop.theme') . "/list/listitemjs");
     }
 
-    public function getStartwidget($type, $page = 1, $pp = 4, $news = false)
+    public function getStartwidget($type, $pp = 4, $news = false)
     {
         $lists = Vproduct::where('ladeleted', '0');
         if (!$news) $lists = $lists->where('isnews', 0);
@@ -28,8 +28,8 @@ class AjaxController extends BaseController{
             $lists = $lists->orderby('laview', 'desc');
         else if ($type == 'new')
             $lists = $lists->orderby('id', 'desc');
-        return $lists = $lists->take($pp)
-            ->get()
-            ->tojson();
+        $lists = $lists->paginate($pp);
+//        var_dump($lists);
+        return Response::json($lists);
     }
 }
