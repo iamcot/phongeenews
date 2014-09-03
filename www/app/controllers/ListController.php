@@ -25,7 +25,8 @@ class ListController extends  BaseController
             if($actCat[0]->laparent_id>0){
 
                 $lists = Vproduct::where('ladeleted','!=','1')
-                    ->Where('cat1url','=',$cat);
+                    ->Where('cat1url','=',$cat)
+                    ->orWhere('cat2url','=',$cat);
                 $input = Input::all();
                 if (isset($input['listorder'])) {
                     if($input['listorder'] == 'giatang')
@@ -45,32 +46,40 @@ class ListController extends  BaseController
                 $this->data['lists'] = $lists;
                 $this->data['rootcat'] = false;
             }
-//            else if($cat == 'tin-tuc'){
-//                $lists = Vproduct::where('cat1url','=',$cat)->paginate(Config::get('shop.tablepp'));
-//                $this->data['lists'] = $lists;
-//                $this->data['rootcat'] = true;
-//            }
             else {
                 $catchildren = Category::where('laparent_id','=',$actCat[0]->id)
                     ->orderBy('latitle')
                     ->get();
                 $this->data['catchildren'] = $catchildren;
                 $this->data['oActCat'] =$actCat[0];
-                $ranproduct = DB::table('v_products');
+                $ranproduct = DB::table('v_products')
+                    ->where('ladeleted', '!=', '1')
+                    ->where(function ($query) use ($actCat) {
+                        $query->where('cat1id', '=', $actCat[0]->id)
+                            ->orwhere('cat2id', '=', $actCat[0]->id)
+                            ->orwhere('cat3id', '=', $actCat[0]->id);
+                    });
                 if($year!='')
                     $ranproduct = $ranproduct->where('layear','=',$year);
                 if($month!='')
                     $ranproduct = $ranproduct->where('lamonth','=',$month);
-                $ranproduct = $ranproduct->where(function($query) use ($actCat){
-                    $query->where('cat1id', '=', $actCat[0]->id)
-                        ->orwhere('cat2id', '=', $actCat[0]->id)
-                        ->orwhere('cat3id', '=', $actCat[0]->id);
 
-                })
-                    ->orderBy('id','desc')
-                    ->paginate(6);
+                $input = Input::all();
+                if (isset($input['listorder'])) {
+                    if($input['listorder'] == 'giatang')
+                        $ranproduct->orderBy('laprice');
+                    else if($input['listorder'] == 'giagiam')
+                        $ranproduct->orderBy('laprice','DESC');
+                    else if($input['listorder'] == 'tentang')
+                        $ranproduct->orderBy('latitle');
+                    else if($input['listorder'] == 'tengiam')
+                        $ranproduct->orderBy('latitle','DESC');
+                }
+                else{
+                    $ranproduct->orderBy('latitle');
+                }
 
-
+                $ranproduct = $ranproduct->paginate(Config::get('shop.tablepp'));
                 $this->data['lists'] = $ranproduct;
             }
 

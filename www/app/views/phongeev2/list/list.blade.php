@@ -5,44 +5,13 @@
     @if($actCat!='search' && $actCat->isnews==1)
     @include(Config::get('shop.theme').'/list/listnews')
     @else
-
-
-    @if(isset($catchildren) && $catchildren != null)
-    {{--*/ $ranproduct = DB::table('v_products')
-    ->where('ladeleted', '!=', '1')
-    ->where(function ($query) use ($actCat) {
-    $query->where('cat1id', '=', $actCat->id)
-    ->orwhere('cat2id', '=', $actCat->id)
-    ->orwhere('cat3id', '=', $actCat->id);
-    })
-    ->orderBy('id','DESC')
-    ->paginate(8);
-     /*--}}
     <ul class="row-fluid">
-        @foreach($ranproduct as $list)
-        @include(Config::get('shop.theme').'/list/listitem')
+        @foreach($lists as $list)
+            @include(Config::get('shop.theme').'/list/listitem')
         @endforeach
     </ul>
     <div class="clearfix"></div>
-    <div class="pull-right">{{ $ranproduct->links() }}</div>
-    @endif
-
-    @if(!$rootcat && isset($lists) && $lists != null && count($lists)>0 )
-    <ul class="row-fluid ">
-        @foreach($lists as $list)
-        @include(Config::get('shop.theme').'/list/listitem')
-        @endforeach
-    </ul>
-    <div class="text-center clearfix">
-        @if(!$rootcat)
-        <div class="pull-right">
-        {{$lists->links()}}
-            </div>
-        @endif
-    </div>
-    @elseif(!$rootcat)
-    <div class="noproduct text-center"></div>
-    @endif
+    <div class="pull-right">{{ $lists->links() }}</div>
     @endif
 </div>
 @include(Config::get('shop.theme').'/start/topfooter')

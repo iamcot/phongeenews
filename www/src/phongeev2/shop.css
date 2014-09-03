@@ -968,8 +968,9 @@ margin-bottom: 18px;
     max-width: 180px;
 }
 .addtowishlist{
-    background: url(img/wishlist.png ) no-repeat right top;
+    background: url(img/wishlist.png ) no-repeat left top;
     height: 30px;
+    text-indent: 40px;
 }
 .lisocial li{
     float:left;
@@ -1453,7 +1454,13 @@ figure{
 #variantselectname{
     display: inline-block;
 }
-
+#variant li a{
+    width: 30px;
+    display: block;
+}
+#variant li img{
+    width: 100%;
+}
 .entry-format {
     width: 36px;
     height: 90px;
@@ -1742,7 +1749,7 @@ figure{
     #mainpicimg{
         /*width: auto !important;*/
         max-width: 100%;
-        /*max-width: 600px;*/
+        max-width: 300px;
         margin:  auto;
     }
     .navbarphongee .nav>li>a{

@@ -38,10 +38,10 @@
             </div>
             <div class="clearfix"></div>
                 <br>
-                <div class="col-xs-12 col-sm-5 addtowishlist no-padding">
-                    Thêm vào yêu thích
+                <div class="col-xs-12 col-sm-4 addtowishlist no-padding">
+                    Yêu thích
                 </div>
-                <div class="col-xs-12 col-sm-7 text-right">
+                <div class="col-xs-12 col-sm-8 text-right">
                     @if($oProduct->sumvariant > 0)
                     {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
                     <dl>
