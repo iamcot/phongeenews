@@ -290,6 +290,22 @@ textarea, select {
     float: left;
     /*margin-left:5px;*/
 }
+.buynow{
+    line-height: 20px;
+    vertical-align: top;
+}
+#details .addcart{
+    line-height: 20px;
+}
+.carticon{
+    background: url("img/basket.png") no-repeat;
+    display: inline-block;
+    width: 24px;
+    height: 20px;
+    background-size: 100%;
+    margin-right: 5px;
+
+}
 #cart .cartinfo .carticon{
     background: url("img/basket.png") no-repeat;
     display: inline-block;
@@ -300,6 +316,7 @@ textarea, select {
     margin-right: 5px;
 
 }
+
 .top-function{
     position: relative;
     text-align: right;
@@ -488,6 +505,18 @@ textarea, select {
     color: #545454;
     margin-top: 15px;
     margin-bottom: 15px;
+    height: 110%;
+}
+#productinfocontent th{
+    vertical-align: top;
+    padding-right: 10px;
+    font-size:9pt;
+}
+#productinfocontent td{
+    font-size:10pt;
+}
+.infotextsmall{
+    font-size:10pt;
 }
 .navbarphongee .nav>li:hover>.nav-child{
 
@@ -619,11 +648,13 @@ textarea, select {
     /*background: transparent;*/
     text-align: center;
     line-height: 50px;
+
 }
 .top-footerouter{
     padding-bottom: 10px;
     z-index:1;
     border-top: 1px solid #dfdfdf;
+    margin-top: -20px;
 
 }
 .giaohangicon{
@@ -641,9 +672,10 @@ textarea, select {
 }
 #footer .footbox{
     float:left;
-    margin-right: 15px;
-    padding-left: 15px;
+    margin-right: 5px;
+    padding-left: 5px;
     font-weight:300;
+    font-size: 9pt;
 }
 .hotlineicon{
    background: url('img/hotlineicon.png') top left no-repeat;
@@ -771,10 +803,14 @@ textarea, select {
     /*border:1px solid rgba(215, 215, 215, 0.66);*/
     border-color: rgba(215, 215, 215, 0.66);
 }
+#details .btn{
+    padding:4px 12px;
+
+}
 .btn-white{
     background: #fff;
     border:1px solid #e9e9e9;
-    width: 35px;
+    /*width: 35px;*/
     text-align: center;
     color: #999796;
     font-weight: bold;
@@ -829,6 +865,10 @@ textarea, select {
 .details-cart-button{
     text-transform: uppercase;
 }
+.detailsrelate li:first-child{
+    padding-left: 0;
+}
+
 .widget-product .buttoncart{
     position: absolute;
     background: url('img/basket.png') no-repeat;
@@ -938,44 +978,47 @@ margin-bottom: 18px;
 }
 .tticon{
     background-size: 100%;
-    width:90px;
+    width:80px;
     height: 38px;
     display: inline-block;
-    margin-right:15px;
 }
 .mhtq{
-    background: url(img/mhtq.png) no-repeat;
+    background: url(img/mhtq.png) no-repeat left center;
     background-size: 100%;
     display: block;
     height: 60px;
-    width: 45%;
+    /*width: 45%;*/
     max-width: 250px;
 }
 .delim{
-    background: url(img/giaohangdelim.png) no-repeat;
+    background: url(img/giaohangdelim.png) no-repeat center;
     /*background-size: 100%;*/
-    width: 20px;
+    width: 10px;
     height: 60px;
-    margin-left: 30px;
+    /*margin-left: 10px;*/
 }
 .ghtn{
-    background: url(img/ghtn.png) no-repeat;
+    background: url(img/ghtn.png) no-repeat right center;
     background-size: 100%;
     display: block;
     height: 60px;
-    width: 45%;
     float:right;
     max-width: 180px;
 }
 .addtowishlist{
     background: url(img/wishlist.png ) no-repeat left top;
-    height: 30px;
-    text-indent: 40px;
+    background-size: 15%;
+    height: 20px;
+    text-indent: 25px;
+    vertical-align: top;
+    line-height: 20px;
+    font-size: 9pt;
 }
 .lisocial li{
     float:left;
     max-width: 100px;
-    margin-left: 10px;
+    margin-left: 5px;
+    font-size: 9pt;
 }
 .detailssocical{
     height: 24px;
@@ -1000,21 +1043,27 @@ margin-bottom: 18px;
 }
 .icon-cash{
     background: url('img/icon-cash.png') no-repeat;
+    background-size: 100%;
 }
 .icon-atm{
     background: url('img/icon-atm.png') no-repeat;
+    background-size: 100%;
 }
 .icon-ck{
     background: url('img/icon-ck.png') no-repeat;
+    background-size: 100%;
 }
 .icon-ib{
     background: url('img/icon-ib.png') no-repeat;
+    background-size: 100%;
 }
 .icon-mcard{
     background: url('img/icon-mcard.png') no-repeat;
+    background-size: 100%;
 }
 .icon-visa{
     background: url('img/icon-visa.png') no-repeat;
+    background-size: 100%;
 }
 .detailsthanhtoan .icon-cash{
     background: url('img/detais-icon-cash.png') no-repeat;
@@ -1047,10 +1096,11 @@ margin-bottom: 18px;
     display: inline-block;
     margin: 0;
     padding-top: 0;
-    padding-left: 30px;
+    padding-left: 10px;
     margin-bottom: 0px;
     font-weight: 300;
     float:left;
+    font-size: 30px;
 }
 .containinner{
     box-shadow: 4px 4px 8px 4px rgba(0, 0, 0, 0.1);
@@ -1141,7 +1191,7 @@ margin-bottom: 18px;
     /*margin: 0;*/
     padding-top: 10px;
     margin-bottom: 0;
-    margin-right: 30px;
+    margin-right: 0;
 
 }
 /*#detailsPrice{*/
@@ -1151,7 +1201,7 @@ margin-bottom: 18px;
     /*line-height: 100%;*/
 /*}*/
 #cartamount{
-    height:34px;
+    height:30px;
     width:35px;
     float:left;
     /*padding: .64em .7em;*/
@@ -1161,19 +1211,20 @@ margin-bottom: 18px;
 }
 .details-cart-button{
     border-radius: 20px;
-    display: block;
-    padding: 8px 20px;
+    display: inline-block;
+    padding: 4px 10px;
     background: #e95624;
     color: #fff;
-    text-align: center;
+    text-align: left;
     border: none;
-    font-size:14px;
+    font-size:8pt;
+    width: 45%;
 }
 .details-cart-button:hover{
     color: #fff;
 }
 .detailsthanhtoan h2{
-    font-size:20px;
+    font-size:18px;
     text-transform: uppercase;
 }
 .tab-content{
@@ -1224,11 +1275,14 @@ margin-bottom: 18px;
 }
 .detailsPrice{
     font-weight: 400;
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: -5px;
 }
 #detailsinfotab a{
     color: #5e5e5e;
+}
+#detailsinfotab {
+    font-size: 9pt;
 }
 #details hr{
     margin-top: 5px;
@@ -1450,6 +1504,12 @@ figure{
     padding: 50px 20px;
 
 }
+#variant{
+    float:right;
+}
+#variant.list-inline li{
+    padding: 0;
+}
 
 #variantselectname{
     display: inline-block;
@@ -1627,7 +1687,7 @@ figure{
     display: block;
     position: absolute;
     bottom: 0;
-    font-size: 10pt;
+    font-size: 9pt;
     /*position: absolute;*/
     padding: 10px 0;
     text-align: center;
@@ -1641,6 +1701,7 @@ figure{
 }
 .addcart{
     right: 0;
+    text-align: center;
 }
 .listpage .widget-product:hover .product-overlay{
     /*display: block;*/
@@ -1666,7 +1727,7 @@ figure{
     font-weight: 300;
 }
 .ratingblock{
-    margin-top:10px;
+    margin-top:5px;
     position: absolute;
     top:0;
     right: 0;
@@ -1681,7 +1742,7 @@ figure{
     overflow: auto;
 }
 .text-10{
-    font-size: 10pt;
+    font-size: 9pt;
 }
 #rating i{
     font-size: 1.2em !important;
@@ -1727,6 +1788,14 @@ figure{
 #catoutter{
     float:left;
 }
+#soluong{
+    display: none;
+}
+@media screen and (min-width: 1200px){
+    #soluong{
+        display: inline-block;
+    }
+}
 @media screen and (min-width: 1270px){
     #catoutter{
         margin-right: 15px;
@@ -1741,7 +1810,7 @@ figure{
         line-height: 180px;
     }
     .subfooter{
-        margin: 0 5%;
+        margin: 0 7%;
     }
     #picbox-mainimg{
         height: 430px;
@@ -1751,6 +1820,7 @@ figure{
         max-width: 100%;
         max-width: 300px;
         margin:  auto;
+        max-height: 270px;
     }
     .navbarphongee .nav>li>a{
         margin-left:15px;
@@ -1798,8 +1868,8 @@ figure{
 }
 @media screen and (min-width:1050px) and (max-width : 1270px){
     #footer .footbox{
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 5px;
+        padding-right: 5px;
         margin-right: 0;
     }
     .subfooter{

@@ -9,7 +9,7 @@
             <div class="pagetitleouter row-fluid">
                 <div class="col-xs-12">
                     @if($typeEnd=='details')
-                    <h1 class="page-title">
+                    <h1 class="page-title ">
                         Product Details
                     </h1>
                     @else

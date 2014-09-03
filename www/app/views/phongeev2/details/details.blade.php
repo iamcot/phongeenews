@@ -38,6 +38,7 @@
             </div>
             <div class="clearfix"></div>
                 <br>
+                <div style="height: 20px;">
                 <div class="col-xs-12 col-sm-4 addtowishlist no-padding">
                     Yêu thích
                 </div>
@@ -64,11 +65,14 @@
                     </dl>
                     @endif
                 </div>
+                </div>
                 <div class="clear"></div>
                 <hr>
+                <div style="padding-top: 10px;">
                 <div class="col-xs-6 no-padding">
-                    <div class="fb-like" data-href="{{Request::url()}}" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
-
+                    <div style="float:left;" class="fb-like" data-href="{{Request::url()}}" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+                    <div style="float:left;display: block;width: 5px; height: 1px;"></div>
+                    <div class="g-plusone" style="float:left;"></div>
                 </div
                     <div class="col-xs-6">
                         <ul class="lisocial pull-right">
@@ -79,9 +83,9 @@
                             <li class="detailssocical twitter"></li>
                         </ul>
                     </div>
-
+                </div>
                 <div class="clear"></div>
-
+                <hr>
             </div>
         </div>
 
@@ -110,18 +114,14 @@
             </div>
                <hr>
             <div>
-                <ul class="">
-                    <li class="col-xs-6 no-padding">
-                        <strong>Tình trạng:</strong> đang có hàng
+                <ul class="infotextsmall">
+                    <li style="width: 45%;float:left">
+                        <div><strong>Tình trạng:</strong> đang có hàng</div>
+                        <div><strong>Bảo hành:</strong> 12  tháng</div>
                     </li>
-                    <li class="col-xs-6 no-padding">
-                        <strong>Giao hàng:</strong> trong vòng 48 giờ
-                    </li>
-                    <li class="col-xs-6 no-padding">
-                        <strong>Bảo hành:</strong> 12  tháng
-                    </li>
-                    <li class="col-xs-6 no-padding">
-                        <strong>Lượt xem:</strong> {{$oProduct->laview}}
+                    <li style="float:right">
+                        <div><strong>Giao hàng:</strong> trong vòng 48 giờ</div>
+                        <div><strong>Lượt xem:</strong> {{$oProduct->laview}}</div>
                     </li>
                 </ul>
                 <div class="clear"></div>
@@ -158,15 +158,20 @@
             {{Form::hidden('variantname','',array('id'=>'variantselectnameinput'))}}
             {{Form::hidden('caturl',$oProduct->cat1url)}}
             {{Form::hidden('producturl',$oProduct->laurl)}}
-            <div class="btn-group col-xs-12 col-sm-4">
+            <div class="btn-group col-xs-12 col-sm-5 no-padding">
+                <div id="soluong" class="pull-left" >Số lượng&nbsp;</div>
                 <button type="button" class="btn btn-white">-</button>
                 <input type="text" id="cartamount" name="amount" style="" value="1">
                 <button type="button" class="btn btn-white">+</button>
             </div>
-            <div class="col-xs-6 col-md-4 no-padding">
-                <button class=" details-cart-button buynow" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}><span class="glyphicon glyphicon-shopping-cart"></span> Mua ngay</button>
-            </div>
-            <div class="col-xs-6 col-md-4 no-padding">
+            <div class="col-xs-12 col-sm-7 no-padding text-right">
+                <button class=" details-cart-button buynow" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>
+                <div style="text-align: center;line-height: 10px;vertical-align: baseline;position: relative">
+                    <span class="carticon"></span>
+                    <div style="display: inline-block;vertical-align: top;line-height: 20px">Mua ngay</div>
+                </div>
+
+                </button>
                 <button id="addtocart" class="  details-cart-button addcart" {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>Thêm vào giỏ</button>
             </div>
             {{ Form::close() }}
@@ -201,8 +206,8 @@
 
             </div>
             <hr>
-            <div class="col-xs-6 no-padding"><b>Category: </b>{{$oProduct->cat1name}}</div>
-            <div class="col-xs-6 no-padding"><b>Tags: </b>{{$oProduct->lakeyword}}</div>
+            <div class="col-xs-6 no-padding infotextsmall"><b>Category: </b>{{$oProduct->cat1name}}</div>
+            <div class="col-xs-6 no-padding infotextsmall"><b>Tags: </b>{{$oProduct->lakeyword}}</div>
             <div class="clear"></div>
         </div>
 
@@ -211,11 +216,14 @@
     <div class="clear"></div>
      <br><br>
     <div  class="mycontainer wrap widgetblock">
-        <h2>
-            Sản phẩm liên quan
-        </h2>
+        <div class="row">
+            <h2>
+                Sản phẩm liên quan
+            </h2>
+        </div>
 
-        <div class="row-fluid widgetcontent">
+
+        <div class="row-fluid widgetcontent detailsrelate">
             {{--*/ $lists = Vproduct::where('isnews','0')
             ->orderby('laview','desc')
             ->orderby('id','desc')

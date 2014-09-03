@@ -80,6 +80,7 @@
 </script>
 @if (isset($typeEnd) && $typeEnd!='admin')
 <div id="fb-root"></div>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script>
             (function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];

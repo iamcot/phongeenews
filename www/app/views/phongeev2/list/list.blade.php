@@ -12,6 +12,7 @@
     </ul>
     <div class="clearfix"></div>
     <div class="pull-right">{{ $lists->links() }}</div>
+    <div class="clearfix"></div>
     @endif
 </div>
 @include(Config::get('shop.theme').'/start/topfooter')
