@@ -12,7 +12,7 @@
             </a>
         </div>
         <div class="widgetinfo">
-            <a class="buttoncart"></a>
+            <a class="buttoncart" href="{{URL::to('/uploads/medium/product')}}/@{{list.laimage}}"></a>
 
             <p class="list-item-title"><strong>@{{list.latitle}}</strong></p>
             <p class="list-item-price">@{{list.laprice}} VNĐ (cửa hàng)</p>

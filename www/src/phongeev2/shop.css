@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Condensed);
 html {
     overflow-y: scroll;
     min-height: 100%;
@@ -298,12 +299,12 @@ textarea, select {
     line-height: 20px;
 }
 .carticon{
-    background: url("img/basket.png") no-repeat;
+    background: url("img/detailsbasket.png") no-repeat;
     display: inline-block;
-    width: 24px;
-    height: 20px;
+    width: 20px;
+    height: 19px;
     background-size: 100%;
-    margin-right: 5px;
+    margin-right: 2px;
 
 }
 #cart .cartinfo .carticon{
@@ -499,6 +500,7 @@ textarea, select {
     padding-right: 0 !important;
 }
 #productinfocontent{
+    font-family: 'Roboto Condensed' !important;
     height: 315px;
     max-height: 315px;
     overflow-y: scroll;
@@ -511,6 +513,8 @@ textarea, select {
     vertical-align: top;
     padding-right: 10px;
     font-size:9pt;
+    letter-spacing: -1px;
+
 }
 #productinfocontent td{
     font-size:10pt;
@@ -865,8 +869,11 @@ textarea, select {
 .details-cart-button{
     text-transform: uppercase;
 }
-.detailsrelate li:first-child{
-    padding-left: 0;
+.details-cart-button:hover{
+    background: #2d2d2d;
+}
+.detailsrelate{
+    position: relative;
 }
 
 .widget-product .buttoncart{
@@ -1006,13 +1013,19 @@ margin-bottom: 18px;
     max-width: 180px;
 }
 .addtowishlist{
-    background: url(img/wishlist.png ) no-repeat left top;
-    background-size: 15%;
-    height: 20px;
-    text-indent: 25px;
+    background: url(img/wishlist.png ) no-repeat right top;
+    background-size: 27%;
+    height: 25px;
+    padding-right: 25px;
     vertical-align: top;
     line-height: 20px;
     font-size: 9pt;
+    float:left;
+    color:#3D3D3D;
+}
+.addtowishlist:hover{
+    background: url(img/wishlistpink.png ) no-repeat right top;
+    background-size: 27%;
 }
 .lisocial li{
     float:left;
@@ -1040,6 +1053,30 @@ margin-bottom: 18px;
 .detailssocical.twitter{
    background: url(img/social-20.png);
     background-size: 100%;
+}
+.myrow-fluid{
+    clear: both;
+}
+.details-relate-indi{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    z-index:999;
+    top:35%;
+
+}
+.details-relate-control{
+    position: relative;
+}
+.details-relate-left{
+    background: url(img/detailsrelateleft.png) no-repeat;
+    background-size: 100%;
+    left:-40px;
+}
+.details-relate-right{
+    background: url(img/detailsrelateright.png) no-repeat;
+    background-size: 100%;
+    right:-40px;
 }
 .icon-cash{
     background: url('img/icon-cash.png') no-repeat;
@@ -1212,12 +1249,12 @@ margin-bottom: 18px;
 .details-cart-button{
     border-radius: 20px;
     display: inline-block;
-    padding: 4px 10px;
+    padding: 6px 10px 4px 10px;
     background: #e95624;
     color: #fff;
     text-align: left;
     border: none;
-    font-size:8pt;
+    font-size:8.5pt;
     width: 45%;
 }
 .details-cart-button:hover{
@@ -1226,6 +1263,7 @@ margin-bottom: 18px;
 .detailsthanhtoan h2{
     font-size:18px;
     text-transform: uppercase;
+    margin-top: 15px;
 }
 .tab-content{
     min-height: 100px;
@@ -1287,6 +1325,7 @@ margin-bottom: 18px;
 #details hr{
     margin-top: 5px;
     margin-bottom: 5px;
+    border-top:1px dashed #ddd;
 }
 #detailsinfotab li.active a{
     color: #000;
@@ -1644,6 +1683,10 @@ figure{
     color: #232323;
     margin-bottom: 0;
     font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 85%;
 }
 .list-item-price{
     color: #565656;
@@ -1795,6 +1838,10 @@ figure{
     #soluong{
         display: inline-block;
     }
+    .detailsthanhtoan .tticon {
+        width: 70px;
+        height: 35px;
+    }
 }
 @media screen and (min-width: 1270px){
     #catoutter{
@@ -1823,7 +1870,7 @@ figure{
         max-height: 270px;
     }
     .navbarphongee .nav>li>a{
-        margin-left:15px;
+        margin-left:10px;
     }
     #top-header .header-tools{
         padding-right: 60px;

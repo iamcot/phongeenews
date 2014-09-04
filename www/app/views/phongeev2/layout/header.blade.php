@@ -80,7 +80,7 @@
 
                     )) }}
                     <a id="searchbutton" style="z-index: 100"></a>
-                    <input type="text" id="s"  name="s" placeholder="Tìm kiếm sản phẩm..." style="z-index: 99">
+                    <input type="text" id="s"  name="s" placeholder="Tìm kiếm..." style="z-index: 99">
                     {{Form::close()}}
                 </div>
             </div>

@@ -10,8 +10,8 @@
         @endif
         </div>
         <div class="widgetinfo">
-         <a class="buttoncart"></a>
-        <p class="list-item-title"><strong>{{$list->latitle}}</strong></p>
+         <a class="buttoncart" href="{{URL::to('/uploads/medium/product')}}/@{{list.laimage}}"></a>
+        <p class="list-item-title" title="{{$list->latitle}}"><strong>{{$list->latitle}}</strong></p>
         <p class="list-item-price">{{number_format($list->laprice,0,',','.')}} VNĐ (cửa hàng)</p>
         <p class="list-item-price txt-color-red">{{number_format($list->laprice,0,',','.')}} VNĐ (online)</p>
         </div>
