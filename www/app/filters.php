@@ -85,7 +85,10 @@ Route::filter('isadmin', function()
         $isadmin  = Auth::user()->isAdmin();
         if(!$isadmin)  return Redirect::to('/');
     }
-    else return Redirect::to('login');
+    else{
+        Session::put('beforelogin',URL::to('admin'));
+        return Redirect::to('login');
+    }
 });
 
 

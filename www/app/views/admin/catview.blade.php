@@ -10,6 +10,7 @@
             <th style="width: 40%">Thông tin</th>
             <th>Ảnh</th>
             <th>Thứ tự</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>

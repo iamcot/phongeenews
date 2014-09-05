@@ -1,6 +1,15 @@
 <div class="col-xs-8">
-    {{Form::text('filter','',array('class'=>'form-control','placeholder'=>'Lọc theo tên sản phẩm, thư mục, nhà sx ','style'=>'width:50%;display:inline-block'))}}
-    <button class="btn btn-primary btn-sm">Lọc</button>
+    {{Form::open(array('method'=>'get'))}}
+    <div class="col-xs-6">
+    {{Form::text('filter',(( Input::has('filter') )?Input::get('filter'):''),array('class'=>'form-control','placeholder'=>'Lọc theo tên sản phẩm ','style'=>'display:inline-block'))}}
+    </div>
+    <div class="col-xs-6">
+        <select name='filtercat'>
+            <option value="all">Tất cả</option>
+            {{$cats}}
+        </select>
+        <button class="btn btn-primary btn-sm">Lọc</button>
+    </div>
 </div>
 <div class="col-xs-4">
     <a class="btn btn-success pull-right btn-sm"  href="{{url('admin/product/create')}}">Tạo sản phẩm mới </a>
@@ -43,5 +52,10 @@
             </tr>
         @endforeach
     </tbody>
+    @if(Input::has('filter') || Input::has('filtercat'))
+    {{$products->appends(array('filter' => Input::get('filter') ,'filtercat' => Input::get('filtercat') ))->links()}}
+    @else
     {{$products->links()}}
+    @endif
+
 </table>

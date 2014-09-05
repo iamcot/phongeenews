@@ -79,6 +79,7 @@ class Category extends Eloquent
                     <td>" . str_limit($cat['lainfo'], 40) . "</td>
                     <td class='imgthumb'>" . (($cat['laimage'] != '') ? HTML::image('uploads/cat/' . $cat['id'] . '/' . $cat['laimage'], 'IMG') : '') . "</td>
                     <td>" . $cat['laorder'] . "</td>
+                    <td><a href='".URL::to('admin/delcat/'.$cat['id'])."'>Xóa</a></td>
                 </tr>";
             $html .= Category::adminListCat($cat['children'], $level + 1);
         }
@@ -89,7 +90,7 @@ class Category extends Eloquent
     public static function adminSelectCat($categories, $full = false, $select = 0, $level = 0)
     {
         $html = "";
-        if ($level == 0) $html = "<option value='0' " . (($select == 0) ? 'selected' : '') . ">Thư mục gốc</option>";
+        if ($level == 0) $html = "<option value='0'>Thư mục gốc</option>";
         $sLevel = "";
         switch ($level) {
             case 0:

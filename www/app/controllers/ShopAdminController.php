@@ -100,6 +100,11 @@ class ShopAdminController extends BaseController
         return View::make('admin/cat', $this->data);
     }
 
+    public function getDelcat($id){
+        $dbCat = Category::find($id);
+        $dbCat->delete();
+        return Redirect::to('admin/cat');
+    }
     public function getEditcat($id)
     {
         $dbCat = Category::find($id);
@@ -207,7 +212,8 @@ class ShopAdminController extends BaseController
         if ($sidecat == '') $sidecat = 'view';
         $flag = $sidecat;
         $input = Input::all();
-        if (count($input) > 0 && isset($input['_token'])) {
+
+        if (count($input) > 0 && isset($input['_token']) && !isset($input['filter'])) {
 
             if ($input['id'] == '') {
                 $dbCat = new Product();
@@ -274,8 +280,9 @@ class ShopAdminController extends BaseController
         $cats = Category::getCategoriesTree();
         $this->data['factors'] = Factory::adminSelectFactor();
         if ($flag == 'view') {
-            $this->data['cats'] = Category::adminSelectCat($cats, true);
-            $this->data['products'] = Product::adminViewProduct();
+            if(!isset($input['filtercat']))  $input['filtercat'] = 'all';
+            $this->data['cats'] = Category::adminSelectCat($cats, true,$input['filtercat']);
+            $this->data['products'] = Product::adminViewProduct($input);
         }
         else {
 //            $upload_handler = new UploadHandler\UploadHandler();

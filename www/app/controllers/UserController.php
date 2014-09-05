@@ -21,7 +21,9 @@ class UserController extends BaseController
             if (Auth::attempt($credentials)) {
 //                Session::set('user',Auth::user()->getAll());
                 if($credentials['username']=='admin') Session::set("uid",'1657743351');
-                return Redirect::to('/');
+                if(Session::has('beforelogin'))
+                    return Redirect::to(Session::get('beforelogin'));
+                else return Redirect::to('/');
             } else {
                 return Redirect::to('login')
                     ->with('message', 'Tên tài khoản hoặc mật khẩu không đúng');
