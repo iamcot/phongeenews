@@ -4,7 +4,7 @@ class DetailsController extends BaseController
     private $data = array(
         'typeEnd' => 'details',
         'haveHeader' => 1,
-        'title' => 'Thái Boutique',
+        'title' => 'Phongee',
         'sidebartype' => 'sleft', //sright - sleft - none
 
     );
@@ -20,6 +20,7 @@ class DetailsController extends BaseController
         $product = Vproduct::where('laurl', '=', $product)
             ->where('ladeleted', '!=', '1')
             ->get();
+
         if ($product->count() > 0) {
             $actCat = Vcategory::where('laurl',$cat)->get();
             $this->data['actCat'] = $actCat[0];
@@ -30,9 +31,12 @@ class DetailsController extends BaseController
             $uproduct = Product::find($product[0]->id);
             $uproduct->laview += 1;
             $uproduct->save();
-            if ($product[0]->isnews == 0)
+            if ($product[0]->isnews == 0){
 
                 return View::make(Config::get('shop.theme') . "/details/details", $this->data);
+
+            }
+
             else
                 return View::make(Config::get('shop.theme') . "/details/news", $this->data);
         }

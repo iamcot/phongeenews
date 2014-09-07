@@ -254,6 +254,7 @@
     </div>
 
 </div>
+<br><br>
 </div>
 
 @include(Config::get('shop.theme').'/start/topfooter')

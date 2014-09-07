@@ -39,12 +39,12 @@
 <div id="top-header" role="banner" class="row-fluid">
     <div class="mycontainer fold" >
 
-        <div id="logo" class="col-xs-6 col-sm-4 col-md-2">
+        <div id="logo">
             <a href="{{URL::to('/')}}">
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
-        <div class="header-tools col-xs-12 col-sm-7 col-md-5">
+        <div class="header-tools">
             <div id="cart" class="">
                 <div class="cartinfo pull-right" >
                     <div id="catoutter">
@@ -53,7 +53,7 @@
                             <span id="cart-name"><b>GIỎ HÀNG</b></span> ({{isset($sumcart)?$sumcart:0}})
                         </a>
                     </div>
-                    <div style="float:right;">
+                    <div style="float:left;">
                     <span class="phoneicon"></span>
                     <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
                         </div>
@@ -91,7 +91,7 @@
 
         </div><!-- end header tools -->
 
-        <div class="col-xs-12  col-sm-12 col-md-5 nav-outer ">
+        <div class="nav-outer ">
             <div class="navbar-header">
 
             </div>

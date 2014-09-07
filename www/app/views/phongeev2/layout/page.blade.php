@@ -41,7 +41,8 @@
             <div class="clearfix"></div>
             @endif
             @yield('pagecontent')
-            <div class="clearfix"></div>
+            <div class="clearfix">
+            </div>
         </div>
     </div>
 </div>

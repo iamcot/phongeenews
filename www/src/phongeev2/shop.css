@@ -81,7 +81,7 @@ textarea, select {
     color: #777;
     margin: 0;
     width: 210px;
-    max-width: 100%;
+    /*max-width: 100%;*/
     display: block;
     /*margin-bottom: 1em;*/
     background: #fff;
@@ -172,8 +172,8 @@ textarea, select {
 }
 #logo{
     line-height: 60px;
-    padding-left:36px;
-    padding-right: 0;
+    /*padding-left:36px;*/
+    /*padding-right: 0;*/
 }
 #top-header .mycontainer{
     min-height: 68px;
@@ -195,7 +195,7 @@ textarea, select {
 #top-header #searchform{
     /*margin: 0!important;*/
     padding-left: 0!important;
-    width:40%;
+    /*width:40%;*/
     float:right;
 }
 
@@ -208,17 +208,17 @@ textarea, select {
     /*position: absolute;*/
     /*top: 25%;*/
     /*right: 15px;*/
-    overflow: hidden;
-    display: block;
+    /*overflow: hidden;*/
+    /*display: block;*/
     float:right;
     /*padding-left:0 !important;*/
     font-size:9pt;
-    padding-right: 50px;
+    /*padding-right: 50px;*/
 }
 
 #top-header #searchform {
     /*padding-top: 22px;*/
-    margin-right:15px;
+    /*margin-right:15px;*/
 }
 
 #top-header #searchform form, #top-header #searchform #s {
@@ -250,7 +250,7 @@ textarea, select {
 }
 
 #top-header #searchform #s {
-    padding: 4px ;
+    padding: 5px 4px ;
     padding-left: 30px;
     padding-right: 15px;
     /*background: url(img/sprite24.png) 100% 0% no-repeat rgb(25, 25, 25);*/
@@ -857,6 +857,7 @@ textarea, select {
 }
 .widget-product .imgHolder img{
     max-width: 80%;
+    max-height: 160px;
 }
 .widgetinfo {
     margin-top:10px;
@@ -1293,7 +1294,7 @@ margin-bottom: 18px;
     /*-moz-box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(170, 170, 170, 0.11);*/
     /*box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.71), 0px 0px 18px 0px rgba(170, 170, 170, 0.11);*/
     margin-bottom: 20px;
-    padding: 80px;
+    padding: 50px 30px;
     text-align: center;
     height: 430px;
 }
@@ -1469,7 +1470,7 @@ margin-bottom: 18px;
     width: 100%;
 }
 .sidebar-widget .list-item-price {
-    font-size: 15px;
+    font-size: 12px;
 }
 .entry-header{
     /*min-height: 60px;*/
@@ -1834,171 +1835,28 @@ figure{
 #soluong{
     display: none;
 }
-@media screen and (min-width: 1200px){
-    #soluong{
-        display: inline-block;
-    }
-    .detailsthanhtoan .tticon {
-        width: 70px;
-        height: 35px;
-    }
+#basketflybox{
+    display: none;
 }
-@media screen and (min-width: 1270px){
-    #catoutter{
-        margin-right: 15px;
-
+/**
+*   MOBILE
+*/
+@media screen and (max-width:760px){
+    #top-cat li{
+        /*max-width: 33%;*/
+        vertical-align: top;
+        padding: 0 10px;
     }
-    .listpage{
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-    .widget-product .imgHolder{
-        min-height: 180px;
-        line-height: 180px;
-    }
-    .subfooter{
-        margin: 0 7%;
-    }
-    #picbox-mainimg{
-        height: 430px;
-    }
-    #mainpicimg{
-        /*width: auto !important;*/
-        max-width: 100%;
-        max-width: 300px;
-        margin:  auto;
-        max-height: 270px;
-    }
-    .navbarphongee .nav>li>a{
-        margin-left:10px;
-    }
-    #top-header .header-tools{
-        padding-right: 60px;
-    }
-
-    .navbarphongee .nav>li>a{
-        /*padding-left: 25px;*/
-        /*padding-right: 25px;*/
-    }
-    .nav-outer{
-        /*position: absolute;left:15%;*/
-    }
-    #s{
-        width: 250px;
-        position: absolute;
-    }
-}
-/*@media screen and (max-width: 1200px) {*/
-    /*.listpage .widget-product:hover .buttoncart{*/
-        /*left:23%;*/
-
-    /*}*/
-    /*.navbarphongee .nav>li>a{*/
-        /*padding-left: 10px;*/
-        /*padding-right: 25px;*/
-    /*}*/
-/*}*/
-
-@media screen and (min-width: 1400px){
-    .subfooter{
-        margin: 0 8%;
-    }
-    .widget-product .imgHolder{
-        min-height: 220px;
-        line-height: 220px;
-    }
-}
-@media screen and (max-width: 1280px){
-    #header-tools{
-        padding-left: 0;
-    }
-}
-@media screen and (min-width:1050px) and (max-width : 1270px){
-    #footer .footbox{
-        padding-left: 5px;
-        padding-right: 5px;
-        margin-right: 0;
-    }
-    .subfooter{
-        margin: 0 2%;
-    }
-    .navbarphongee .nav>li>a{
-        margin-left:0;
-    }
-    #top-header .header-tools{
-        padding-right: 15px;
-        padding-left: 0;
-    }
-    #logo{
-        padding-left: 15px;
-    }
-    #mainpicimg{
-        /*width: auto !important;*/
-        height: 235px;
-        margin: 0 auto;
-    }
-
-    .navbarphongee .nav>li>a{
-        margin-left:0;
-        margin-right:0;
-    }
-    .nav-outer{
-        /*position: absolute;left:15%;*/
-    }
-}
-@media screen and (min-width: 1000px) and (max-width: 1100px) {
-    .widgetinfo .list-item-price{
+    .cartinfo{
         font-size:8pt;
     }
-
-}
-@media screen and (max-width:1050px){
-    .subfooter{
-        margin: 0 5px;
-    }
-    #cart-name{
-        display: none;
-    }
-    .navbarphongee .nav>li>a{
-        padding-right: 10px;
-    }
-    #logo{
-        padding-left: 15px;
+    .top-function{
+        display: block;
+        width: 33%;
     }
     #mainpicimg{
         /*width: auto !important;*/
-        height: 200px !important;
-        margin: 0 auto;
-    }
-
-
-    #storetext{
-        top:0;
-        font-size: 20pt !important;
-        line-height: 24pt;
-    }
-    .storesmalltext{
-        font-size: 14pt;
-    }
-    #start-store{
-        min-height: 100px;
-    }
-    #visitstore{
-        padding: 5px;
-        font-size: 10pt;
-    }
-    .navbar{
-        clear: both;
-        float:left;
-    }
-    .nav-outer{
-
-    }
-}
-@media screen and (max-width:800px){
-    #mainpicimg{
-        /*width: auto !important;*/
-        height: 200px !important;
+        height: auto !important;
         margin: 0 auto;
     }
 
@@ -2026,6 +1884,270 @@ figure{
         padding: 5px;
         font-size: 10pt;
     }
+    #cart-name{
+        display: none;
+    }
+    #logo{
+        width:20%;
+        display: inline-block;
+        float:left;
+        margin-left:1.5%;
+    }
+    .header-tools{
+        width:70%;
+        display: inline-block;
+        margin-right:1.5%;
+    }
+    #top-header #searchform{
+        width:30%;
+        margin-right:4%;
+        position: relative;
+    }
+    #top-header #searchform #s{
+        position: absolute;
+        width: 100%;
+    }
+    .nav-outer{
+        display: none;
+    }
+    .subfooter{
+        margin: 0 5px;
+    }
+
+    #start-store{
+        min-height: 100px;
+    }
+    #visitstore{
+        padding: 5px;
+        font-size: 10pt;
+    }
+    .widget-product:hover .favor,
+    .widget-product:hover .addcart{
+        display: none;
+    }
+    #picbox-mainimg{
+        height: auto;
+    }
+    .pagetitleouter{
+        padding: 10px;
+    }
+    .page-title{
+        font-size: 13pt;
+    }
+    .breadcrumb{
+        font-size: 9pt;
+    }
+    .nav>li>a{
+        padding: 5px;
+    }
+    .widget-product .imgHolder img{
+        max-height: 100px;
+    }
+    .widget-product .imgHolder{
+        min-height: 100px;
+        line-height: 100px;
+    }
+    .widgetinfo .list-item-price{
+        font-size: 7pt;
+    }
+}
+
+/**
+*   TABLET
+*/
+@media screen and (max-width:1023px) and (min-width:768px) {
+    .widget-product .imgHolder img{
+        max-height: 120px;
+    }
+    .widget-product .imgHolder{
+        min-height: 140px;
+        line-height: 140px;
+    }
+    .subfooter{
+        margin: 0 5px;
+    }
+    .widget-product:hover .favor,
+    .widget-product:hover .addcart{
+        display: none;
+    }
+
+    #mainpicimg{
+        /*width: auto !important;*/
+        height: 200px !important;
+        margin: 0 auto;
+    }
+    #storetext{
+        top:0;
+        font-size: 20pt !important;
+        line-height: 24pt;
+    }
+    .storesmalltext{
+        font-size: 14pt;
+    }
+    #start-store{
+        min-height: 100px;
+    }
+    #visitstore{
+        padding: 5px;
+        font-size: 10pt;
+    }
+    #cart-name{
+        display: none;
+    }
+    #logo{
+        width:30%;
+        display: inline-block;
+        float:left;
+        margin-left:1.5%;
+    }
+    .header-tools{
+        width:35%;
+        display: inline-block;
+        margin-right:1.5%;
+    }
+    #top-header #searchform{
+        width:30%;
+        margin-right:4%;
+        position: relative;
+    }
+    #top-header #searchform #s{
+        position: absolute;
+        width: 100%;
+    }
+    .nav-outer{
+       display: none;
+    }
+}
+@media screen and (min-width:1400px){
+    .subfooter{
+        margin: 0 8%;
+    }
+    .widget-product .imgHolder{
+        min-height: 220px;
+        line-height: 220px;
+    }
+}
+
+
+/**
+*   DESKTOP
+*/
+@media screen and (min-width:1024px){
+
+    #logo{
+        width:15%;
+        display: inline-block;
+        float:left;
+        margin-left:1.5%;
+    }
+    .header-tools{
+        width:35%;
+        display: inline-block;
+        margin-right:1.5%;
+    }
+    #top-header #searchform{
+        width:30%;
+        margin-right:4%;
+        position: relative;
+    }
+    #top-header #searchform #s{
+        position: absolute;
+        width: 100%;
+    }
+    #top-header #searchform #s:focus{
+        width: 200%;
+    }
+
+    .nav-outer{
+        width: 47%;
+        display: inline-block;
+    }
+    #footer .footbox{
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-right: 0;
+    }
+    .subfooter{
+        margin: 0 2%;
+    }
+    #mainpicimg{
+        /*width: auto !important;*/
+        max-height: 330px;
+        margin: 0 auto;
+    }
+    .widgetinfo .list-item-price{
+        font-size:8pt;
+    }
 
 }
+@media screen and (max-width:1269px) and (min-width: 900px) {
+    #picbox-morepic a{
+        height: 70px;
+    }
+    #picbox-morepic img{
+        max-height: 50px;
+        max-width: 90%;
+    }
+}
+
+/**
+* LARGE DESKTOP
+*/
+@media screen and (min-width:1270px){
+    #picbox-morepic a{
+        height: 100px;
+    }
+    #picbox-morepic img{
+        max-height: 70px;
+        max-width: 90%;
+    }
+    #logo{
+        width:15%;
+        display: inline-block;
+        float:left;
+        margin-left:4%;
+    }
+    .header-tools{
+        width:35%;
+        display: inline-block;
+        margin-right:4%;
+    }
+    .nav-outer{
+        width: 42%;
+        display: inline-block;
+    }
+    #soluong{
+        display: inline-block;
+    }
+    .detailsthanhtoan .tticon {
+        width: 70px;
+        height: 35px;
+    }
+    #catoutter{
+        margin-right: 15px;
+
+    }
+    .listpage{
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+    .widget-product .imgHolder{
+        min-height: 180px;
+        line-height: 180px;
+    }
+    .subfooter{
+        margin: 0 7%;
+    }
+    #picbox-mainimg{
+        height: 430px;
+    }
+    #mainpicimg{
+        max-width: 100%;
+        margin:  auto;
+        /*max-height: 270px;*/
+    }
+}
+
+
+
 

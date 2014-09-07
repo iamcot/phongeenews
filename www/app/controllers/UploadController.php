@@ -14,14 +14,14 @@ class UploadController extends  BaseController{
             'upload_url' => URL::to('/') . '/uploads/medium/'.$cat.'/',
             'max_width' => 300,
             'max_height' => 200,
-            'crop' => true
+            'crop' => false
         );
         $configs['image_versions']['thumbnail'] = array(
             'upload_dir' => base_path().'/uploads/thumbnails/'.$cat.'/',
             'upload_url' => URL::to('/') . '/uploads/thumbnails/'.$cat.'/',
             'max_width' => 200,
             'max_height' => 200,
-            'crop' => true
+            'crop' => false
         );
 
         $upload_handler = new UploadHandler\UploadHandler($configs,false);

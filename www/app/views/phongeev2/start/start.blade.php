@@ -29,6 +29,7 @@
 
     @include(Config::get('shop.theme').'/start/rate')
     <div class="clear"></div>
+    <br><br>
 </div>
     @include(Config::get('shop.theme').'/start/topfooter')
     @include(Config::get('shop.theme').'/start/store')

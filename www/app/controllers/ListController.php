@@ -37,10 +37,15 @@ class ListController extends  BaseController
                         $lists->orderBy('latitle');
                     else if($input['listorder'] == 'tengiam')
                         $lists->orderBy('latitle','DESC');
+                    else if($input['listorder'] == 'banchay')
+                        $lists->orderBy('laview','DESC');
                 }
                 else{
                     $lists->orderBy('latitle');
                 }
+//                $lists->orderBy('order3');
+//                $lists->orderBy('order2');
+//                $lists->orderBy('order1');
 
                 $lists = $lists->paginate(Config::get('shop.tablepp'));
                 $this->data['lists'] = $lists;
@@ -74,10 +79,15 @@ class ListController extends  BaseController
                         $ranproduct->orderBy('latitle');
                     else if($input['listorder'] == 'tengiam')
                         $ranproduct->orderBy('latitle','DESC');
+                    else if($input['listorder'] == 'banchay')
+                        $ranproduct->orderBy('laview','DESC');
                 }
                 else{
                     $ranproduct->orderBy('latitle');
                 }
+//                $ranproduct->orderBy('order3');
+//                $ranproduct->orderBy('order2');
+//                $ranproduct->orderBy('order1');
 
                 $ranproduct = $ranproduct->paginate(Config::get('shop.tablepp'));
                 $this->data['lists'] = $ranproduct;
