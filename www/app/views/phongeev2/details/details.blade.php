@@ -14,83 +14,128 @@
     <!-- Nav tabs -->
     <ul id="detailsinfotab" class="nav nav-tabs" role="tablist">
         <li>&nbsp;</li>
-        <li class="active"><a href="#info" role="tab" data-toggle="tab">Chi tiết</a></li>
+        <li class="active"><a href="#picbox" role="tab" data-toggle="tab">Chi tiết</a></li>
         <li><a href="#video" role="tab" data-toggle="tab">Videos</a></li>
         <li><a href="#news" role="tab" data-toggle="tab">Bài viết</a></li>
         <li><a href="#comment" role="tab" data-toggle="tab">Ý kiến người dùng</a></li>
     </ul>
-    <div id="picbox" class="col xs-12">
-        <div id="picbox-mainimg" >
-            <a href="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" class="cloud-zoom" rel="adjustX: 50, adjustY:-4" id="zoom1">
-                <img  rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" >
-            </a>
-
+    <div class="tab-content">
+        <div id="comment" class="tab-pane">
+            <div class="fb-comments" data-href="{{Request::url()}}" data-numposts="5" data-colorscheme="light" data-width="100%"></div>
         </div>
-        <div class="" id="picbox-morepic">
-            <a href="javascript:changepic('{{$oProduct->laimage}}')">
-                <img src="{{URL::to('/uploads/thumbnails/product/'.$oProduct->laimage)}}">
-            </a>
-            @foreach($morepic as $pic)
-            <a href="{{URL::to('/uploads/product/'.$pic->lapic)}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$pic->lapic)}}' ">
-                <img src="{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}">
-            </a>
+        <div id="video" class="tab-pane ">
+            {{--*/ $video = Vproduct::where('laproduct_id','like','%'.$oProduct->id.'%')->where('youtubeid','!=','')->get(); /*--}}
+            @if($video)
+                @foreach($video as $v)
+            <iframe width="100%" height="315" src="//www.youtube.com/embed/{{$v->youtubeid}}" frameborder="0" allowfullscreen></iframe>
+
             @endforeach
+            @endif
+        </div>
+        <div id="news" class="tab-pane">
+            {{--*/ $anews = Vproduct::where('laproduct_id','like','%'.$oProduct->id.'%')->where('youtubeid','=','')->get(); /*--}}
+            @if($anews)
+            @foreach($anews as $news)
+            <article class="" role="article">
 
-        </div>
-        <div class="clearfix"></div>
-        <br>
+                <div class="entry-main">
 
-        <div style="height: 20px;">
-            <a href="" class=" addtowishlist">
-                Yêu thích:
-            </a>
-            <div class="col-xs-12 col-sm-8 pull-right">
-                @if($oProduct->sumvariant > 0)
-                {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
-                <dl>
-                    <dd>
-                        <ul id="variant" class="list-inline">
-                            <li style="font-size:9pt">Chọn mẫu:</li>
-                            @foreach($variants as $vari)
-                            <li>
-                                <a href="javascript:changevariant({{$vari->id}})"
-                                   class="bbcloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$vari->laimage)}}' " >
-                                    <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}"
-                                         title="{{$vari->lashortinfo}}" class="variantthumb">
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </dd>
-                    <!--                        <dt>Mẫu đã chọn:</dt>-->
-                    <!--                        <dd id="variantselectname">-->
-                    <!---->
-                    <!--                        </dd>-->
-                </dl>
-                @endif
-            </div>
+                    <div class="entry-header">
+                        <h3 class="entry-title">
+                            <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">{{$news->latitle}}</a>
+                        </h3>
+                        <span>Ngày đăng: {{date('d/m/Y H:i',strtotime($news->created_at))}}</span>
+                    </div>
+                    @if($news->laimage!='')
+                    <div class="entry-media">
+                        <div class="imgHolder">
+                            <a href="{{URL::to($news->cat1url.'/'.$news->laurl.'.html')}}">
+                                <img src="{{URL::to('/uploads/product/'.$news->laimage)}}" alt="">                                                    </a>
+                        </div>
+                    </div>
+                    @endif
+                    <div class="entry-content">
+                        {{$news->lainfo}}
+                    </div>
+                </div><!-- end entry-main -->
+            </article>
+            @endforeach
+            @endif
         </div>
-        <div class="clear"></div>
-        <hr>
-        <div style="padding-top: 10px;">
-            <div class="col-xs-6 no-padding">
-                <div style="float:left;" class="fb-like" data-href="{{Request::url()}}" data-layout="button_count"
-                     data-action="like" data-show-faces="false" data-share="false"></div>
-                <div style="float:left;display: block;width: 5px; height: 1px;"></div>
-                <div class="g-plusone" style="float:left;"></div>
-            </div
-            <div class="col-xs-6">
-                <ul class="lisocial pull-right">
-                    <li>Chia sẻ:</li>
-                    <li class="detailssocical face"></li>
-                    <li class="detailssocical gplus"></li>
-                    <li class="detailssocical zing"></li>
-                    <li class="detailssocical twitter"></li>
-                </ul>
+
+        <div id="picbox" class="tab-pane active">
+            <div id="picbox-mainimg" >
+                <a href="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" class="cloud-zoom" rel="adjustX: 50, adjustY:-4" id="zoom1">
+                    <img  rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" >
+                </a>
+
             </div>
+            <div class="" id="picbox-morepic">
+                <a href="javascript:changepic('{{$oProduct->laimage}}')">
+                    <img src="{{URL::to('/uploads/thumbnails/product/'.$oProduct->laimage)}}">
+                </a>
+                @foreach($morepic as $pic)
+                <a href="{{URL::to('/uploads/product/'.$pic->lapic)}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$pic->lapic)}}' ">
+                    <img src="{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}">
+                </a>
+                @endforeach
+
+            </div>
+            <div class="clearfix"></div>
+            <br>
+
+            <div style="height: 20px;">
+                <a href="" class=" addtowishlist">
+                    Yêu thích:
+                </a>
+                <div class="col-xs-12 col-sm-8 pull-right">
+                    @if($oProduct->sumvariant > 0)
+                    {{--*/ $variants = Product::getVariants($oProduct->id) /*--}}
+                    <dl>
+                        <dd>
+                            <ul id="variant" class="list-inline">
+                                <li style="font-size:9pt">Chọn mẫu:</li>
+                                @foreach($variants as $vari)
+                                <li>
+                                    <a href="javascript:changevariant({{$vari->id}})"
+                                       class="bbcloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$vari->laimage)}}' " >
+                                        <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}"
+                                             title="{{$vari->lashortinfo}}" class="variantthumb">
+                                    </a>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </dd>
+                        <!--                        <dt>Mẫu đã chọn:</dt>-->
+                        <!--                        <dd id="variantselectname">-->
+                        <!---->
+                        <!--                        </dd>-->
+                    </dl>
+                    @endif
+                </div>
+            </div>
+            <div class="clear"></div>
+            <hr>
+            <div style="padding-top: 10px;">
+                <div class="col-xs-6 no-padding">
+                    <div style="float:left;" class="fb-like" data-href="{{Request::url()}}" data-layout="button_count"
+                         data-action="like" data-show-faces="false" data-share="false"></div>
+                    <div style="float:left;display: block;width: 5px; height: 1px;"></div>
+                    <div class="g-plusone" style="float:left;"></div>
+                </div
+                <div class="col-xs-6">
+                    <ul class="lisocial pull-right">
+                        <li>Chia sẻ:</li>
+                        <li class="detailssocical face"></li>
+                        <li class="detailssocical gplus"></li>
+                        <li class="detailssocical zing"></li>
+                        <li class="detailssocical twitter"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <hr>
         </div>
-        <div class="clear"></div>
-        <hr>
     </div>
 </div>
 

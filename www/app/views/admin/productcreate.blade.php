@@ -49,25 +49,25 @@ array(
     <div class="input-group">
         {{ Form::label('laprice','Giá hiện tại
         ',array("class"=>"input-group-addon"),array("class"=>"input-group-addon")) }}
-        {{ Form::text('laprice',(($catedit != null)?$catedit->laprice:''),array("class"=>"form-control",'title'=>'Giá hiển thị' ) ) }}
+        {{ Form::text('laprice',(($catedit != null)?$catedit->laprice:'0'),array("class"=>"form-control",'title'=>'Giá hiển thị' ) ) }}
     </div>
     <br>
     <div class="input-group">
         {{ Form::label('laoldprice','Giá cũ ',array("class"=>"input-group-addon"))
         }}
-        {{ Form::text('laoldprice',(($catedit != null)?$catedit->laoldprice:''),array("class"=>"form-control",'title'=>'Giá cũ, dùng để hiện % giảm' ) ) }}
+        {{ Form::text('laoldprice',(($catedit != null)?$catedit->laoldprice:'0'),array("class"=>"form-control",'title'=>'Giá cũ, dùng để hiện % giảm' ) ) }}
     </div>
     <br>
     <div class="input-group">
         {{ Form::label('lakhoiluong','Khối lượng cả vỏ',array("class"=>"input-group-addon"))
         }}
-        {{ Form::text('lakhoiluong',(($catedit != null)?$catedit->lakhoiluong:''),array("class"=>"form-control",'title'=>'Tổng khối lượng sản phẩm cả vỏ' ) ) }}
+        {{ Form::text('lakhoiluong',(($catedit != null)?$catedit->lakhoiluong:'0'),array("class"=>"form-control",'title'=>'Tổng khối lượng sản phẩm cả vỏ' ) ) }}
     </div>
     <br>
     <div class="input-group">
         {{ Form::label('ladungtich','Dung lượng',array("class"=>"input-group-addon"))
         }}
-        {{ Form::text('ladungtich',(($catedit != null)?$catedit->ladungtich:''),array("class"=>"form-control",'title'=>'dung lượng thực tế' ) ) }}
+        {{ Form::text('ladungtich',(($catedit != null)?$catedit->ladungtich:'0'),array("class"=>"form-control",'title'=>'dung lượng thực tế' ) ) }}
     </div>
     <br>
     <div class="input-group">
@@ -100,7 +100,7 @@ array(
     <br>
     <div class="input-group">
         {{ Form::label('laamount','Số lượng',array("class"=>"input-group-addon")) }}
-        {{ Form::text('laamount',(($catedit != null)?$catedit->laamount:''),array("class"=>"form-control" ) ) }}
+        {{ Form::text('laamount',(($catedit != null)?$catedit->laamount:'0'),array("class"=>"form-control" ) ) }}
     </div>
     <br>
 

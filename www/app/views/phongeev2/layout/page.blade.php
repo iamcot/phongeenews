@@ -45,7 +45,16 @@
             </div>
         </div>
     </div>
+    <div id="headermobilecartouter" style="display: none">
+        <a href="javascript:closemenuheader()" style="position: absolute;right:15px; top:15px;">
+            <i class="fa fa-minus fa-2x"></i>
+        </a>
+        {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
+        {{--*/ $cattree = Vcategory::subcattree('headersubmenu',0,$categories) /*--}}
+        {{$cattree}}
+    </div>
 </div>
+
 @stop
 @section('jscript')
 
@@ -56,6 +65,11 @@
     function showmenuheader(){
         $("#headermobilecartouter").show();
     }
+
+    function closemenuheader(){
+        $("#headermobilecartouter").hide();
+    }
+
     $('body').click(function() {
         $('#headermobilecartouter').hide();
     });

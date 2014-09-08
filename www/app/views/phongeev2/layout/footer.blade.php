@@ -32,9 +32,11 @@
             <div class="footbox">
                 <h2 class="txt-color-red">Hệ thống chi nhánh</h2>
                 {{--*/ $stores = Myconfig::where('lavar', '=', 'store')->first(); /*--}}
+                @if($stores)
                 @foreach(explode("\n",$stores->lavalue) as $store)
                 <p><b>></b> {{$store}}</p>
                 @endforeach
+                @endif
 
             </div>
             <div class="col-xs-12">

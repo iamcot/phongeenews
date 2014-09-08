@@ -1,9 +1,3 @@
-<div id="headermobilecartouter" style="display: none">
-
-    {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
-    {{--*/ $cattree = Vcategory::subcattree('headersubmenu',0,$categories) /*--}}
-    {{$cattree}}
-</div>
 <div id="top-menu" class="padding-top-5">
     <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
         {{--*/ $active = 'mua-sam'; /*--}}
