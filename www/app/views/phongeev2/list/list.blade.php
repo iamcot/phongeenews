@@ -19,6 +19,7 @@
 @include(Config::get('shop.theme').'/start/topfooter')
 @stop
 @section('jscript')
+@parent
 <script>
     function changeOrder(select) {
         $("input[name=listorder]").val(select);

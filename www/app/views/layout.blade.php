@@ -27,8 +27,18 @@
     @else
     {{HTML::style('src/'.Config::get('shop.theme').'/shop.css')}}
     {{HTML::style('src/'.Config::get('shop.theme').'/font-awesome.min.css')}}
+    {{HTML::style('src/'.Config::get('shop.theme').'/cloud-zoom.css')}}
     @endif
     @yield('morestyle')
+    <!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+                                                                      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+    $.src='//v2.zopim.com/?2PGxsPoFfu688QVx12CIo2r8pISJeODW';z.t=+new Date;$.
+                                                                               type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+    <!--End of Zopim Live Chat Script-->
 </head>
 <body class="bgphongee" ng-controller="mainController">
 <div class="supercontainer">
@@ -63,6 +73,7 @@
 {{HTML::script('src/'.Config::get('shop.theme').'/jquery.raty.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/angular.min.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/angular-animate.min.js')}}
+{{HTML::script('src/'.Config::get('shop.theme').'/cloud-zoom.1.0.3.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap-datepicker.js')}}
 <script>
    app = angular.module('shopApp', []);
@@ -77,6 +88,14 @@
    app.controller('mainController',['$scope',function($scope){
 
    }]);
+</script>
+<script>
+$( window ).scroll(function() {
+    if($(window).scrollTop() > 30){
+        $("#top-header").addClass("fixed");
+    }
+    else   $("#top-header").removeClass("fixed");
+});
 </script>
 @if (isset($typeEnd) && $typeEnd!='admin')
 <div id="fb-root"></div>

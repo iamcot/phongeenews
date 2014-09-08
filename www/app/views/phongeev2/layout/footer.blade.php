@@ -1,6 +1,6 @@
 <div id="footer" class="hidden-print">
     <div class="mycontainer">
-        <div class="subfooter row-fluid">
+        <div class="subfooter ">
         <div class="col-xs-12 col-md-3 hidden-xs hidden-sm" style="overflow: hidden">
             <div class="fb-like-box" data-href="https://www.facebook.com/phongee.vn" data-width="100%" data-colorscheme="dark" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
         </div>
@@ -31,9 +31,11 @@
             </div>
             <div class="footbox">
                 <h2 class="txt-color-red">Hệ thống chi nhánh</h2>
-                <p><b>></b> Hotline 24/7:  (08) 222 222 88</p>
-                <p><b>></b> 12 Tôn Thất Tùng, P. Bến Thành, Q1, TP.HCM <br>Điện thoại: (08) 222 222 99</p>
-                <p><b>></b> 12 Trần Quốc Hoàn, P.4, Q. Tân Bình, TP. HCM <br>Điện thoại: (08) 222 222 66</p>
+                {{--*/ $stores = Myconfig::where('lavar', '=', 'store')->first(); /*--}}
+                @foreach(explode("\n",$stores->lavalue) as $store)
+                <p><b>></b> {{$store}}</p>
+                @endforeach
+
             </div>
             <div class="col-xs-12">
                 <h2 class="txt-color-red">Chấp nhận các hình thức thanh toán</h2>

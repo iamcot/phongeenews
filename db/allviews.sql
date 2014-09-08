@@ -42,8 +42,8 @@ CREATE OR REPLACE
         LEFT OUTER JOIN lacategories c2
         ON c1.laparent_id = c2.id
         LEFT OUTER JOIN lacategories c3
-        ON c2.laparent_id = c3.id
-        WHERE (p.ladeleted != 1 OR p.ladeleted IS NULL);
+        ON c2.laparent_id = c3.id;
+
 
         CREATE OR REPLACE
             VIEW `v_categories`

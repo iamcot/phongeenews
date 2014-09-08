@@ -10,7 +10,7 @@
                 <div class="col-xs-12">
                     @if($typeEnd=='details')
                     <h1 class="page-title ">
-                        Product Details
+                        Thông tin chi tiết
                     </h1>
                     @else
                     <h1 class="page-title">{{($typeEnd == 'list')?$actCat->latitle:$oProduct->latitle}}</h1>
@@ -48,9 +48,22 @@
 </div>
 @stop
 @section('jscript')
+
 <script>
     $('.carouselnews').carousel({
         animation: 'slow'
+    });
+    function showmenuheader(){
+        $("#headermobilecartouter").show();
+    }
+    $('body').click(function() {
+        $('#headermobilecartouter').hide();
+    });
+    $( window ).scroll(function() {
+        if($(window).scrollTop() > 30){
+            $("#top-header").addClass("fixed");
+        }
+        else   $("#top-header").removeClass("fixed");
     });
 </script>
 @stop

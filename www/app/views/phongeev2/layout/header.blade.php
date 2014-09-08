@@ -1,3 +1,9 @@
+<div id="headermobilecartouter" style="display: none">
+
+    {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
+    {{--*/ $cattree = Vcategory::subcattree('headersubmenu',0,$categories) /*--}}
+    {{$cattree}}
+</div>
 <div id="top-menu" class="padding-top-5">
     <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
         {{--*/ $active = 'mua-sam'; /*--}}
@@ -36,7 +42,7 @@
     </div>
     <div class="clear"></div>
 </div>
-<div id="top-header" role="banner" class="row-fluid">
+<div id="top-header" role="banner" class="">
     <div class="mycontainer fold" >
 
         <div id="logo">
@@ -44,6 +50,8 @@
                 <img src="{{URL::to('/public/logo.png')}}">
             </a>
         </div>
+        <a id="mobilecattoggle"" href="javascript:showmenuheader()" onmouseover="showmenuheader()"></a>
+
         <div class="header-tools">
             <div id="cart" class="">
                 <div class="cartinfo pull-right" >
@@ -53,7 +61,7 @@
                             <span id="cart-name"><b>GIỎ HÀNG</b></span> ({{isset($sumcart)?$sumcart:0}})
                         </a>
                     </div>
-                    <div style="float:left;">
+                    <div style="float:left;" id="headerphone">
                     <span class="phoneicon"></span>
                     <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
                         </div>
@@ -114,7 +122,9 @@
 <!--    </a>-->
 
 @section('jscript')
+@parent
 <script>
+
     @if(Session::get('actionstatus', 0) == Config::get('actionstatus.cart_has_new'))
 
         $(document).ready(function() {

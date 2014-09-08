@@ -14,13 +14,13 @@
                         <a href="javascript:changeOrder('giatang')">Giá tăng</a>
                     </li>
                     <li>
-                        <a href="javascript:changeOrder('giagiam')">Giá Giảm</a>
+                        <a href="javascript:changeOrder('giagiam')">Giá giảm</a>
                     </li>
                     <li>
-                        <a href="javascript:changeOrder('tentang')">Tên tăng</a>
+                        <a href="javascript:changeOrder('tentang')">Tên A-Z</a>
                     </li>
                     <li>
-                        <a href="javascript:changeOrder('tengiam')">Tên giảm</a>
+                        <a href="javascript:changeOrder('tengiam')">Tên Z-A</a>
                     </li>
                 </ul>
             </li>

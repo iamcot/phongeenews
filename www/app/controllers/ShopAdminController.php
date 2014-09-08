@@ -507,6 +507,19 @@ class ShopAdminController extends BaseController
             }
             $db->lavalue = $input['listpic'];
             $db->save();
+            //save stores
+            $db = Myconfig::where('lavar', '=', 'store')->get();
+            $count = $db->count();
+            if ($count == 0) {
+                $db = new Myconfig();
+                $db->lavar = 'store';
+            }
+            else {
+                $first = $db[0];
+                $db = Myconfig::find($first->id);
+            }
+            $db->lavalue = $input['liststore'];
+            $db->save();
             //save sidebar ads
             $db = null;
             $db = Myconfig::where('lavar', '=', 'sidebarads')->get();
@@ -523,8 +536,9 @@ class ShopAdminController extends BaseController
             $db->save();
 
         }
-        $this->data['slide'] = Myconfig::where('lavar', '=', 'slide')->get();
-        $this->data['sidebarads'] = Myconfig::where('lavar', '=', 'sidebarads')->get();
+        $this->data['slide'] = Myconfig::where('lavar', '=', 'slide')->first();
+        $this->data['sidebarads'] = Myconfig::where('lavar', '=', 'sidebarads')->first();
+        $this->data['stores'] = Myconfig::where('lavar', '=', 'store')->first();
         return View::make('admin/config', $this->data);
     }
 

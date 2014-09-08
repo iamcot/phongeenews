@@ -57,10 +57,10 @@ class Vcategory extends Eloquent
         }
         return $html;
     }
-    public static function subcattree($id=0,$categories = null,$level = 0){
+    public static function subcattree($idmenu,$id=0,$categories = null,$level = 0){
         $html = "";
         if (count($categories) > 0) {
-            $html = "<ul ".($level==0?"id='listsubmenu'' ":"").">";
+            $html = "<ul ".($level==0?"id='".$idmenu."'' ":"").">";
             // if($level == 0) $html.="<li><a href='".URL::to('/')."'>Trang chủ</a></li>";
             foreach ($categories as $cat) {
                 $html .= "<li>
@@ -68,7 +68,7 @@ class Vcategory extends Eloquent
                      ".($level==0?"":"<span class='subindicator'>></span>")."&nbsp;&nbsp;" . $cat['latitle'] . "
             </a>";
 
-                $html .= Vcategory::subcattree($id, $cat['children'], $level + 1);
+                $html .= Vcategory::subcattree($idmenu,$id, $cat['children'], $level + 1);
                 $html.="</li>";
             }
 

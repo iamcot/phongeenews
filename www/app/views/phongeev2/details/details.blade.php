@@ -5,7 +5,7 @@
 <div id="maininfo" itemscope itemtype="http://schema.org/Product">
 {{--*/ $morepic = Image::where("laproduct_id",'=',$oProduct->id)
 ->where('lapic','!=',$oProduct->laimage)
-->orderBy(DB::Raw('RAND()'))
+->orderBy('id')
 ->take(3)
 ->get() /*--}}
 
@@ -17,12 +17,13 @@
         <li class="active"><a href="#info" role="tab" data-toggle="tab">Chi tiết</a></li>
         <li><a href="#video" role="tab" data-toggle="tab">Videos</a></li>
         <li><a href="#news" role="tab" data-toggle="tab">Bài viết</a></li>
-        <li><a href="#gear" role="tab" data-toggle="tab">Phụ kiện</a></li>
-        <li><a href="#comment" role="tab" data-toggle="tab">Đánh giá</a></li>
+        <li><a href="#comment" role="tab" data-toggle="tab">Ý kiến người dùng</a></li>
     </ul>
     <div id="picbox" class="col xs-12">
-        <div id="picbox-mainimg">
-            <img rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}">
+        <div id="picbox-mainimg" >
+            <a href="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" class="cloud-zoom" rel="adjustX: 50, adjustY:-4" id="zoom1">
+                <img  rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" >
+            </a>
 
         </div>
         <div class="" id="picbox-morepic">
@@ -30,7 +31,7 @@
                 <img src="{{URL::to('/uploads/thumbnails/product/'.$oProduct->laimage)}}">
             </a>
             @foreach($morepic as $pic)
-            <a href="javascript:changepic('{{$pic->lapic}}')">
+            <a href="{{URL::to('/uploads/product/'.$pic->lapic)}}" class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$pic->lapic)}}' ">
                 <img src="{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}">
             </a>
             @endforeach
@@ -52,7 +53,8 @@
                             <li style="font-size:9pt">Chọn mẫu:</li>
                             @foreach($variants as $vari)
                             <li>
-                                <a href="javascript:changevariant({{$vari->id}})">
+                                <a href="javascript:changevariant({{$vari->id}})"
+                                   class="bbcloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$vari->laimage)}}' " >
                                     <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}"
                                          title="{{$vari->lashortinfo}}" class="variantthumb">
                                 </a>
@@ -291,5 +293,6 @@
             }
         });
     }
+    $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
 </script>
 @stop

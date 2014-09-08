@@ -12,8 +12,8 @@ class UploadController extends  BaseController{
         $configs['image_versions']['medium'] = array(
             'upload_dir' => base_path().'/uploads/medium/'.$cat.'/',
             'upload_url' => URL::to('/') . '/uploads/medium/'.$cat.'/',
-            'max_width' => 300,
-            'max_height' => 200,
+            'max_width' => 400,
+            'max_height' => 400,
             'crop' => false
         );
         $configs['image_versions']['thumbnail'] = array(

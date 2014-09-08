@@ -67,10 +67,12 @@
             if(request){
                 $http.get('ajax/startwidget/'+type+'/'+pp+'?page='+page)
                     .success(function(response){
+                        if(response.last_page > 5) response.last_page = 5;
                         if(type=='bestsell'){
                             $scope.bestsell.page[page] = response;
                             $scope.bestsell.current_page = response.current_page;
                             $scope.bestsell.last_page = response.last_page;
+
                         }
                         if(type=='new'){
                             $scope.new.page[page] = response;
