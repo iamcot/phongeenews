@@ -12,6 +12,7 @@ return array(
     'LDSale'    =>  'Khuyến mãi',
     'LDConfig' => 'Cấu hình',
     'LDFanpage' => 'Fanpage',
+    'LDEvent' => 'Sự kiện',
     'LDComment' => 'Bình luận',
     'dang-hot' => 'Sản phẩm được mua và xem nhiều',
     'moi-ve' => 'Sản phẩm mới về',

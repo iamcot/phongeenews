@@ -44,11 +44,16 @@ return array(
             'url'    =>  'user',
             'title' =>  'LDUser'
         ),
-        'comment'     =>  array(
-            'id'    =>  'comment',
-            'url'    =>  'comment',
-            'title' =>  'LDComment'
+        'event'     =>  array(
+            'id'    =>  'event',
+            'url'    =>  'event',
+            'title' =>  'LDEvent'
         ),
+//        'comment'     =>  array(
+//            'id'    =>  'comment',
+//            'url'    =>  'comment',
+//            'title' =>  'LDComment'
+//        ),
 //        'fanpage'     =>  array(
 //            'id'    =>  'fanpage',
 //            'url'    =>  'fanpage',

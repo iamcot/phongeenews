@@ -18,6 +18,7 @@ Route::controller('ajax','AjaxController');
 Route::controller('admin','ShopAdminController');
 Route::controller('upload','UploadController');
 Route::controller('cart','OrdersController');
+Route::controller('event','EventController');
 
 Route::any('/hastag/{tag}','ListController@showtag');
 Route::post('search','ListController@showsearch');

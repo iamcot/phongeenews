@@ -548,4 +548,39 @@ class ShopAdminController extends BaseController
         $this->data['aComments'] = Facebookcomment::orderBy('id', 'desc')->paginate(Config::get('shop.tablepp'));
         return View::make('admin/comment', $this->data);
     }
+    public function anyEvent()
+    {
+        $this->data['actCat'] = 'event';
+        $this->data['aComments'] = ShopEvent::all();
+        return View::make('admin/event', $this->data);
+    }
+    public function getLoadevent(){
+        return ShopEvent::all()->tojson();
+    }
+    public function postSaveevent(){
+        $event = Input::get('event');
+        $piclist = Input::get('pic');
+
+        if($event['laactive']){
+            ShopEvent::where('laactive','1')->update(array('laactive'=>'0'));
+        }
+        if($event['id'] > 0){
+            $event = ShopEvent::find($event['id'])->update($event);
+            echo $event;
+        }
+        else{
+            $newevent = ShopEvent::create($event);
+            echo $newevent->id;
+            $event['id'] = $newevent->id;
+        }
+        if($event['id']>0){
+            foreach($piclist as $pic) {
+                if(!Image::where('lapic',$pic['name'])){
+                    Image::create(array('lapic'=>$pic['name'],'laevent'=>$event['id']));
+                }
+            }
+
+        }
+
+    }
 }
