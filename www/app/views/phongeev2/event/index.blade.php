@@ -10,7 +10,7 @@
         <div class="">
             <ul class="list-inline" id="eventlistpic">
                 <li ng-repeat="pic in pics">
-                    <img src="{{URL::to('/uploads/thumbnails/event')}}/@{{pic.lapic}}">
+                    <img src="{{URL::to('/uploads/thumbnails/event')}}/@{{pic.lapic}}" ng-click="openimage(pic)">
                 </li>
             </ul>
         </div>
@@ -22,7 +22,7 @@
             <ul class="nav nav-pills nav-stacked">
                 <li ng-repeat="newsitem in news">
                     <a href="" ng-click="open($index)">
-                    <label class="label label-info">@{{newsitem.created_at | date:"dd/MM/yyyy"}}</label>
+                    <label class="label label-info">@{{newsitem.created_at | date:"HH:mm dd/MM/yyyy"}}</label>
                     @{{newsitem.latitle}}
                     </a>
                 </li>
@@ -38,11 +38,16 @@
         <div id="listproductbox"></div>
         <p><strong>@{{activecontent.latitle}}</strong></p>
         <div id="contentbox">
+            <div ng-if="activecontent.showimg">
+                <img ng-src="@{{activecontent.src}}">
+            </div>
+            <div ng-if="!activecontent.showimg">
             <div ng-if="activecontent.youtubeframe">
                 <iframe width="100%" height="315" ng-src="@{{activecontent.youtubeframe}}" frameborder="0" allowfullscreen></iframe>
             </div>
             <div ng-bind-html="activecontent.lainfo">
 
+            </div>
             </div>
         </div>
     </div>
@@ -57,18 +62,30 @@
         $scope.pics = {{$pics}};
         $scope.news = {{$news}};
         $scope.activecontent = {};
-        if($scope.news.length>0){
-            angular.copy($scope.news[0],$scope.activecontent);
-            if($scope.activecontent.youtubeid)
-                $scope.activecontent.youtubeframe = $sce.trustAsResourceUrl("//www.youtube.com/embed/"+$scope.activecontent.youtubeid);
-            $scope.activecontent.lainfo = $sce.trustAsHtml($scope.activecontent.lainfo);
+        var retouchnews = function(){
+            angular.forEach($scope.news,function(val){
+                val.created_at = Date.parse(val.created_at);
+            });
         }
         $scope.open = function(index){
             angular.copy($scope.news[index],$scope.activecontent);
+            $scope.activecontent.showimg = false;
             if($scope.activecontent.youtubeid)
                 $scope.activecontent.youtubeframe = $sce.trustAsResourceUrl("//www.youtube.com/embed/"+$scope.activecontent.youtubeid);
             $scope.activecontent.lainfo = $sce.trustAsHtml($scope.activecontent.lainfo);
         };
+
+        retouchnews();
+        if($scope.news.length>0){
+            $scope.open(0);
+        };
+        $scope.openimage = function(pic){
+            $scope.activecontent = {
+                showimg:true,
+                src:$sce.trustAsResourceUrl("{{URL::to('/uploads/event')}}"+"/"+pic.lapic),
+                latitle:pic.latitle
+            };
+        }
     }]);
 </script>
 @stop
