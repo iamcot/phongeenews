@@ -15,8 +15,8 @@
             <a class="buttoncart" href="{{URL::to('/')}}/@{{list.cat1url+'/'+list.laurl+'.html'}}"></a>
 
             <p class="list-item-title"><strong>@{{list.latitle}}</strong></p>
-            <p class="list-item-price">@{{list.laprice}} VNĐ (cửa hàng)</p>
-            <p class="list-item-price txt-color-red">@{{list.laprice}} VNĐ
+            <p class="list-item-price">@{{list.laprice | mycurrency:""}} VNĐ (cửa hàng)</p>
+            <p class="list-item-price txt-color-red">@{{list.laprice | mycurrency:""}} VNĐ
                                                      (online)
             </p>
         </div>

@@ -30,15 +30,7 @@
     {{HTML::style('src/'.Config::get('shop.theme').'/cloud-zoom.css')}}
     @endif
     @yield('morestyle')
-    <!--Start of Zopim Live Chat Script-->
-<script type="text/javascript">
-window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
-                                                                      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
-    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
-    $.src='//v2.zopim.com/?2PGxsPoFfu688QVx12CIo2r8pISJeODW';z.t=+new Date;$.
-                                                                               type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
-</script>
-    <!--End of Zopim Live Chat Script-->
+
 </head>
 <body class="bgphongee" ng-controller="mainController">
 <div class="supercontainer">
@@ -58,8 +50,6 @@ window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
         <div class="bg-danger text-center">{{Session::get('message')}}</div>
         @endif
         @yield('body')
-        <div class="clearfix"></div>
-        <div class="subfooter-bar"></div>
     </div>
     <div class="clearfix"></div>
     @if (isset($typeEnd) && $typeEnd!='admin')
@@ -85,6 +75,21 @@ window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
            return input;
        };
    });
+   app.filter('mycurrency',
+       [ '$filter', '$locale',
+         function(filter, locale) {
+             var currencyFilter = filter('currency');
+             var formats = locale.NUMBER_FORMATS;
+             return function(amount, currencySymbol) {
+                 var value = currencyFilter(amount, currencySymbol);
+
+                 var sep = value.indexOf(formats.DECIMAL_SEP);
+                 if(amount >= 0) {
+                     return value.substring(0, sep);
+                 }
+                 return value.substring(0, sep) + ')';
+             };
+         } ]);
    app.controller('mainController',['$scope',function($scope){
 
    }]);
@@ -98,20 +103,24 @@ $( window ).scroll(function() {
 });
 </script>
 @if (isset($typeEnd) && $typeEnd!='admin')
-<div id="fb-root"></div>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
-<script>
-            (function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) {
-                    return;
-                }
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "https://connect.facebook.net/en_GB/all.js#xfbml=1&appId=1465821403687525";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));
-            </script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+                                                                      d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+    $.src='//v2.zopim.com/?2PGxsPoFfu688QVx12CIo2r8pISJeODW';z.t=+new Date;$.
+                                                                               type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+</script>
+<!--End of Zopim Live Chat Script-->
 @endif
 @yield('jscript')
 
