@@ -106,12 +106,19 @@
                         <div class="bar" style="width: 0%;"></div>
                     </div>
                     <ul id="uploadlinks" class="list-inline">
-                        <li data-ng-repeat="pic in piclist" class="col-xs-3">
-                            <img src='@{{pic.thumbnailUrl}}'
-                                 style="max-height: 100px;max-width: 100%">
-                            <a href='#' data-ng-click="delpic(pic.name)"
-                               style="position: absolute;bottom:10px;left:10px;"><span
-                                    class='glyphicon glyphicon-trash'></span></a>
+                        <li data-ng-repeat="pic in piclist" class="row-fluid">
+                            <div class="col-xs-3" style="position: relative">
+                                <img src='@{{pic.thumbnailUrl}}'
+                                     style="max-height: 100px;width: auto;margin-right:15px;" class="pull-left">
+                                <a href='#' data-ng-click="delpic(pic.name)"
+                                   style="position: absolute;bottom:10px;left:10px;">
+                                    <span class='glyphicon glyphicon-trash'></span></a>
+                            </div>
+                            <div class="col-xs-9">
+                                <input type="text" ng-model="pic.latitle"  style="width: 95%">
+
+                            </div>
+
                         </li>
                     </ul>
                 </div>
@@ -155,6 +162,7 @@
             else {
                 $scope.event.laactive = true;
             }
+            $scope.loadpic($scope.event.id);
         }
         $scope.create = function () {
             $scope.event = {
@@ -185,11 +193,7 @@
                 alert("Vui lòng nhập tên và đường dẫn sự kiện!");
             }
         }
-        $scope.$watch('event.laurl', function () {
-            if ($scope.event.laurl) {
-                console.log($scope.event.laurl);
-            }
-        })
+
         $scope.load = function () {
             $http.get('loadevent')
                 .success(function (msg) {
@@ -204,6 +208,19 @@
             });
 //            console.log($scope.piclist);
         };
+        $scope.loadpic = function(eventid){
+            $scope.piclist = [];
+            $http.get('loadeventpic/'+eventid)
+                .success(function(msg){
+                    angular.forEach(msg,function(val,key){
+                        $scope.piclist.push({
+                           name:val.lapic,
+                            thumbnailUrl:"{{URL::to('/uploads/thumbnails/event')}}"+"/"+val.lapic,
+                            latitle:val.latitle
+                        });
+                    });
+                })
+        }
         $rootScope.$on('fileupload', function (e, call) {
             angular.forEach(call, function (val) {
                 $scope.piclist.push(val);

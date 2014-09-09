@@ -557,6 +557,9 @@ class ShopAdminController extends BaseController
     public function getLoadevent(){
         return ShopEvent::all()->tojson();
     }
+    public function getLoadeventpic($eventid){
+        return Image::where('laevent',$eventid)->get()->toJson();
+    }
     public function postSaveevent(){
         $event = Input::get('event');
         $piclist = Input::get('pic');
@@ -565,8 +568,7 @@ class ShopAdminController extends BaseController
             ShopEvent::where('laactive','1')->update(array('laactive'=>'0'));
         }
         if($event['id'] > 0){
-            $event = ShopEvent::find($event['id'])->update($event);
-            echo $event;
+            echo ShopEvent::find($event['id'])->update($event);
         }
         else{
             $newevent = ShopEvent::create($event);
@@ -575,8 +577,10 @@ class ShopAdminController extends BaseController
         }
         if($event['id']>0){
             foreach($piclist as $pic) {
-                if(!Image::where('lapic',$pic['name'])){
-                    Image::create(array('lapic'=>$pic['name'],'laevent'=>$event['id']));
+                $img = Image::where('lapic',$pic['name'])->first();
+                if(count($img)==0){
+                    if(!isset($pic['latitle'])) $pic['latitle'] = '';
+                    Image::create(array('lapic'=>$pic['name'],'laevent'=>$event['id'],'latitle'=>$pic['latitle']));
                 }
             }
 

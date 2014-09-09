@@ -1895,6 +1895,27 @@ figure{
 #event{
     padding: 15px;
     min-height: 200px;
+    margin-bottom: 30px;
+}
+#listnewsbox{
+    min-height: 100px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+#contentbox{
+    max-height: 500px;
+    overflow-y: auto;
+}
+#eventlistpic{
+    overflow-x:auto;
+    height: 80px;
+}
+#eventlistpic li{
+    padding: 5px 10px;
+}
+#eventlistpic img{
+    max-height: 70px;
+    width: auto;
 }
 @media screen and (max-width:1023){
 

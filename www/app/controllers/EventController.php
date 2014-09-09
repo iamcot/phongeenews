@@ -20,6 +20,11 @@ class EventController extends BaseController
         }
         if($event){
             $this->data['event'] = $event;
+            $this->data['pics'] = Image::where('laevent',$event->id)->get()->toJson();
+            $this->data['news'] = Product::whereRaw('id IN ('.$event->lanews.') ')
+                ->orderby('id','DESC')
+                ->select('id','latitle','created_at','lashortinfo','lainfo','youtubeid')
+                ->get()->toJson();
         }
         else{
             $this->data['event'] = null;
