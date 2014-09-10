@@ -1908,7 +1908,8 @@ figure{
 }
 #eventlistpic{
     overflow-x:auto;
-    height: 80px;
+    /*height: 80px;*/
+    white-space: nowrap;
 }
 #eventlistpic li{
     padding: 5px 10px;

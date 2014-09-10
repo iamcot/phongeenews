@@ -45,6 +45,7 @@
             <div ng-if="activecontent.youtubeframe">
                 <iframe width="100%" height="315" ng-src="@{{activecontent.youtubeframe}}" frameborder="0" allowfullscreen></iframe>
             </div>
+            <img ng-if="activecontent.laimage !=''" ng-src="@{{activecontent.laimage}}">
             <div ng-bind-html="activecontent.lainfo">
 
             </div>
@@ -65,6 +66,7 @@
         var retouchnews = function(){
             angular.forEach($scope.news,function(val){
                 val.created_at = Date.parse(val.created_at);
+
             });
         }
         $scope.open = function(index){
@@ -73,6 +75,8 @@
             if($scope.activecontent.youtubeid)
                 $scope.activecontent.youtubeframe = $sce.trustAsResourceUrl("//www.youtube.com/embed/"+$scope.activecontent.youtubeid);
             $scope.activecontent.lainfo = $sce.trustAsHtml($scope.activecontent.lainfo);
+            if($scope.activecontent.laimage != '')
+                $scope.activecontent.laimage = $sce.trustAsResourceUrl("{{URL::to('/uploads/product')}}"+"/"+$scope.activecontent.laimage);
         };
 
         retouchnews();

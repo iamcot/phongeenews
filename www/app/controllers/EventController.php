@@ -4,7 +4,7 @@ class EventController extends BaseController
     private $data = array(
         'typeEnd' => 'event',
         'haveHeader'=> 1,
-        'title'=> 'Thái Boutique',
+        'title'=> 'Sự kiện',
         'sidebartype' => 'none',  //sright - sleft - none
 
     );
@@ -21,10 +21,12 @@ class EventController extends BaseController
         if($event){
             $this->data['event'] = $event;
             $this->data['pics'] = Image::where('laevent',$event->id)->get()->toJson();
+            if($event->lanews !='')
             $this->data['news'] = Product::whereRaw('id IN ('.$event->lanews.') ')
                 ->orderby('id','DESC')
-                ->select('id','latitle','created_at','lashortinfo','lainfo','youtubeid')
+                ->select('id','latitle','created_at','lashortinfo','lainfo','youtubeid','laimage')
                 ->get()->toJson();
+            else $this->data['news'] = "[]";
         }
         else{
             $this->data['event'] = null;
