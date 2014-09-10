@@ -14,6 +14,9 @@ class EventController extends BaseController
     public function getIndex($eventurl = ""){
         if($eventurl==''){
             $event = ShopEvent::where('laactive','1')->orderby('id','DESC')->first();
+            if($event){
+                return Redirect::to('event/'.$event->laurl);
+            }
         }
         else{
             $event = ShopEvent::where('laurl',$eventurl)->first();

@@ -167,7 +167,13 @@
     <div>
         <ul class="infotextsmall">
             <li style="width: 45%;float:left">
-                <div><strong>Tình trạng:</strong> đang có hàng</div>
+                <div><strong>Tình trạng:</strong>
+                    @if($oProduct->laamount > 0) Đang có hàng
+                    @elseif($oProduct->laamount == 0) Hết hàng
+                    @elseif($oProduct->laamount == -1)
+                        {{date('d/m',$oProduct->ladatenew)}} có hàng
+                    @endif
+                </div>
                 <div><strong>Bảo hành:</strong> 12 tháng</div>
             </li>
             <li style="float:right">

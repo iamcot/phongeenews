@@ -259,13 +259,17 @@ class ShopAdminController extends BaseController
                         $dbCat->laimage = $input['laimage'];
                     else $dbCat->laimage="";
                     $dbCat->save();
-                    for ($i = 0; $i <= $input['currmorepic']; $i++) {
+                    for ($i = 0; $i < $input['currmorepic']; $i++) {
                         if (isset($input['morepic' . $i]) && $input['morepic' . $i] != '' && $input['mprepictype' . $i] == 'new') {
                             $dbImg = new Image();
                             $dbImg->latitle = $input['morepictext' . $i];
                             $dbImg->lapic = $input['morepic' . $i];
+                            $dbImg->laorder = $input['morepicorder'.$i];
                             $dbImg->laproduct_id = $id;
                             $dbImg->save();
+                        }
+                        else if(isset($input['morepic' . $i]) && $input['mprepictype' . $i] == 'old'){
+                            $dbImg = Image::where('lapic',$input['morepic' . $i])->update(array('laorder'=>$input['morepicorder'.$i]));
                         }
                     }
                     $flag = 'view';
@@ -494,18 +498,31 @@ class ShopAdminController extends BaseController
         $this->data['actCat'] = 'config';
         $input = Input::all();
         if (count($input) > 0 && isset($input['_token'])) {
-            //save slider
-            $db = Myconfig::where('lavar', '=', 'slide')->get();
+            //save slider id
+            $db = Myconfig::where('lavar', '=', 'sliderid')->get();
             $count = $db->count();
             if ($count == 0) {
                 $db = new Myconfig();
-                $db->lavar = 'slide';
+                $db->lavar = 'sliderid';
             }
             else {
                 $first = $db[0];
                 $db = Myconfig::find($first->id);
             }
-            $db->lavalue = $input['listpic'];
+            $db->lavalue = $input['sliderid'];
+            $db->save();
+            //save sliderorder
+            $db = Myconfig::where('lavar', '=', 'sliderorder')->get();
+            $count = $db->count();
+            if ($count == 0) {
+                $db = new Myconfig();
+                $db->lavar = 'sliderorder';
+            }
+            else {
+                $first = $db[0];
+                $db = Myconfig::find($first->id);
+            }
+            $db->lavalue = $input['sliderorder'];
             $db->save();
             //save stores
             $db = Myconfig::where('lavar', '=', 'store')->get();
@@ -520,24 +537,10 @@ class ShopAdminController extends BaseController
             }
             $db->lavalue = $input['liststore'];
             $db->save();
-            //save sidebar ads
-            $db = null;
-            $db = Myconfig::where('lavar', '=', 'sidebarads')->get();
-            $count = $db->count();
-            if ($count == 0) {
-                $db = new Myconfig();
-                $db->lavar = 'sidebarads';
-            }
-            else {
-                $first = $db[0];
-                $db = Myconfig::find($first->id);
-            }
-            $db->lavalue = $input['sidebarads'];
-            $db->save();
 
         }
-        $this->data['slide'] = Myconfig::where('lavar', '=', 'slide')->first();
-        $this->data['sidebarads'] = Myconfig::where('lavar', '=', 'sidebarads')->first();
+        $this->data['sliderid'] = Myconfig::where('lavar', '=', 'sliderid')->first();
+        $this->data['sliderorder'] = Myconfig::where('lavar', '=', 'sliderorder')->first();
         $this->data['stores'] = Myconfig::where('lavar', '=', 'store')->first();
         return View::make('admin/config', $this->data);
     }

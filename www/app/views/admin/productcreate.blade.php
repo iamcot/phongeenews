@@ -163,7 +163,12 @@ array(
                 <input type='radio' name='laimage' value='{{$pic->lapic}}' {{(($pic->lapic == $catedit->laimage)?'checked=checked':'')}}>
                 <input type='hidden' name='mprepictype{{$currmorepic}}' value="old">
                 <img style='max-height: 50px;max-width: 50px;' src='{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}'>
-                </td><td  style='padding: 3px;'>
+                </td>
+            <td>
+                Order
+                <input style="width: 50px" type="text" name='morepicorder{{$currmorepic}}' value="{{$pic->laorder}}">
+            </td>
+            <td  style='padding: 3px;'>
                  <input style='width: 100%' type='text' name='morepic{{$currmorepic}}' value='{{$pic->lapic}}'>
                  <input style='width: 100%' type='text' name='morepictext{{$currmorepic}}' value='{{$pic->latitle}}'>
                 </td>
@@ -254,6 +259,8 @@ array(
                             "<input type='radio' name='laimage' value='"+file.name+"' "+((parseInt($("#currmorepic").val())==0)?"checked=checked":"")+"> " +
                             "<input type='hidden' name='mprepictype"+$("#currmorepic").val()+"' value='new'>" +
                             "<img style='max-height: 50px;max-width: 50px;' src='"+file.thumbnailUrl+"'>" +
+                            "</td> <td> Order"+
+                            "<input style='width: 50px' type='text' name='morepicorder{{$currmorepic}}' value='0'>"+
                             "</td><td  style='padding: 3px;'>" +
                             " <input style='width: 100%' type='text' name='morepic"+$("#currmorepic").val()+"' value='"+file.name+"'>" +
                             " <input style='width: 100%' type='text' name='morepictext"+$("#currmorepic").val()+"' value=''>" +
