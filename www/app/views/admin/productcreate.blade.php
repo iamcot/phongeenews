@@ -166,7 +166,7 @@ array(
                 </td>
             <td>
                 Order
-                <input style="width: 50px" type="text" name='morepicorder{{$currmorepic}}' value="{{$pic->laorder}}">
+                <input style="width: 50px" type="text" name='morepicorder{{$currmorepic}}' value="{{($pic->laorder)?$pic->laorder:0}}">
             </td>
             <td  style='padding: 3px;'>
                  <input style='width: 100%' type='text' name='morepic{{$currmorepic}}' value='{{$pic->lapic}}'>

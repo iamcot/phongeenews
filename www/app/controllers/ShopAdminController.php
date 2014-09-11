@@ -264,11 +264,12 @@ class ShopAdminController extends BaseController
                             $dbImg = new Image();
                             $dbImg->latitle = $input['morepictext' . $i];
                             $dbImg->lapic = $input['morepic' . $i];
-                            $dbImg->laorder = $input['morepicorder'.$i];
+                            if(isset($input['morepicorder'.$i]))
+                                $dbImg->laorder = $input['morepicorder'.$i];
                             $dbImg->laproduct_id = $id;
                             $dbImg->save();
                         }
-                        else if(isset($input['morepic' . $i]) && $input['mprepictype' . $i] == 'old'){
+                        else if(isset($input['morepic' . $i]) && $input['mprepictype' . $i] == 'old' && isset($input['morepicorder'.$i])){
                             $dbImg = Image::where('lapic',$input['morepic' . $i])->update(array('laorder'=>$input['morepicorder'.$i]));
                         }
                     }
