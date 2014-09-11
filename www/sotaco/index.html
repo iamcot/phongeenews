@@ -3,14 +3,48 @@
 <head>
     <title>Sotaco.vn</title>
     <link media="all" type="text/css" rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
-    <link media="all" type="text/css" rel="stylesheet" href="src/bootstrap/css/bootstrap-responsive.min.css">
-    <link media="all" type="text/css" rel="stylesheet" href="src/bootstrap/css/bootstrap-theme.min.css">
+    <link media="all" type="text/css" rel="stylesheet"
+          href="src/bootstrap/css/bootstrap-responsive.min.css">
+    <link media="all" type="text/css" rel="stylesheet"
+          href="src/bootstrap/css/bootstrap-theme.min.css">
     <link media="all" type="text/css" rel="stylesheet" href="src/style.css">
 </head>
 <body ng-controller="mainController">
-
+<div class="wrap">
+    <div class="row-fluid">
+        <div id="header">
+            <div class="col-xs-4">
+                <a href="/" id="logo"></a>
+            </div>
+            <div class="col-xs-8 pull-right text-right">
+                <input id="searchform" placeholder="Search for keyword(s)..."  class="pull-right">
+                <ul id="nav" class="list-inline">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="slider">
+            <div class="sliderimg col-xs-6 slide1"></div>
+            <div class="slidertext col-xs-6 pull-right">
+                <div class="text-1">CONTRUCTION</div>
+                <div class="text-3">ARCHITECT PLAN</div>
+                <div class="text-2">ON WORKING</div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 <script src="src/js/jquery.js"></script>
 <script src="src/js/angular.min.js"></script>
 <script src="src/bootstrap/js/bootstrap.min.js"></script>
+<script>
+app = angular.module('shopApp',[]);
+app.controller('mainController',['$scope',function($scope){
+
+}]);
+</script>

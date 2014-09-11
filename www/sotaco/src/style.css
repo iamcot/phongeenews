@@ -1,0 +1,74 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: #ddd url('img/bg.png') no-repeat top center;
+    background-size: 100%;
+    color: #404041;
+}
+
+.wrap{
+    width: 80%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+#logo{
+    background: url('img/logo.png');
+    background-size: 100%;
+    width: 165px;
+    height: 87px;
+    display: block;
+    margin-top: 80px;
+}
+#searchform{
+    background: url('img/searchform.png');
+    background-size: 100%;
+    width: 280px;
+    height: 52px;
+    display: block;
+    margin-top: 30px;
+    border: none;
+    text-indent: 30px;
+    color:#404041;
+}
+#nav{
+    clear: both;
+    padding-top: 40px;
+}
+#nav li{
+    background: url('img/delicator.png') no-repeat top right;
+    height: 19px;
+    padding-right: 15px;
+}
+#nav li a{
+    color:#58585a;
+}
+#nav li:last-child{
+    background: none;
+    padding-right: 0;
+}
+#slider{
+    margin-top: 100px;
+}
+.sliderimg{
+    height: 300px;
+    padding-top: 15px;
+}
+.slide1{
+    background: url('img/slider1.png') no-repeat top left;
+}
+.slidertext{
+    text-align: right;
+    padding-top: 120px;
+}
+.slidertext .text-1{
+    font-size: 18pt;
+}
+.slidertext .text-3{
+    font-size: 30pt;
+}
+.slidertext .text-2{
+    font-size: 22pt;
+}
+.clear{
+    clear: both;
+}
