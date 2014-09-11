@@ -71,7 +71,7 @@
 
             </div>
             <div class="" id="picbox-morepic">
-                <a href="javascript:changepic('{{$oProduct->laimage}}')">
+                <a href="{{URL::to('/uploads/product/'.$oProduct->laimage)}}"  class="cloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$oProduct->laimage)}}' ">
                     <img src="{{URL::to('/uploads/thumbnails/product/'.$oProduct->laimage)}}">
                 </a>
                 @foreach($morepic as $pic)
