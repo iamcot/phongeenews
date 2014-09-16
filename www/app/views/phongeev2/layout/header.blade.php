@@ -49,16 +49,17 @@
         <div class="header-tools">
             <div id="cart" class="">
                 <div class="cartinfo pull-right" >
-                    <div id="catoutter">
-                        <span class="carticon"></span>
-                        <a href="javascript:showflybasket()">
-                            <span id="cart-name"><b>GIỎ HÀNG</b></span> ({{isset($sumcart)?$sumcart:0}})
-                        </a>
-                    </div>
+
                     <div style="float:left;" id="headerphone">
                     <span class="phoneicon"></span>
                     <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
                         </div>
+                    <div id="catoutter">
+                        <span class="carticon fa fa-shopping-cart fa-2x txt-color-red"></span>
+                        <a href="" class="badge carttext">
+                            {{isset($sumcart)?$sumcart:0}}
+                        </a>
+                    </div>
                 </div>
                 @if(Session::has('cart'))
                 <div id="basketflybox">
