@@ -54,12 +54,13 @@
                     <span class="phoneicon"></span>
                     <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
                         </div>
-                    <div id="catoutter">
+                    <a id="catoutter" href="{{URL::to('cart')}}">
                         <span class="carticon fa fa-shopping-cart fa-2x txt-color-red"></span>
-                        <a href="" class="badge carttext">
+                        <span href="" class="badge carttext">
+                            {{--*/ $sumcart = Orders::getSumCartItem()/*--}}
                             {{isset($sumcart)?$sumcart:0}}
-                        </a>
-                    </div>
+                        </span>
+                    </a>
                 </div>
                 @if(Session::has('cart'))
                 <div id="basketflybox">

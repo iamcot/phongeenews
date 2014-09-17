@@ -26,7 +26,7 @@ class UserController extends BaseController
                 else return Redirect::to('/');
             } else {
                 return Redirect::to('login')
-                    ->with('message', 'Tên tài khoản hoặc mật khẩu không đúng');
+                    ->with('message', 'Email hoặc mật khẩu không đúng');
             }
 //            $user = User::create(array(
 //                'username'=>Input::get('username'),
@@ -44,5 +44,30 @@ class UserController extends BaseController
         if(Session::has('uid'))
             Session::forget('uid');
         return Redirect::to('/');
+    }
+    public function reg(){
+        $input = Input::all();
+        $olduser = User::where('username',$input['regemail'])->first();
+        if($olduser){
+            return Redirect::to('login')
+                ->with('message', 'Email này đã có');
+        }
+        else{
+            $user = User::create(array(
+                'username' => $input['regemail'],
+                'password' => Hash::make($input['password1']),
+                'lafullname' => $input['regname'],
+                'lasex' => $input['regtitle'],
+                'ladob' => strtotime($input['yob'].'-'.$input['mob'].'-'.$input['dob'].' 00:00:00')
+            ));
+            if($user){
+                return Redirect::to('login')
+                    ->with('message', 'Đăng ký  thành công email '.$input['regemail']);
+            }
+            else{
+                return Redirect::to('login')
+                    ->with('message', 'Đăng ký  thất bại email '.$input['regemail'].'. Vui lòng thử lại.');
+            }
+        }
     }
 }

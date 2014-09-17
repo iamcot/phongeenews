@@ -8,7 +8,7 @@ class User extends Eloquent implements UserInterface{
 	 * @var string
 	 */
 	protected $table = 'lauser';
-    protected $fillable = array('username', 'password','larole','lafullname','laemail','laphoto');
+    protected $fillable = array('username', 'password','larole','lafullname','laemail','laphoto','lasex','ladob');
 
 	/**
 	 * The attributes excluded from the model's JSON form.

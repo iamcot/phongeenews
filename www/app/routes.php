@@ -13,6 +13,7 @@
 
 Route::controller('facelogin','FacebookController');
 Route::any('login',array('before'=>'guest','uses'=>'UserController@login'));
+Route::any('login/reg',array('before'=>'guest','uses'=>'UserController@reg'));
 Route::any('logout','UserController@logout');
 Route::controller('ajax','AjaxController');
 Route::controller('admin','ShopAdminController');

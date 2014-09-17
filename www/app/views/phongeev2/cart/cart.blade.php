@@ -4,40 +4,34 @@
 
 <div id="cartpage" class="container-fluid">
 
-    <div class="col-xs-12">
+    <div class="row-fluid wrap">
         {{--*/ $actionstatus = Session::get('actionstatus', 0) /*--}}
-        <div id="notif" class="bg-danger row-fluid" style="display:{{(($actionstatus >= 20 && $actionstatus <= 29)?'block':'none')}}">
+        <div id="notif" class="bg-danger row-fluid" style="padding:15px;display:{{(($actionstatus >= 20 && $actionstatus <= 29)?'block':'none')}}">
         @if($actionstatus >= 20 && $actionstatus <= 29)
         {{trans('error.'.$actionstatus)}}
         @endif
         </div>
-        <h2>Thanh toán đơn hàng</h2>
-        <table class="table table-responsive carttable table-bordered">
+        <table class="table table-responsive carttable">
             <thead>
             <tr>
-                <th class="text-center col-xs-1">STT</th>
-                <th></th>
-                <th>Tên sản phẩm</th>
-                <th class="text-center">Số lượnng</th>
+                <th colspan="2">Sản phẩm trong giỏ</th>
+                <th class="text-center">Số lượng</th>
                 <th class="text-right">Đơn giá</th>
                 <th class="text-right">Thành tiền</th>
             </tr>
             </thead>
-            {{--*/ $count = 1 /*--}}
             {{--*/ $sum = 0 /*--}}
             {{--*/ $sumkhoiluong = 0 /*--}}
             @foreach(Session::get('cart') as $cart)
             <tr>
-                <td class="text-center">{{$count}}</td>
                 <td class="cartimg">{{HTML::image('/uploads/thumbnails/product/'.$cart['laimage'])}}</td>
-                <td><a href="{{URL::to($cart['caturl'].'/'.$cart['producturl'].'.html')}}" target="_BLANK">{{$cart['latitle'].'</a>
+                <td><a href="{{URL::to($cart['caturl'].'/'.$cart['producturl'].'.html')}}" target="_BLANK" class="textgray">{{$cart['latitle'].'</a>
                     '.$cart['variantname']}}
                 </td>
                 <td class="text-center"><a title="Tăng 1 sản phẩm" class="badge cartamountup" href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/1')}}">+</a> {{$cart['amount']}} <a title="Giảm 1 sản phẩm"  href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/0')}}" class="badge cartamountdown">-</a></td>
                 <td class="text-right">{{number_format($cart['laprice'],0,',','.')}}</td>
                 <td class="text-right">{{number_format($cart['amount']*$cart['laprice'],0,',','.')}}</td>
             </tr>
-            {{--*/ $count += 1 /*--}}
             {{--*/ $sumkhoiluong += ($cart['amount']*$cart['lakhoiluong']) /*--}}
             {{--*/ $sum += ($cart['amount']*$cart['laprice']) /*--}}
             @endforeach
@@ -58,6 +52,24 @@
 <!--            </tr>-->
         </table>
     </div>
+    <div class="wrap cartblock">
+        {{ Form::open(array(
+        'url'=>'cart/addvoucher'
+        ))}}
+        <div class="col-xs-4">
+            <div class="input-group ">
+                <input type="text" class="form-control" placeholder="Mã Phiếu Giảm Giá" name="vouchercode">
+                <span class="input-group-btn">
+                <button class="btn bg-color-red" type="submit">Áp dụng</button>
+                </span>
+            </div>
+        </div>
+        <div class="text-right col-xs-8">
+            <a href="{{URL::to('/')}}" class="btn btn-black"><i class="fa fa-home"></i> Tiếp tục mua hàng</a>
+            <a class="btn btn-black"><i class="fa fa-trash-o"></i> Xóa giỏ hàng</a>
+        </div>
+        {{Form::close()}}
+    </div>
     {{--*/ $voucher = Session::get('voucher',null) /*--}}
     {{--*/ $giamvoucher = 0 /*--}}
     @if($voucher != null )
@@ -67,144 +79,21 @@
         {{--*/ $giamvoucher = $voucher['value'] /*--}}
         @endif
     @endif
-    <div class="col-xs-12 col-md-7 cart-customer-info">
-        {{Form::open(array(
-        'url' => 'cart/checkout',
-        'id' => 'formorderinfo',
-        'class' => 'form-horizontal',
-        ))}}
-        {{Form::hidden('sumsanpham',$sum)}}
-        {{Form::hidden('giamvoucher',$giamvoucher)}}
-        {{Form::hidden('sumkhoiluong',$sumkhoiluong)}}
-        {{Form::hidden('feeshipping','50000')}}
-        <h3  class="text-right">Hình thức thanh toán và nhận hàng</h3>
+    <div class="wrap ">
+        <div class="row">
+    <div class="col-xs-12 col-md-6 pull-right">
 
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Nhận hàng</span>
-            <div class="col-sm-9">
-            <select class="form-control" placeholder="Hình thức Nhận hàng" name="shipping"
-                    onchange="checkShipping(this.value)">
-                <option value="0">Hình thức nhận hàng</option>
-                @foreach(Config::get('shop.shipping') as $payment)
-                <option value="{{$payment['id']}}">{{$payment['value']}}</option>
-                @endforeach
-            </select>
-            </div>
-        </div>
         <br>
 
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Thanh toán</span>
-            <div class="col-sm-9">
-            <select class="form-control" placeholder="Hình thức Thanh toán" name="payment" onchange="checkProvinceFee()">
-                <option value="0">Hình thức thanh toán</option>
-                @foreach(Config::get('shop.payment') as $payment)
-                <option value="{{$payment['id']}}">{{$payment['value']}}</option>
-                @endforeach
-            </select>
-            </div>
-        </div>
-        <br>
-
-        <h3 class="text-right">Thông tin ship hàng</h3>
-        @if(!Session::has("uid"))
-            <div class="bg-warning" style="line-height: 20px;padding: 5px;margin-bottom: 10px;"><span class="glyphicon glyphicon-info-sign"></span> Bạn nên đăng nhập bằng facebook để có thể theo dõi trạng thái của các đơn hàng tốt hơn.</div>
-        @endif
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Họ Tên</span>
-            <div class="col-sm-9">
-                <input type="text" class="form-control" placeholder="Họ tên người nhân" name="ordername" value="{{((Auth::check())?Auth::user()->lafullname:'')}}">
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Điện thoại</span>
-            <div class="col-sm-9">
-            <input type="tel" class="form-control" placeholder="Số điện thoại người nhận" name="ordertel">
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Email</span>
-            <div class="col-sm-9">
-            <input type="email" class="form-control" placeholder="Địa chỉ Email" name="orderemail" value="{{((Auth::check())?Auth::user()->laemail:'')}}">
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Địa chỉ</span>
-            <div class="col-sm-9">
-            <input type="text" class="form-control" placeholder="Địa chỉ nhân hàng" name="orderaddr">
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Tỉnh thành</span>
-            <div class="col-sm-9">
-            <select class="form-control" placeholder="Tỉnh Thành phố" name="orderprovince"
-                    onchange="checkProvinceFee()">
-                <option value="0">Tỉnh/Thành Phố</option>
-                {{--*/ $arrProvince = array_values(array_sort(Config::get('shop.province'), function($value) { return
-                $value['id']; })) /*--}}
-                @foreach($arrProvince as $province)
-                <option value="{{$province['id']}}">{{$province['title']}}</option>
-                @endforeach
-            </select>
-            </div>
-        </div>
-        <br>
-
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Quận/Huyện </span>
-            <div class="col-sm-9">
-            <select class="form-control" placeholder="Quận Huyện trong TP Hồ Chí Minh" name="orderdistrict" onchange="checkProvinceFee()">
-                <option value="0">Quận/Huyện trong TP Hồ Chí Minh</option>
-                @foreach(Config::get('shop.hcm_district') as $province)
-                <option value="{{$province['id']}}">{{$province['title']}}</option>
-                @endforeach
-            </select>
-            </div>
-        </div>
-        <br>
-        <div class="form-group">
-            <span class="col-sm-3 control-label">Ghi chú</span>
-            <div class="col-sm-9">
-                <textarea class="form-control" placeholder="Ghi chú cho đơn hàng" name="laordernote" rows=3></textarea>
-            </div>
-        </div>
-        <br>
-
-<!--        <button class="btn btn-info"><span class="glyphicon glyphicon-floppy-save"></span> Lưu thông tin</button>-->
-        {{Form::close()}}
-    </div>
-    <div class="col-xs-12 col-md-5">
-        <h3 class="text-right">Phiếu giảm giá</h3>
-        {{ Form::open(array(
-        'url'=>'cart/addvoucher'
-        ))}}
-
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Mã Phiếu Giảm Giá" name="vouchercode">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Thêm Phiếu Giảm Giá</button>
-          {{Form::close()}}
-      </span>
-        </div>
-        <br>
-
-        <div class="bg-warning container-fluid">
-            <h3>Tổng giá trị đơn hàng</h3>
-            <table class="table table-responsive">
+        <div class="container-fluid">
+            <h3 class="txt-color-red">Tổng giá trị đơn hàng</h3>
+            <table class="table table-responsive sumcart">
                 <tr>
-                    <td>Giá Sản phẩm</td>
-                    <td class="text-right">{{number_format($sum,0,',','.')}}</td>
+                    <td class="sumcartheader">Giá Sản phẩm</td>
+                    <td class="text-right">{{number_format($sum,0,',','.')}}  VNĐ</td>
                 </tr>
                 <tr>
-                    <td>Phiếu giảm giá
+                    <td class="sumcartheader">Phiếu giảm giá
 
                         @if($voucher != null )
                         ( <strong>{{$voucher['id']}}</strong>
@@ -213,29 +102,29 @@
                         @endif
                     </td>
                     <td class="text-right">
-                        -{{number_format($giamvoucher,0,',','.')}}
+                        -{{number_format($giamvoucher,0,',','.')}} VNĐ
                     </td>
                 </tr>
                 <tr>
-                    <td>*Phí vận chuyển (<strong>{{number_format($sumkhoiluong,0,',','.')}}</strong> g)<br>
+                    <td class="sumcartheader">*Phí vận chuyển (<strong>{{number_format($sumkhoiluong,0,',','.')}}</strong> g)<br>
                     <em id="shippingtime"></em></td>
                     <td class="text-right" id="feeshippingdisplay"></td>
                 </tr>
                 <tr>
-                    <td><strong>Tổng giá trị</strong></td>
+                    <td class="sumcartheader"><strong>Tổng giá trị tạm tính</strong></td>
                     <td class="text-right"><strong
-                            id="totalbill">{{number_format(($sum-$giamvoucher),0,',','.')}}</strong></td>
+                            id="totalbill">{{number_format(($sum-$giamvoucher),0,',','.')}} VNĐ</strong></td>
                 </tr>
             </table>
-            <button onclick="checkout()" class="btn btn-success pull-right"><span class="glyphicon glyphicon-shopping-cart"></span> Gửi đơn
-                hàng
+            <button onclick="checkout()" class="col-xs-12 btn bg-color-red"><span class="glyphicon glyphicon-shopping-cart"></span> Đặt mua & Thanh toán
             </button>
             <div class="clearfix"></div>
             <br>
+            <br>
         </div>
-        <em>(*) Phí vận chuyển tính tương đối trên bảng giá của bưu điện và các nhà cung cấp dịch vụ ship hàng. Có thể chênh lệch thực tế 1 ít. Mong các bạn thông cảm.</em>
     </div>
-
+        </div>
+    </div>
 </div>
 
 @section('jscript')

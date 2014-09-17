@@ -35,5 +35,9 @@
             @endif
             <li>{{$oProduct->latitle}}</li>
         @endif
+    @elseif(isset($typeEnd) && $typeEnd == 'cart')
+    <li>Bạn đang ở </li>
+    <li><a href="{{URL::to('/')}}">Trang chủ</a></li>
+    <li><a>Giỏ hàng</a></li>
     @endif
 </ol>

@@ -47,7 +47,7 @@
     <div class="clearfix"></div>
     <div class=" body">
         @if(Session::has('message'))
-        <div class="bg-danger text-center">{{Session::get('message')}}</div>
+        <p class="bg-danger text-center" style="padding: 10px;">{{Session::get('message')}}</p>
         @endif
         @yield('body')
     </div>

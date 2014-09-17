@@ -19,5 +19,8 @@ ALTER TABLE `laproducts`
 /* 3:49:52 PM localhost */ ALTER TABLE `laimages` ADD `laorder` INT  NULL  DEFAULT NULL  AFTER `laevent`;
 /* 5:38:33 PM phongee */ ALTER TABLE `laimages` CHANGE `laorder` `laorder` INT(11)  NOT NULL  DEFAULT '0';
 
+/* 3:52:17 PM localhost */ ALTER TABLE `lauser` ADD `lasex` VARCHAR(1)  NULL  DEFAULT NULL  AFTER `laphoto`;
+
+
 
 

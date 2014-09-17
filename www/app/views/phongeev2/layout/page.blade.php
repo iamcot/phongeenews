@@ -3,19 +3,23 @@
 
 <div class="mycontainer">
     <div id="content" class="">
-        @if($typeEnd == 'list' || $typeEnd=='details')
+        @if($typeEnd == 'list' || $typeEnd=='details' || $typeEnd=='cart')
         @if(!isset($actCat) || $actCat!='search')
         <div >
             <div class="pagetitleouter row-fluid">
                 <div class="col-xs-12">
-                    @if($typeEnd=='details')
+                    @if($typeEnd=='cart')
+                    <h1 class="page-title ">
+                        Đơn hàng của bạn
+                    </h1>
+                    @elseif($typeEnd=='details')
                     <h1 class="page-title ">
                         Thông tin chi tiết
                     </h1>
                     @else
                     <h1 class="page-title">{{($typeEnd == 'list')?$actCat->latitle:$oProduct->latitle}}</h1>
                     @endif
-                    @if( $typeEnd=='details' || $typeEnd == 'list')
+                    @if( $typeEnd=='details' || $typeEnd == 'list'|| $typeEnd == 'cart')
                     @include(Config::get('shop.theme').'/layout/barcum')
                     @endif
                 </div>
