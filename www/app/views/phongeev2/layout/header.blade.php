@@ -120,16 +120,6 @@
 @section('jscript')
 @parent
 <script>
-
-    @if(Session::get('actionstatus', 0) == Config::get('actionstatus.cart_has_new'))
-
-        $(document).ready(function() {
-            $("#basketflybox").show();
-        });
-
-    @endif
-
-
          function showflybasket(){
              $("#basketflybox").show();
          }

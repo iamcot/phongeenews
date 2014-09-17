@@ -1,9 +1,7 @@
 @extends(Config::get('shop.theme').'/layout/page')
 @section('pagecontent')
 @if(Session::has('cart'))
-
 <div id="cartpage" class="container-fluid">
-
     <div class="row-fluid wrap">
         {{--*/ $actionstatus = Session::get('actionstatus', 0) /*--}}
         <div id="notif" class="bg-danger row-fluid" style="padding:15px;display:{{(($actionstatus >= 20 && $actionstatus <= 29)?'block':'none')}}">
@@ -28,7 +26,13 @@
                 <td><a href="{{URL::to($cart['caturl'].'/'.$cart['producturl'].'.html')}}" target="_BLANK" class="textgray">{{$cart['latitle'].'</a>
                     '.$cart['variantname']}}
                 </td>
-                <td class="text-center"><a title="Tăng 1 sản phẩm" class="badge cartamountup" href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/1')}}">+</a> {{$cart['amount']}} <a title="Giảm 1 sản phẩm"  href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/0')}}" class="badge cartamountdown">-</a></td>
+                <td class="text-center">
+                    <div class="btn-group">
+                        <a type="button" class="btn btn-white" href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/0')}}">-</a>
+                        <input type="text" id="cartamount" name="amount" style="height: 34px;" value="{{$cart['amount']}}">
+                        <a type="button" class="btn btn-white" href="{{URL::to('cart/changeamout/'.$cart['product_id'].'/1')}}">+</a>
+                    </div>
+                </td>
                 <td class="text-right">{{number_format($cart['laprice'],0,',','.')}}</td>
                 <td class="text-right">{{number_format($cart['amount']*$cart['laprice'],0,',','.')}}</td>
             </tr>
@@ -106,7 +110,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="sumcartheader">*Phí vận chuyển (<strong>{{number_format($sumkhoiluong,0,',','.')}}</strong> g)<br>
+                    <td class="sumcartheader">Phí vận chuyển (<strong>{{number_format($sumkhoiluong,0,',','.')}}</strong> g)<br>
                     <em id="shippingtime"></em></td>
                     <td class="text-right" id="feeshippingdisplay"></td>
                 </tr>
@@ -116,8 +120,8 @@
                             id="totalbill">{{number_format(($sum-$giamvoucher),0,',','.')}} VNĐ</strong></td>
                 </tr>
             </table>
-            <button onclick="checkout()" class="col-xs-12 btn bg-color-red"><span class="glyphicon glyphicon-shopping-cart"></span> Đặt mua & Thanh toán
-            </button>
+            <a  href="{{URL::to('cart/step/2')}}" class="col-xs-12 btn bg-color-red"><span class="glyphicon glyphicon-shopping-cart"></span> Đặt mua & Thanh toán
+            </a>
             <div class="clearfix"></div>
             <br>
             <br>
@@ -126,10 +130,74 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Đăng nhập mua hàng</h4>
+            </div>
+            <div class="modal-body">
+                <div class="well borderblue loginbox ">
+                    {{Form::open(array(
+                    "url" => "login",
+                    "autocomplete"=>"off",
+                    'class'=>'',
+                    )) }}
+                    <h5 class="col-xs-12"><i class="fa fa-user fa-2x textblue"></i><strong> Tài khoản đã
+                            đăng ký</strong>
+                    </h5>
+
+                    <div class="row-fluid no-padding">
+                        <div class="form-group col-xs-12 " style="overflow: hidden;">
+                            <i class="fa fa-envelope-o textsmall logininputicon"></i>
+                            <input type="email" id="loginemailinput" class="form-control"
+                                   name="username" placeholder="Enter email">
+                        </div>
+                        <div class="form-group col-xs-12 " style="overflow: hidden;">
+                            <i class="fa fa-unlock-alt textsmall logininputicon"></i>
+                            <input type="password" class="form-control" name="password"
+                                   placeholder="Mật khẩu">
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-12">
+                            <div class="checkbox ">
+                                <label class="infotextsmall">
+                                    <input type="checkbox"  name="loginremember"> Tự động đăng nhập lần sau.
+                                </label>
+                            </div>
+                        </div>
+                        <br>
+
+                        <div class="myrow-fluid text-center">
+                            <div class="form-group col-xs-12 col-md-6">
+                                {{Form::submit("Đăng nhập",array('class'=>'btn borderred col-xs-12
+                                textsmall')) }}
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <a href="{{URL::to('facelogin')}}" class="col-xs-12 btn loginface textsmall">Đăng
+                                    nhập
+                                    bằng
+                                    Facebook</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{Form::close() }}
+                    <div class="clearfix"></div>
+                    <p class="text-center">Chưa có tài khoản? <a href="{{URL::to('login')}}">Đăng ký</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section('jscript')
 {{HTML::script('/src/jquery.validate.js')}}
 <script>
+    @if(!Auth::check())
+    $('#myModal').modal();
+    @endif
     function checkShipping(select) {
         $("select[name=payment]").html('');
         $("select[name=orderprovince]").html('');
@@ -261,6 +329,7 @@
 @stop
 @else
 <div id="cartpage" class="container-fluid">
+    <div class="row-fluid wrap">
     <p class="">Chưa có sản phẩm nào trong giỏ hàng</p>
     <br>
     @if(Session::has('lastorder'))

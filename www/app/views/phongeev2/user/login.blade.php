@@ -33,7 +33,7 @@
                     <div class="col-xs-12">
                         <div class="checkbox ">
                             <label class="infotextsmall">
-                                <input type="checkbox"> Tự động đăng nhập lần sau.
+                                <input type="checkbox" name="loginremember"> Tự động đăng nhập lần sau.
                             </label>
                         </div>
                     </div>

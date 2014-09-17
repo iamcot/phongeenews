@@ -18,7 +18,9 @@ class UserController extends BaseController
                 "username" => $input['username'],
                 "password" => $input['password']
             );
-            if (Auth::attempt($credentials)) {
+            if(isset($input['loginremember'])) $remem = true;
+            else $remem = false;
+            if (Auth::attempt($credentials,$remem)) {
 //                Session::set('user',Auth::user()->getAll());
                 if($credentials['username']=='admin') Session::set("uid",'1657743351');
                 if(Session::has('beforelogin'))
