@@ -61,8 +61,26 @@
 
 @stop
 @section('jscript')
-
 <script>
+    function showSearch(){
+        $("#s").toggle();
+    }
+    function showflybasket() {
+        $("#basketflybox").show();
+    }
+    function hideflybasket() {
+        $("#basketflybox").hide();
+    }
+    $('html').click(function () {
+        $("#basketflybox").hide();
+    });
+
+    $('#basketflybox').click(function (event) {
+        event.stopPropagation();
+    });
+</script>
+<script>
+
     $('.carouselnews').carousel({
         animation: 'slow'
     });
@@ -76,6 +94,7 @@
 
     $('body').click(function() {
         $('#headermobilecartouter').hide();
+
     });
     $( window ).scroll(function() {
         if($(window).scrollTop() > 30){

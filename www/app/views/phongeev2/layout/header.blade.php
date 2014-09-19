@@ -1,17 +1,18 @@
 <div id="top-menu" class="padding-top-5">
     <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
         {{--*/ $active = 'mua-sam'; /*--}}
-    @foreach(Config::get('shop.topnav') as $cat)
-             <li class="col"><a href="{{$cat['url']}}" class="{{($cat['id']==$active)?'active':''}}">{{$cat['title']}}</a></li>
-    @endforeach
+        @foreach(Config::get('shop.topnav') as $cat)
+        <li class="col"><a href="{{$cat['url']}}" class="{{($cat['id']==$active)?'active':''}}">{{$cat['title']}}</a>
+        </li>
+        @endforeach
     </ul>
-    <div  class="col col-xs-12 col-md-7 pull-right" style="padding-right:45px;">
+    <div class="col col-xs-12 col-md-6 pull-right" style="padding-right:3%;">
         <div class="top-function pull-right margin-left-15">
             <a data-toggle="dropdown" href="#">TÀI KHOẢN VÀ ĐƠN HÀNG</a>
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 @foreach(Config::get('shop.accountmenu') as $menu)
-                    <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
+                <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -20,7 +21,7 @@
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 @foreach(Config::get('shop.accountmenu') as $menu)
-                    <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
+                <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -29,7 +30,7 @@
             <span class="caret"></span>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 @foreach(Config::get('shop.accountmenu') as $menu)
-                    <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
+                <li><a href="{{$menu['url']}}">{{$menu['title']}}</a></li>
                 @endforeach
             </ul>
         </div>
@@ -37,7 +38,7 @@
     <div class="clear"></div>
 </div>
 <div id="top-header" role="banner" class="">
-    <div class="mycontainer fold" >
+    <div class="mycontainer fold">
 
         <div id="logo">
             <a href="{{URL::to('/')}}">
@@ -48,14 +49,23 @@
 
         <div class="header-tools">
             <div id="cart" class="">
-                <div class="cartinfo pull-right" >
+                <div class="cartinfo pull-right">
+                    <div id="searchform" class="pull-right">
+                        {{ Form::open(array(
+                        'url' => 'search',
+                        'method'=>'get',
 
+                        )) }}
+                        <a class="fa fa-search" id="searchbutton" style="z-index: 100;font-size: 15pt;padding-top: 3px;" href="javascript:showSearch()"></a>
+                        <input type="text" id="s" name="s" placeholder="Tìm kiếm..." style="z-index: 99;display: none;">
+                        {{Form::close()}}
+                    </div>
                     <div style="float:left;" id="headerphone">
-                    <span class="phoneicon"></span>
-                    <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
-                        </div>
+                        <span class="phoneicon"></span>
+                        <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
+                    </div>
                     <a id="catoutter" href="{{URL::to('cart')}}">
-                        <span class="carticon fa fa-shopping-cart fa-2x txt-color-red"></span>
+                        <span class="carticon txt-color-red"></span>
                         <span href="" class="badge carttext">
                             {{--*/ $sumcart = Orders::getSumCartItem()/*--}}
                             {{isset($sumcart)?$sumcart:0}}
@@ -69,31 +79,30 @@
                         {{--*/ $sumprice = 0 /*--}}
 
                         @foreach(Session::get('cart') as $item)
-                        <tr><td class="col-xs-8 text-left"><strong>{{$item['latitle']}}</strong> {{$item['variantname']}} x {{$item['amount']}}</td><td class="text-right"><span class="glyphicon glyphicon-usd"></span> {{number_format($item['amount'] * $item['laprice'],0,',','.')}}</td></tr>
+                        <tr>
+                            <td class="col-xs-8 text-left"><strong>{{$item['latitle']}}</strong>
+                                {{$item['variantname']}} x {{$item['amount']}}
+                            </td>
+                            <td class="text-right"><span class="glyphicon glyphicon-usd"></span>
+                                {{number_format($item['amount'] * $item['laprice'],0,',','.')}}
+                            </td>
+                        </tr>
                         {{--*/ $sumprice += ($item['amount'] * $item['laprice']) /*--}}
                         @endforeach
 
-                        <tr><td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}">Thanh toán <span class="glyphicon glyphicon-play"></span></a></td></tr>
+                        <tr>
+                            <td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}">Thanh toán <span
+                                        class="glyphicon glyphicon-play"></span></a></td>
+                        </tr>
                     </table>
                 </div>
                 @endif
-                <div id="searchform" class="pull-right">
-                    {{ Form::open(array(
-                    'url' => 'search',
-                    'method'=>'post',
 
-                    )) }}
-                    <a id="searchbutton" style="z-index: 100"></a>
-                    <input type="text" id="s"  name="s" placeholder="Tìm kiếm..." style="z-index: 99">
-                    {{Form::close()}}
-                </div>
             </div>
 
 
-
-
-
-        </div><!-- end header tools -->
+        </div>
+        <!-- end header tools -->
 
         <div class="nav-outer ">
             <div class="navbar-header">
@@ -106,7 +115,8 @@
         </div>
 
 
-    </div><!-- end container -->
+    </div>
+    <!-- end container -->
     <div class="clearfix"></div>
 </div>
 
@@ -119,19 +129,5 @@
 
 @section('jscript')
 @parent
-<script>
-         function showflybasket(){
-             $("#basketflybox").show();
-         }
-         function hideflybasket(){
-             $("#basketflybox").hide();
-         }
-         $('html').click(function() {
-             $("#basketflybox").hide();
-         });
 
-         $('#basketflybox').click(function(event){
-             event.stopPropagation();
-         });
-     </script>
 @stop

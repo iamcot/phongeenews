@@ -78,6 +78,7 @@ class OrdersController extends BaseController
        return View::make(Config::get('shop.theme') . "/cart/cart", $this->data);
     }
     public function getStep($step=1){
+        $this->data['orderstep'] = $step;
         if ($step == 2)
             return View::make(Config::get('shop.theme') . "/cart/step2", $this->data);
         else if ($step == 3)

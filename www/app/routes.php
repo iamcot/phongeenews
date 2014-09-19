@@ -24,7 +24,7 @@ Route::any('/event/{url}','EventController@getIndex');
 Route::controller('event','EventController');
 
 Route::any('/hastag/{tag}','ListController@showtag');
-Route::post('search','ListController@showsearch');
+Route::get('search','ListController@showsearch');
 Route::get('/{cat}/{product}.html','DetailsController@showDetails');
 Route::any('/fav/{type}','ListController@showfav');
 Route::any('/{cat}','ListController@showList');

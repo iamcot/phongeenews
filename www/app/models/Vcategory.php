@@ -37,7 +37,7 @@ class Vcategory extends Eloquent
         return $categories_array;
     }
 
-    public static function shopCatTree($id = 0, $categories = null, $level = 0)
+    public static function shopCatTree($id = 0, $categories = null, $level = 0,$parentid = 0)
     {
         $html = "";
         if (count($categories) > 0) {
@@ -48,7 +48,6 @@ class Vcategory extends Eloquent
             <a itemprop='url' href='" . URL::to("/" . $cat['laurl']) . "' " . (($id == $cat['id']) ? "class='active'" : '') . "  >
                      " . $cat['latitle'] . "
             </a>";
-
                 $html .= Vcategory::shopCatTree($id, $cat['children'], $level + 1);
                 $html.="</li>";
             }

@@ -81,7 +81,7 @@ textarea, select {
     color: #777;
     margin: 0;
     /*width: 210px;*/
-    max-width: 100%;
+    /*max-width: 100%;*/
     display: block;
     /*margin-bottom: 1em;*/
     background: #fff;
@@ -100,8 +100,9 @@ textarea, select {
 }
 #top-cat{
     margin-bottom: 0px;
-    padding:10px 30px 12px 30px;
+    padding:10px 15px 12px 0;
     line-height: 11px;
+    margin-left: 3%;
 }
 #top-cat .active{
     color: #fff;
@@ -112,6 +113,9 @@ textarea, select {
 
     padding-left: 25px;
     padding-right: 25px;
+}
+#top-cat>li:first-child{
+    padding-left: 0;
 }
 #top-cat>li>a{
     color: #828282;
@@ -185,7 +189,7 @@ textarea, select {
     /*padding-right: 0;*/
 }
 #top-header .mycontainer{
-    min-height: 68px;
+    height: 60px;
 }
 
 #top-header .mycontainer {
@@ -228,6 +232,7 @@ textarea, select {
 #top-header #searchform {
     /*padding-top: 22px;*/
     /*margin-right:15px;*/
+    margin: 0 15px;
 }
 
 #top-header #searchform form, #top-header #searchform #s {
@@ -247,36 +252,48 @@ textarea, select {
 #top-header #searchform #s {
     background-color: rgb(41, 41, 41);
 }
+#searchbutton{
+    text-decoration: none;
+}
+#searchbutton:hover{
+    text-decoration: none;
+    color: #aaa;
+}
 #searchform #searchbutton{
     display: block;
     width: 26px;
     height: 26px;
-    background: url('img/top-search.png') 100% no-repeat;
+    /*background: url('img/top-search.png') 100% no-repeat;*/
     position: absolute;
     top: -1px;
-
-    background-size: 100%;
+    color: #aaa;
+    /*background-size: 100%;*/
 }
 
 #top-header #searchform #s {
-    padding: 5px 4px ;
-    padding-left: 30px;
-    padding-right: 15px;
+    padding: 10px 15px ;
+    padding-right: 30px;
     /*background: url(img/sprite24.png) 100% 0% no-repeat rgb(25, 25, 25);*/
     /*background: rgb(240,240,240);*/
-    background: -webkit-linear-gradient(#dedede, #fafafa); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#dedede, #fafafa); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#dedede, #fafafa); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#dedede, #fafafa); /* Standard syntax */
-    border-radius: 22px;
-    width: 98%;
-    transition: width 200ms ease-out;
-    -webkit-transition: width 200ms ease-out;
+    /*background: -webkit-linear-gradient(#dedede, #fafafa); *//* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(#dedede, #fafafa); *//* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(#dedede, #fafafa); *//* For Firefox 3.6 to 15 */
+    /*background: linear-gradient(#dedede, #fafafa); *//* Standard syntax */
+    border-radius: 4px;
+    /*width: 98%;*/
+    /*transition: width 200ms ease-out;*/
+    /*-webkit-transition: width 200ms ease-out;*/
     /*opacity: 0.7;*/
     float:right;
     border:none;
     line-height: 14px;
     font-size: 9pt;
+    background: #fff;
+    border: 1px solid #ddd;
+    width: 250px;
+    position: absolute;
+    left: -220px;
+    top:-5px;
 }
 
 #top-header #searchform form, #top-header #searchform #s {
@@ -287,7 +304,7 @@ textarea, select {
     float:right;
 }
 #cart,#top-phone{
-    padding-top: 20px;
+    padding-top: 18px;
     line-height: 28px;
 
 }
@@ -308,7 +325,7 @@ textarea, select {
     line-height: 20px;
 }
 .carticon{
-    background: url("img/detailsbasket.png") no-repeat;
+    background: url("img/detailsbasket2.png") no-repeat;
     display: inline-block;
     width: 20px;
     height: 19px;
@@ -316,7 +333,8 @@ textarea, select {
     margin-right: 2px;
 }
 #cart .cartinfo .carticon{
-    /*background: url("img/basket.png") no-repeat;*/
+    background: url("img/basket.png") no-repeat;
+    background-size: 100%;
     display: inline-block;
     width: 26px;
     height: 26px;
@@ -342,8 +360,8 @@ textarea, select {
 .phoneicon{
     background: url("img/top-phone.png") no-repeat;
     display: inline-block;
-    width: 26px;
-    height: 26px;
+    width: 30px;
+    height: 30px;
     background-size: 100%;
     float:left;
     margin-left:10px;
@@ -448,34 +466,58 @@ textarea, select {
     margin-bottom: 0 !important;
     padding-left:15px;
 }
-
-.navbarphongee .nav>li>a{
+.navbar-nav>li {
+    line-height: 60px;
+}
+.navbarphongee .nav>li{
     /*background: url(img/menu_line.gif) top right no-repeat;*/
-    color: #5f5f5f;
+    /*color: #5f5f5f;*/
     /*background-color: rgb(35, 122, 194);*/
-    text-align: center;
+    /*text-align: center;*/
     /*min-width: 100px;*/
-    font-size: 9pt;
-    font-weight: 600;
-    text-shadow: none;
+    /*font-size: 9pt;*/
+    /*font-weight: 600;*/
+    /*text-shadow: none;*/
     /* text-transform: uppercase; */
-    line-height: 40px;
-    padding-left: 0;
+    /*line-height: 28px;*/
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;
     text-transform: uppercase;
 }
 .navbarphongee .navbar-right li>a{
     /*background: url(img/menu_line.gif) top left no-repeat !important;*/
 }
-.navbar-nav.navbar-right:last-child{
-    /*margin-right: 0 !important;*/
+.navbar-nav>li:last-child{
+    padding-right: 0;
 }
-.navbarphongee .nav>li>a:hover,
-.navbarphongee .active{
+.navbarphongee .nav>li>a{
+    display: inline-block;
+    padding: 0;
+    color:#5f5f5f;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 600;
+    text-shadow: none;
+    line-height: 30px;
+}
+.nav>li>a{
+    font-size: 9pt;
+}
+.navbarphongee .nav>li:hover>a,
+.navbarphongee .nav>li:focus>a{
     /*background: url(img/bg_menu_act.jpg) 0 0 repeat-x;*/
     background:none;
     color:#e95624;
+    border-bottom: 2px solid #e95524;
 
 }
+.navbarphongee .nav>li>a.active{
+    background:none;
+    color:#000;
+    border-bottom: 2px solid #000;
+}
+
 .nav-outer{
     margin: 0 !important;
     padding: 0!important;
@@ -487,6 +529,9 @@ textarea, select {
 .nav-child>li{
     position: relative;
 
+}
+.nav-child>.nav>li {
+    line-height: 20px;
 }
 .navbarphongee .nav>li>.nav-child>li:hover>.nav-child{
     display: block;
@@ -533,13 +578,17 @@ textarea, select {
 .textsmall{
     font-size: 9pt;
 }
+.nav-child>li{
+    line-height: 24px;
+}
 .navbarphongee .nav>li:hover>.nav-child{
 
     display: block;
     position: absolute;
     width: 200px;
     background: #fff;
-    left: 0;
+    top:60px;
+    left: 15px;
     z-index: 999;
     list-style: none;
     padding-left: 0;
@@ -567,7 +616,7 @@ textarea, select {
     padding: 10px;
     /*border-top:1px solid #555;*/
     border-bottom: 1px solid #dbdbdb;
-    font-size: 11.5pt;
+    font-size: 9.5pt;
     font-weight: 300;
     -webkit-transition: background-color 150ms linear, color 150ms linear;
     -moz-transition: background-color 150ms linear, color 150ms linear;
@@ -905,7 +954,7 @@ textarea, select {
 
 .widget-product .buttoncart{
     position: absolute;
-    background: url('img/basket.png') no-repeat;
+    background: url('img/basket2.png') no-repeat;
     background-size: 100%;
     width: 30px;
     height: 30px;
@@ -1962,6 +2011,40 @@ figure{
     z-index: 1;
     overflow: hidden;
 }
+.step{
+    text-align: center;
+}
+#stepbar{
+    position: relative;
+}
+#stepbar hr{
+    position: absolute;
+    width: 100%;
+    top:5px;
+    border-width: 2px;
+}
+.stepcircle{
+    border-radius: 50px;
+   width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    line-height: 50px;
+    background: #fff;
+    color: #ddd;
+    display: block;
+}
+.steptext{
+    color: #ddd;
+}
+.steptext.current{
+    color: #000;
+}
+.stepcircle.current{
+    border-color: #000;
+    color: #000;
+    font-weight: bold;
+}
 #catoutter{
     float:left;
     position: relative;
@@ -1986,6 +2069,12 @@ figure{
 #login .input-group-addon{
     background: none;
     border-right: none;
+}
+.stepsum td{
+    font-size: 9pt;
+}
+.padding-15{
+    padding: 15px;
 }
 #event{
     padding: 15px;
@@ -2013,6 +2102,9 @@ figure{
     max-height: 70px;
     width: auto;
 }
+#headerphone{
+    font-size: 10pt;
+}
 @media screen and (max-width:1023){
 
 }
@@ -2030,7 +2122,7 @@ figure{
         display: block;
     }
     #headerphone{
-        display: none;
+        /*display: none;*/
     }
     #top-cat li{
         /*max-width: 33%;*/
@@ -2081,21 +2173,22 @@ figure{
         width:20%;
         display: inline-block;
         float:left;
-        margin-left:1.5%;
+        margin-left:3%;
     }
     .header-tools{
         width:55%;
         display: inline-block;
-        margin-right:1.5%;
+        margin-right:3%;
     }
     #top-header #searchform{
-        width:70%;
-        margin-right:4%;
+        /*width:70%;*/
+        width: auto;
+        /*margin-right:4%;*/
         position: relative;
     }
     #top-header #searchform #s{
         position: absolute;
-        width: 100%;
+        /*width: 100%;*/
     }
     .nav-outer{
         display: none;
@@ -2194,21 +2287,22 @@ figure{
         width:30%;
         display: inline-block;
         float:left;
-        margin-left:1.5%;
+        margin-left:3%;
     }
     .header-tools{
         width:35%;
         display: inline-block;
-        margin-right:1.5%;
+        margin-right:3%;
     }
     #top-header #searchform{
-        width:30%;
-        margin-right:4%;
+        /*width:30%;*/
+       width: auto;
+        /*margin-right:4%;*/
         position: relative;
     }
     #top-header #searchform #s{
         position: absolute;
-        width: 100%;
+        /*width: 100%;*/
     }
     .nav-outer{
        display: none;
@@ -2234,28 +2328,29 @@ figure{
         width:15%;
         display: inline-block;
         float:left;
-        margin-left:1.5%;
+        margin-left:3%;
     }
     .header-tools{
-        width:35%;
+        width:19%;
         display: inline-block;
-        margin-right:1.5%;
+        margin-right:3%;
     }
     #top-header #searchform{
-        width:30%;
-        margin-right:4%;
+        /*width:30%;*/
+        width: auto;
+        /*margin-right:4%;*/
         position: relative;
     }
     #top-header #searchform #s{
         position: absolute;
-        width: 100%;
+        /*width: 100%;*/
     }
-    #top-header #searchform #s:focus{
-        width: 200%;
-    }
+    /*#top-header #searchform #s:focus{*/
+        /*width: 200%;*/
+    /*}*/
 
     .nav-outer{
-        width: 47%;
+        width: 60%;
         display: inline-block;
     }
     #footer .footbox{
@@ -2290,6 +2385,10 @@ figure{
 * LARGE DESKTOP
 */
 @media screen and (min-width:1270px){
+    .navbarphongee .nav>li {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
     #picbox-morepic a{
         height: 100px;
     }
@@ -2301,15 +2400,15 @@ figure{
         width:15%;
         display: inline-block;
         float:left;
-        margin-left:4%;
+        margin-left:3%;
     }
     .header-tools{
-        width:35%;
+        width:20%;
         display: inline-block;
-        margin-right:4%;
+        margin-right:3%;
     }
     .nav-outer{
-        width: 42%;
+        width: 55%;
         display: inline-block;
     }
     #soluong{

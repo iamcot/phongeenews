@@ -30,7 +30,7 @@
                         {{--*/ $sum += ($cart['amount']*$cart['laprice']) /*--}}
                         @endforeach
                         <tr>
-                            <td class=""><strong>Giá Sản phẩm</strong></td>
+                            <td class="">Giá Sản phẩm</td>
                             <td class="text-right">{{number_format($sum,0,',','.')}} VNĐ</td>
                         </tr>
                         @foreach(Session::get('cart') as $cart)
@@ -45,12 +45,14 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td class=""><strong>Phiếu giảm giá</strong>
+                            <td class="">Phiếu giảm giá
 
                                 @if($voucher != null )
-                                <br>( <strong>{{$voucher['id']}}</strong>
+                                ( <strong>{{$voucher['id']}}</strong>
                                 -{{number_format($voucher['value'],0,',','.')}}{{(($voucher['type']=='percent')?'%':'')}}
                                 )
+                                <a href="{{URL::to('cart/delvoucher')}}" title="Xóa voucher này"><span
+                                        class="glyphicon glyphicon-remove-sign"></span></a>
                                 @endif
                             </td>
                             <td class="text-right">
@@ -58,8 +60,10 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class=""><strong>Phí vận chuyển</strong></td>
-                            <td class="text-right" id="feeshippingdisplay">Miễn phí</td>
+                            <td class="">Phí vận chuyển (<strong>{{number_format($sumkhoiluong,0,',','.')}}</strong>
+                                g)<br>
+                                <em id="shippingtime"></em></td>
+                            <td class="text-right" id="feeshippingdisplay"></td>
                         </tr>
 
                     </table>
