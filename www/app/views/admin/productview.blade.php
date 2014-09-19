@@ -24,7 +24,7 @@
             <th>Giá</th>
             <th>Thư mục</th>
             <th>Nhà SX</th>
-            <th>Klg (g)</th>
+            <th>Lượt xem</th>
             <th style="width: 20%">Thông tin ngắn</th>
             <th>Ảnh</th>
             <th></th>
@@ -39,7 +39,7 @@
                 <td>{{number_format($product->laprice,0,',','.')}}</td>
                 <td>{{$product->catname}}</td>
                 <td>{{$product->factorname}}</td>
-                <td>{{$product->lakhoiluong}}</td>
+                <td>{{$product->laview}}</td>
                 <td>{{str_limit($product->lashortinfo,40)}}</td>
                 <td class='imgthumb'>{{ HTML::image('uploads/thumbnails/product/' . $product->laimage, 'IMG') }}</td>
                 <td>

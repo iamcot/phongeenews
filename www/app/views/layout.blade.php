@@ -10,7 +10,7 @@
     <meta name="keywords"
           content="{{((isset($keywords))?$keywords:'')}},{{Config::get('shop.keywords')}}">
     <meta name="robots" content="index,follow">
-    <meta property="fb:app_id" content="753308934688020"/>
+    <meta property="fb:app_id" content="1544722292410133"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,100,900,700&subset=vietnamese'
@@ -105,13 +105,34 @@ $( window ).scroll(function() {
 @if (isset($typeEnd) && $typeEnd!='admin')
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+  window.fbAsyncInit = function() {
+      FB.init({
+          appId      : '1544722292410133',
+          xfbml      : true,
+          version    : 'v2.1'
+      });
+  };
+
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50706272-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 <!--Start of Zopim Live Chat Script-->
 <script type="text/javascript">
 window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=

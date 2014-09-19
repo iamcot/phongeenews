@@ -29,7 +29,9 @@ class ListController extends  BaseController
                     ->orWhere('cat2url','=',$cat);
                 $input = Input::all();
                 if (isset($input['listorder'])) {
-                    if($input['listorder'] == 'giatang')
+                    if($input['listorder'] == 'moinhat')
+                        $lists->orderBy('id','DESC');
+                    else if($input['listorder'] == 'giatang')
                         $lists->orderBy('laprice');
                     else if($input['listorder'] == 'giagiam')
                         $lists->orderBy('laprice','DESC');
@@ -41,7 +43,7 @@ class ListController extends  BaseController
                         $lists->orderBy('laview','DESC');
                 }
                 else{
-                    $lists->orderBy('latitle');
+                    $lists->orderBy('id','DESC');
                 }
 //                $lists->orderBy('order3');
 //                $lists->orderBy('order2');
@@ -71,7 +73,9 @@ class ListController extends  BaseController
 
                 $input = Input::all();
                 if (isset($input['listorder'])) {
-                    if($input['listorder'] == 'giatang')
+                    if($input['listorder'] == 'moinhat')
+                        $ranproduct->orderBy('id','DESC');
+                    else if($input['listorder'] == 'giatang')
                         $ranproduct->orderBy('laprice');
                     else if($input['listorder'] == 'giagiam')
                         $ranproduct->orderBy('laprice','DESC');
@@ -83,7 +87,7 @@ class ListController extends  BaseController
                         $ranproduct->orderBy('laview','DESC');
                 }
                 else{
-                    $ranproduct->orderBy('latitle');
+                    $ranproduct->orderBy('id','DESC');
                 }
 //                $ranproduct->orderBy('order3');
 //                $ranproduct->orderBy('order2');

@@ -8,6 +8,9 @@
                     <span class="arrow fa fa-long-arrow-down"></span></a>
                 <ul  class="mydroomenu" role="menu" aria-labelledby="dLabel">
                     <li>
+                        <a href="javascript:changeOrder('moinhat')">Mới nhất</a>
+                    </li>
+                    <li>
                         <a href="javascript:changeOrder('banchay')">Bán chạy</a>
                     </li>
                     <li>

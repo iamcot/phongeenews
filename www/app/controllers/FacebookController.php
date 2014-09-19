@@ -12,12 +12,13 @@ class FacebookController extends BaseController
     public function anyCallback(){
 
         $code = Input::get('code');
-        if (strlen($code) == 0) return Redirect::to('/')->with('message', 'There was an error communicating with Facebook');
+        if (strlen($code) == 0) return Redirect::to('/login')->with('message', 'LỖI - Không kết nối được facebook');
 
         $facebook = new Facebook(Config::get('facebook'));
         $uid = $facebook->getUser();
 //        var_dump($uid);
-        if ($uid == 0) return Redirect::to('/')->with('message', 'There was an error');
+//        exit;
+        if ($uid == 0) return Redirect::to('/login')->with('message', 'LỖI - Không lấy được Facebook ID');
 
         $me = $facebook->api('/me');
 //        var_dump($me);
