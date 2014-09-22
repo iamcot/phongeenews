@@ -134,10 +134,10 @@ textarea, select {
     -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
     z-index:999;
 }
-#reginput .dropdown-toggle{
+.loginbox .dropdown-toggle{
     background: none;
 }
-#reginput .dropdown-menu{
+.loginbox .dropdown-menu{
     min-width: 10px;
 }
 
