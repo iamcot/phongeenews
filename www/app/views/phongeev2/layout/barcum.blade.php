@@ -1,4 +1,4 @@
-<ol class="breadcrumb col pull-right">
+<ol class="breadcrumb col pull-right hidden-print">
     @if(isset($typeEnd) && $typeEnd == 'shop')
     @elseif(isset($typeEnd) && $typeEnd == 'list')
     {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}

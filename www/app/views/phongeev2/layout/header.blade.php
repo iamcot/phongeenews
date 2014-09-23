@@ -1,4 +1,4 @@
-<div id="top-menu" class="padding-top-5">
+<div id="top-menu" class="padding-top-5 hidden-print">
     <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
         {{--*/ $active = 'mua-sam'; /*--}}
         @foreach(Config::get('shop.topnav') as $cat)
@@ -47,7 +47,7 @@
         </div>
         <a id="mobilecattoggle"" href="javascript:showmenuheader()" onmouseover="showmenuheader()"></a>
 
-        <div class="header-tools">
+        <div class="header-tools hidden-print">
             <div id="cart" class="">
                 <div class="cartinfo pull-right">
                     <div id="searchform" class="pull-right">

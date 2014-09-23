@@ -1,28 +1,18 @@
-<div class="col-xs-6 col-md-7">
+<div class="col-xs-6 col-md-6">
     <dl class="checkoutinfo">
         <dt>Thông tin nhận hàng</dt>
-        {{--*/ $oShipping = Config::get('shop.shipping.'.$orderinfo->lashipping) /*--}}
-        <dd>Ship hàng: <strong>{{$oShipping['value']}}</strong></dd>
-        {{--*/ $oPayment = Config::get('shop.payment.'.$orderinfo->lapayment) /*--}}
-        <dd>Thanh toán: <strong>{{$oPayment['value']}}</strong></dd>
-        <dd>Người nhận: <strong>{{$orderinfo->laordername}}</strong></dd>
-        <dd>SĐT: <strong>{{$orderinfo->laordertel}}</strong></dd>
+        <dd>Ship hàng: <strong>{{$orderinfo->lashipping}}</strong></dd>
+        <dd>Thanh toán: <strong>{{$orderinfo->lapayment}}</strong></dd>
+        <dd>Người nhận: <strong></strong></dd>
+        <dd>SĐT: <strong></strong></dd>
         @if($orderinfo->laorderemail !='')
         <dd>Email: <strong>{{$orderinfo->laorderemail}}</strong></dd>
         @endif
-        <dd>Địa chỉ: <strong>{{$orderinfo->laorderaddr}}</strong></dd>
-        {{--*/ $oProvince = Config::get('shop.province.'.$orderinfo->laorderprovince) /*--}}
-        <dd>Tỉnh: <strong>{{$oProvince['title']}}</strong></dd>
-        @if($orderinfo->laorderdistrict != 0)
-        {{--*/ $oDistrict = Config::get('shop.hcm_district.'.$orderinfo->laorderdistrict) /*--}}
-        <dd>Quận: <strong>{{$oDistrict['title']}}</strong></dd>
-        @endif
-        @if($orderinfo->laordernote !='')
+        <dd>Địa chỉ: <strong></strong></dd>
         <dd>Ghi chú: <strong>{{$orderinfo->laordernote}}</strong></dd>
-        @endif
     </dl>
 </div>
-<div class="col-xs-6 col-md-5 ">
+<div class="col-xs-6 col-md-6 ">
     <strong>Tổng giá trị đơn hàng</strong>
     <table class="table table-responsive">
         <tr>
