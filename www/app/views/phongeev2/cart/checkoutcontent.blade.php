@@ -1,14 +1,20 @@
 <div class="col-xs-6 col-md-6">
     <dl class="checkoutinfo">
         <dt>Thông tin nhận hàng</dt>
-        <dd>Ship hàng: <strong>{{$orderinfo->lashipping}}</strong></dd>
-        <dd>Thanh toán: <strong>{{$orderinfo->lapayment}}</strong></dd>
-        <dd>Người nhận: <strong></strong></dd>
-        <dd>SĐT: <strong></strong></dd>
+        <dd>Thanh toán: <strong>
+                @if($orderinfo->lapayment == 0)
+                tiền mặt
+                @elseif($orderinfo->lapayment == 1)
+                chuyển khoản ngân hàng
+                @endif
+            </strong></dd>
+        {{--*/ $orderaddress = OrderAddress::find($orderinfo->lashipping); /*--}}
+        <dd>Người nhận: <strong>{{$orderaddress->name}}</strong></dd>
+        <dd>SĐT: <strong>{{$orderaddress->tel}}</strong></dd>
         @if($orderinfo->laorderemail !='')
         <dd>Email: <strong>{{$orderinfo->laorderemail}}</strong></dd>
         @endif
-        <dd>Địa chỉ: <strong></strong></dd>
+        <dd>Địa chỉ: <strong>{{$orderaddress->address}}</strong></dd>
         <dd>Ghi chú: <strong>{{$orderinfo->laordernote}}</strong></dd>
     </dl>
 </div>
