@@ -64,9 +64,9 @@
                         <span class="phoneicon"></span>
                         <a class=""> <b>{{Config::get('shop.phone')}}</b></a>
                     </div>
-                    <a id="catoutter" href="{{URL::to('cart')}}">
+                    <a id="catoutter" href="javascript:showflybasket()">
                         <span class="carticon txt-color-red"></span>
-                        <span href="" class="badge carttext">
+                        <span class="badge carttext">
                             {{--*/ $sumcart = Orders::getSumCartItem()/*--}}
                             {{isset($sumcart)?$sumcart:0}}
                         </span>
@@ -74,7 +74,7 @@
                 </div>
                 @if(Session::has('cart'))
                 <div id="basketflybox">
-                    <span class="flybutton glyphicon glyphicon-eject" style="right:10px"></span>
+                    <span class="flybutton glyphicon glyphicon-eject " style="left:180px;top:-15px;color:#fff"></span>
                     <table class="table flybasketcontent">
                         {{--*/ $sumprice = 0 /*--}}
 
@@ -91,7 +91,7 @@
                         @endforeach
 
                         <tr>
-                            <td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}">Thanh toán <span
+                            <td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}" class="pull-right">Thanh toán <span
                                         class="glyphicon glyphicon-play"></span></a></td>
                         </tr>
                     </table>
@@ -126,8 +126,3 @@
 <!--        <span class="badge">{{$sumcart}}</span>-->
 <!--        @endif-->
 <!--    </a>-->
-
-@section('jscript')
-@parent
-
-@stop
