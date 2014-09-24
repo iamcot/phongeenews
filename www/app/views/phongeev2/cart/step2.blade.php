@@ -150,7 +150,12 @@
 @section('jscript')
 <script>
 function step2ctrl($scope){
-    $scope.oldaddress = {{OrderAddress::where('user_id',Auth::user()->id)->get()->toJson()}};
+
+    @if( OrderAddress::where('user_id',Auth::user()->id)->count() > 0 )
+        $scope.oldaddress = {{OrderAddress::where('user_id',Auth::user()->id)->get()->toJson()}};
+    @else
+        $scope.oldaddress =[];
+    @endif
     $scope.billaddress = {
         type:1//new
     };
