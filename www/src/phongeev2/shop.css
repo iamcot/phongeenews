@@ -134,10 +134,10 @@ textarea, select {
     -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
     z-index:999;
 }
-#reginput .dropdown-toggle{
+.loginbox .dropdown-toggle{
     background: none;
 }
-#reginput .dropdown-menu{
+.loginbox .dropdown-menu{
     min-width: 10px;
 }
 
@@ -549,8 +549,9 @@ textarea, select {
     -moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, 0.5);
 }
 .no-padding{
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    /*padding-left: 0 !important;*/
+    /*padding-right: 0 !important;*/
+    padding: 0 !important;
 }
 #productinfocontent{
     font-family: 'Roboto Condensed' !important;
@@ -1665,9 +1666,14 @@ figure{
     margin-bottom: 5px;
 }
 .loginbox input[type=email],
+.loginbox input[type=text],
 .loginbox input[type=password]{
     text-indent: 30px;
     line-height: 30px;
+}
+.step3icon{
+    width: 50px;
+    height: 28px;
 }
 .loginbox .form-group{
     position: relative;
@@ -2008,8 +2014,9 @@ figure{
 .sumcart td{
     border: none !important;
 }
+/*#cartpage .cartblock*/
 .cartblock{
-    background: rgb(245,248,247);
+    background: rgb(245,248,247) !important;
     padding:15px;
     z-index: 1;
     overflow: hidden;
@@ -2058,6 +2065,14 @@ figure{
 }
 #basketflybox{
     display: none;
+}
+#basketflybox{
+    position: absolute;
+    background: #fff;
+    top: 74px;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
 }
 #headermobilecartouter{
 }
@@ -2373,6 +2388,11 @@ figure{
         font-size:8pt;
     }
 
+}
+@media print{
+    #logo img{
+        width: 200px !important;
+    }
 }
 @media screen and (max-width:1269px) and (min-width: 900px) {
     #picbox-morepic a{

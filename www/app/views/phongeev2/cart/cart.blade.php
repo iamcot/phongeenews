@@ -329,12 +329,13 @@
 @stop
 @else
 <div id="cartpage" class="container-fluid">
-    <div class="row-fluid wrap">
+    <div class="row-fluid wrap well borderblue">
     <p class="">Chưa có sản phẩm nào trong giỏ hàng</p>
     <br>
     @if(Session::has('lastorder'))
     <p>Đơn hàng gần nhất của bạn có mã là: <strong>{{Session::get('lastorder')}}</strong>  <a href="{{URL::to('/cart/old/'.Session::get('lastorder'))}}">Xem đơn hàng</a></p>
     @endif
 </div>
+    <br><br>
     @endif
 @stop

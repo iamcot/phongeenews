@@ -36,7 +36,8 @@ class OrdersController extends BaseController
                 $cart['amount'] = $cart['amount'] + $oldcart['amount'];
                 Session::forget('cart.' . $product_id);
                 Session::put('cart.' . $product_id, $cart);
-            } else {
+            }
+            else {
                 Session::put('cart.' . $product_id, $cart);
             }
 //            Session::put('actionstatus',Config::get('actionstatus.cart_has_new'));
@@ -52,12 +53,14 @@ class OrdersController extends BaseController
             if ($type == 1) {
                 $oldcart['amount'] += 1;
                 Session::put('cart.' . $product_id, $oldcart);
-            } else {
+            }
+            else {
                 if ($oldcart['amount'] == 1) {
                     Session::forget('cart.' . $product_id);
                     if (count(Session::get('cart')) <= 0)
                         Session::forget('cart');
-                } else {
+                }
+                else {
                     $oldcart['amount'] -= 1;
                     Session::put('cart.' . $product_id, $oldcart);
                 }
@@ -75,9 +78,11 @@ class OrdersController extends BaseController
 
     public function anyIndex($step = 1)
     {
-       return View::make(Config::get('shop.theme') . "/cart/cart", $this->data);
+        return View::make(Config::get('shop.theme') . "/cart/cart", $this->data);
     }
-    public function getStep($step=1){
+
+    public function getStep($step = 1)
+    {
         $this->data['orderstep'] = $step;
         if ($step == 2)
             return View::make(Config::get('shop.theme') . "/cart/step2", $this->data);
@@ -95,7 +100,8 @@ class OrdersController extends BaseController
             $voucher = Voucher::checkVoucher($input['vouchercode']);
             if ($voucher == null) {
                 $status = Config::get('actionstatus.voucher_not_avail');
-            } else {
+            }
+            else {
                 if (strtotime($voucher['to']) < time())
                     $status = Config::get('actionstatus.voucher_expried');
                 else {
@@ -103,7 +109,8 @@ class OrdersController extends BaseController
                     $status = 0;
                 }
             }
-        } else {
+        }
+        else {
             $status = Config::get('actionstatus.voucher_not_input');
         }
         return Redirect::back()->with('actionstatus', $status);
@@ -123,7 +130,8 @@ class OrdersController extends BaseController
             if ($order->id == Session::get('lastorder', 0) || $order->uid == Session::get('uid', -1) || $order->user_id == Session::get('user_id', -1)) {
                 $this->data['orderitems'] = Orderitem::where('order_id', '=', $order->id)->get();
                 $this->data['title'] = 'Đơn hàng ' . $order->id;
-            } else {
+            }
+            else {
                 $order = null;
             }
 
@@ -138,7 +146,8 @@ class OrdersController extends BaseController
         if (count($input) > 0 && $input['_token'] == Session::get('_token')) {
             if (Session::has('voucher')) {
                 $voucher = Session::get('voucher.id');
-            } else $voucher = '';
+            }
+            else $voucher = '';
             $orderinfo = array(
                 'lashipping' => $input['shipping'],
                 'lapayment' => $input['payment'],
@@ -176,7 +185,8 @@ class OrdersController extends BaseController
             Session::forget('cart');
             Session::forget('voucher');
             return View::make(Config::get('shop.theme') . "/cart/checkoutinfo", $this->data);
-        } else {
+        }
+        else {
             return Redirect::back();
         }
         // var_dump(Session::all());
@@ -201,7 +211,8 @@ class OrdersController extends BaseController
                 $provincelist[$p] = $province[$p];
 //                if($p=='hcm') $enabledistrict = 1;
             }
-        } else {
+        }
+        else {
             foreach ($province as $key => $p) {
                 $provincelist[$key] = $p;
 //                if($key=='hcm') $enabledistrict = 1;
@@ -245,10 +256,12 @@ class OrdersController extends BaseController
                         }
                     }
                 }
-            } else if ($shipmethod == 'ship_post') {
+            }
+            else if ($shipmethod == 'ship_post') {
                 if ($klg >= 2000) {
                     $result['status'] = -1;
-                } else {
+                }
+                else {
                     $postprice = Config::get('shop.postprice');
                     foreach ($postprice as $price) {
                         if ($klg >= $price['klg'])
@@ -261,20 +274,24 @@ class OrdersController extends BaseController
                         }
                     }
                 }
-            } else if ($shipmethod == 'ship_hcm') {
+            }
+            else if ($shipmethod == 'ship_hcm') {
                 $aDistrict = Config::get('shop.hcm_district');
                 $feeshipping = $aDistrict[$district]['fee'];
                 $result['status'] = 1;
-            } else if ($shipmethod == 'ship_xe') {
+            }
+            else if ($shipmethod == 'ship_xe') {
                 $feeshipping = 55000;
                 $result['status'] = 1;
-            } else {
+            }
+            else {
                 $feeshipping = 0;
                 $result['status'] = 1;
             }
             $result['time'] = $aShipping[$shipmethod]['time'];
             $result['feeshipping'] = $feeshipping;
-        } else $result['status'] = 'Permission Error: Request is denined ^^';
+        }
+        else $result['status'] = 'Permission Error: Request is denined ^^';
         return Response::json($result);
     }
 
@@ -341,5 +358,103 @@ class OrdersController extends BaseController
         }
         $newtable = "<thead><tr>" . $trs[1] . "</thead><tbody>" . $newtable . "</tbody>";
         echo $newtable;
+    }
+
+    public function postSavestep3()
+    {
+        $input = Input::all();
+
+        $orderaddr = Session::get('orderaddress');
+        if(isset($input['requireinvole']) && $input['requireinvole']=='on')
+            $requireinvole = 1;
+        else $requireinvole = 0;
+        $cart = Session::get('cart');
+        $sumsp = 0;
+        foreach($cart as $itemc){
+            $sumsp += $itemc['laprice'] * $itemc['amount'];
+        }
+        $giamvoucher = 0;
+        if (Session::has('voucher')) {
+            $voucher = Session::get('voucher');
+            if($voucher['type'] == 'abs')
+                $giamvoucher = $voucher['value'];
+            else{
+                $giamvoucher = $sumsp * $voucher['value']/100;
+            }
+        }
+        else $voucher = null;
+        $orderinfo = array(
+            'labillid' => $orderaddr['billid'],
+            'lashipping' => $orderaddr['deliid'],
+            'lapayment' => $input['typepayment'],
+            'laordernote' => $input['laordernote'],
+            'requireinvole' => $requireinvole,
+            'voucher' => (($voucher!=null)?$voucher['id']:''),
+            'sumsanpham' => $sumsp,
+            'giamvoucher' => $giamvoucher,
+        );
+        if (Session::has('uid')) $orderinfo['uid'] = Session::get('uid');
+        $orderinfo['user_id'] = Auth::user()->id;
+        Session::put('order', $orderinfo);
+        $order = Orders::create($orderinfo);
+        $orderid = $order->id;
+        Session::put('lastorder', $orderid);
+        if (Session::has('cart')) {
+            foreach (Session::get('cart') as $cart) {
+                $cart['order_id'] = $orderid;
+                Session::put('cart.' . $cart['product_id'], $cart);
+                Orderitem::create(Session::get('cart.' . $cart['product_id']));
+            }
+        }
+        Session::forget('cart');
+        Session::forget('voucher');
+        if($orderid)
+            return Redirect::to('cart/step/4')->with('orderid', $orderid);
+        else
+            return Redirect::to('cart')->with('message', 'Có lỗi xảy ra khi đặt hàng, quý khách vui lòng thử lại hoặc liên hệ hotline để thêm thông tin.');
+
+    }
+
+    public function postSavestep2()
+    {
+        $input = Input::all();
+        $orderaddress = array();
+
+        //bill address
+        if (isset($input['typeaddress']) && $input['typeaddress'] == 'old') {
+            $orderaddress['billid'] = $input['billid'];
+        }
+        else if (isset($input['typeaddress']) && $input['typeaddress'] == 'new') {
+            $addr = OrderAddress::create(array(
+                'user_id' => Auth::user()->id,
+                'name' => $input['newbillname'],
+                'sex' => $input['newaddrtitle'],
+                'tel' => $input['newbilltel'],
+                'address' => $input['newbilladdress'],
+            ));
+            $orderaddress['billid'] = $addr->id;
+        }
+
+        //delivery address
+        if (isset($input['differenceaddress']) && $input['differenceaddress'] == 'on') {
+            if (isset($input['typedeliaddress']) && $input['typedeliaddress'] == 'old') {
+                $orderaddress['deliid'] = $input['deliid'];
+            }
+            else if (isset($input['typedeliaddress']) && $input['typedeliaddress'] == 'new') {
+                $addr = OrderAddress::create(array(
+                    'user_id' => Auth::user()->id,
+                    'name' => $input['newdeliname'],
+                    'sex' => $input['newdeliaddrtitle'],
+                    'tel' => $input['newedelitel'],
+                    'address' => $input['newdeliaddress'],
+                ));
+                $orderaddress['deliid'] = $addr->id;
+            }
+        }
+        else {
+            $orderaddress['deliid'] = $orderaddress['billid'];
+        }
+        Session::put('orderaddress', $orderaddress);
+        return Redirect::to('cart/step/3');
     }
 }

@@ -138,7 +138,10 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active" id="tabinfo">{{$oProduct->lainfo}}</div>
+            <div class="tab-pane active" id="tabinfo">
+                {{str_replace("[CLIP]",'<iframe width="100%" height="315" src="//www.youtube.com/embed/'.$oProduct->youtubeid.'" frameborder="0" allowfullscreen></iframe>', $oProduct->lainfo)}}
+
+            </div>
 
             <div class="tab-pane" id="tabhdsd">{{$oProduct->lauseguide}}</div>
 

@@ -62,6 +62,9 @@
 @stop
 @section('jscript')
 <script>
+    @if(Session::has('actionstatus'))
+    showflybasket();
+    @endif
     function showSearch(){
         $("#s").toggle();
     }
