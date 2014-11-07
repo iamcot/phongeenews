@@ -1,7 +1,7 @@
 #phongeenews
 <VirtualHost *:80>
     ServerAdmin admin@phongeenews
-    DocumentRoot "/Users/cot/www/phongeenews/www"
+    DocumentRoot "/Users/admin/www/phongeenews/www"
     ServerName mywww.phongeenews
     ServerAlias mywww.phongeenews
     ErrorLog "/Users/cot/www/log/phongeenews_error_log.txt"
