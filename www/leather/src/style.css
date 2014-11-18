@@ -1,0 +1,39 @@
+body{
+    background: #fff;
+    font: normal 16px/26px Arial, adelle-sans, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+.imgthumb img{
+    max-width: 40px;
+    max-height: 40px;
+}
+img{
+    width: 100%;
+}
+.strike{
+    text-decoration: line-through;
+}
+.bg404{
+    background: url("default/img/error404.jpg") no-repeat center;
+    display: block;
+    width: 600px;
+    height: 450px;
+    margin: 0 auto;
+}
+.clear{
+    clear: both;
+}
+.btn{
+    /*font-size: 20px;*/
+}
+.mylist td{
+    vertical-align: middle !important;
+}
+a{
+    cursor: pointer;
+}
+.carttable td img{
+    max-width: 40px;
+    max-height: 40px;
+}
