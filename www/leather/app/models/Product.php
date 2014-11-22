@@ -5,19 +5,19 @@ class Product extends Eloquent
 
     public static function adminViewProduct($input)
     {
-        $products = DB::table('v_productsadmin as p')
-            ->leftJoin('lacategories as c', 'c.id', '=', 'p.lacategory_id')
-            ->leftJoin('lamanufactors as f', 'p.lamanufactor_id', '=', 'f.id')
-            ->select('p.*', 'c.latitle as catname', 'f.latitle as factorname');
+        $products = DB::table('v_productsadmin')
+            ->leftJoin('lacategories', 'lacategories.id', '=', 'v_productsadmin.lacategory_id')
+            ->leftJoin('lamanufactors', 'v_productsadmin.lamanufactor_id', '=', 'lamanufactors.id')
+            ->select('v_productsadmin.*', 'lacategories.latitle as catname', 'lamanufactors.latitle as factorname');
         if (isset($input['filter']))
-            $products = $products->where('p.latitle', 'like', '%'.$input['filter'].'%');
+            $products = $products->where('v_productsadmin.latitle', 'like', '%'.$input['filter'].'%');
         if(isset($input['filtercat']) && $input['filtercat']!='all')
             $products = $products->where(function($query) use ($input){
-                $query->where('p.cat1id','=', $input['filtercat'])
-                ->orwhere('p.cat2id','=', $input['filtercat'])
-                ->orwhere('p.cat3id','=', $input['filtercat']);
+                $query->where('v_productsadmin.cat1id','=', $input['filtercat'])
+                ->orwhere('v_productsadmin.cat2id','=', $input['filtercat'])
+                ->orwhere('v_productsadmin.cat3id','=', $input['filtercat']);
             });
-        $products = $products->orderBy('p.id', 'DESC')
+        $products = $products->orderBy('v_productsadmin.id', 'DESC')
             ->paginate(Config::get('shop.tablepp'));
 
         return $products;

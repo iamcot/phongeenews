@@ -20,18 +20,23 @@ return array(
     'topnav' => array(
         'news' => array(
             'id' => 'news',
-            'url' => '/tin-tuc',
+            'url' => 'http://phongee.vn/tin-tuc',
             'title' => 'Tin tức',
         ),
         'mua-sam' => array(
             'id' => 'mua-sam',
-            'url' => '/mua-sam',
-            'title' => 'Mua sắm',
+            'url' => 'http://phongee.vn',
+            'title' => 'PhonGee Color',
         ),
         'tv' => array(
             'id' => 'tv',
-            'url' => '/phongeetv',
+            'url' => 'http://phongee.vn/phongeetv',
             'title' => 'Phongee Color TV',
+        ),
+        'leather' => array(
+            'id' => 'leather',
+            'url' => 'http://leather.phongee.vn',
+            'title' => 'Phongee Leather',
         ),
 
     ),

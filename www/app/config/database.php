@@ -57,7 +57,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'phongeenews',
 			'username'  => 'root',
-			'password'  => '',
+			'password'  => 'abc123',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

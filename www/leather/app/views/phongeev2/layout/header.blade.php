@@ -1,6 +1,6 @@
 <div id="top-menu" class="padding-top-5 hidden-print">
     <ul id="top-cat" class="list-inline col-xs-12 col-md-5">
-        {{--*/ $active = 'mua-sam'; /*--}}
+        {{--*/ $active = 'leather'; /*--}}
         @foreach(Config::get('shop.topnav') as $cat)
         <li class="col"><a href="{{$cat['url']}}" class="{{($cat['id']==$active)?'active':''}}">{{$cat['title']}}</a>
         </li>
