@@ -13,6 +13,9 @@ body{
     max-width: 1400px;
     margin: 0 auto;
 }
+a{
+    color:#404041;
+}
 #logo{
     background: url('img/logo.png');
     background-size: 100%;
@@ -49,7 +52,8 @@ body{
     padding-right: 0;
 }
 #slider{
-    margin-top: 100px;
+    margin-top: 32px;
+    position: relative;
 }
 .sliderimg{
     height: 310px;
@@ -90,10 +94,9 @@ body{
 }
 .section-header{
     min-height: 60px;
-    background: url('img/sectionheader.png') no-repeat bottom center;
     background-size: 100%;
     text-align: center;
-    line-height: 50px;
+    line-height: 60px;
     vertical-align: middle;
     margin: 15px;
     font-size: 15pt;
@@ -101,45 +104,63 @@ body{
 
 }
 .section-text{
-    min-height: 96px;
+
+    min-height: 110px;
     line-height: 24px;
     font-size:90%;
-    margin: 15px;
+    margin: 0 15px;
+    display: none;
+}
+#section ul li:hover .section-image{
+    height: 90px;
+    background-position: center;
+}
+#section ul li:hover .section-text{
+    display: block;
+}
+#section ul li:hover .section-header
+{
+    background: url('img/sectionheader.png') no-repeat bottom center;
 }
 .section-image{
     width: 100%;
-    min-height: 90px;
+    height: 200px;
     margin-bottom: 0;
+    background-position: bottom center;
 }
 .section1{
-    background: url('img/section1.png') no-repeat top center;
-    background-size: 100%;
+    background: url('img/footer/footer1.png') no-repeat top center;
+    background-size: cover;
 
 }
 .section2{
-    background: url('img/section2.png') no-repeat top center;
-    background-size: 100%;
+    background: url('img/footer/footer2.png') no-repeat top center;
+    background-size: cover;
 
 }
 .section3{
-    background: url('img/section3.png') no-repeat top center;
-    background-size: 100%;
+    background: url('img/footer/footer3.png') no-repeat top center;
+    background-size: cover;
 
 }
 .section4{
-    background: url('img/section4.png') no-repeat top center;
-    background-size: 100%;
+    background: url('img/footer/footer4.png') no-repeat top center;
+    background-size: cover;
 
 }
 #footer{
     margin-top:40px;
-    padding: 15px 2% 30px 2%;
+    padding: 15px 0 30px 0;
     font-size: 90%;
 }
 #endfooter{
     background: transparent url('img/footerbg.png') repeat-x bottom left;
     height: 62px;
     width: 100%;
+    color: #fff;
+    text-align: center;
+    padding-top: 15px;
+    font-weight: 300;
 }
 #footer li>label{
     min-width: 50px;
@@ -160,4 +181,37 @@ body{
 }
 .client2{
     background: url('img/client2.png') no-repeat center;
+}
+#sidebar{
+    text-align: right;
+    padding-right: 15px;
+}
+#sidebar ul>li>a{
+    color: #79797a;
+    font-size: 18px;
+    border-bottom: 1px solid #b9b9ba;
+    padding: 15px 0 15px 15px;
+    overflow: hidden;
+    display: block;
+}
+#sidebar ul>li>a:hover{
+    color: #404041;
+    text-decoration: none;
+    border-bottom: 1px solid #404041;
+}
+#content h1{
+    border-bottom: 1px solid #b9b9ba;
+    padding-bottom: 10px;
+}
+#content{
+    margin-top: 30px;
+    text-align: justify;
+    font-size: 13pt;
+    font-weight: 300;
+}
+.content img{
+    width: 100%;
+}
+#form-contact label{
+    font-weight: 300;
 }

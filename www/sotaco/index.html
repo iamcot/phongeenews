@@ -2,12 +2,14 @@
 <html ng-app="shopApp">
 <head>
     <title>Sotaco.vn</title>
+    <meta charset="utf-8">
     <link media="all" type="text/css" rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
     <link media="all" type="text/css" rel="stylesheet"
           href="src/bootstrap/css/bootstrap-responsive.min.css">
     <link media="all" type="text/css" rel="stylesheet"
           href="src/bootstrap/css/bootstrap-theme.min.css">
     <link media="all" type="text/css" rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" type="text/css" href="src/rs-plugin/css/settings.css" media="screen" />
 </head>
 <body ng-controller="mainController">
 <div class="wrap">
@@ -17,107 +19,348 @@
                 <a href="/" id="logo"></a>
             </div>
             <div class="col-xs-8 pull-right text-right">
-                <input id="searchform" placeholder="Search for keyword(s)..."  class="pull-right">
+                <input id="searchform" placeholder="Tìm kiếm" class="pull-right">
                 <ul id="nav" class="list-inline">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Gallery</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+                    <li><a href="#">Dịch vụ</a></li>
+                    <li><a href="#">Thư viện</a></li>
+                    <li><a href="lien-he.html">Liên hệ</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
         </div>
         <div id="slider">
-            <div class="sliderimg col-xs-6 slide1"></div>
-            <div class="slidertext col-xs-6 pull-right">
-                <div class="text-1">CONTRUCTION</div>
-                <div class="text-3">ARCHITECT PLAN</div>
-                <div class="text-2">ON WORKING</div>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div id="section">
-            <ul >
-                <li class="col-xs-6 col-md-3">
-                    <div>
-                        <div class="section-header">ARCHITECTURE</div>
-                        <div class="section-text">
-                            Sterling can handle all architectural needs in your current and or future office
-                        </div>
-                        <div class="section-image section1"></div>
-                    </div>
-                </li>
-                <li class="col-xs-6 col-md-3">
-                    <div>
-                    <div class="section-header">CONSTRUCTION</div>
-                    <div class="section-text">
-                        Sterling responsibly manages the intricate and time-consuming details of construction
-                    </div>
-                    <div class="section-image section2"></div>
-                    </div>
-                </li>
+            <div class="tp-banner-container">
+                <div class="tp-banner" >
+                    <ul>
+                        <!-- SLIDE  -->
+                        <li data-transition="scaledownfromleft" data-slotamount="5" data-masterspeed="700" >
+                            <!-- MAIN IMAGE -->
+                            <img src="src/img/slider/baner2.png"  alt="slidebg1"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption customin"
+                                 data-x="700"
+                                 data-y="300"
+                                 data-customin="x:1000;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:75% 25%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
 
-                <li class="col-xs-6 col-md-3">
-                    <div>
-                    <div class="section-header">FURNITURE</div>
-                    <div class="section-text">
-                        Invest wisely in your company's physical surroundings by creating a more productive workplace
-                    </div>
-                    <div class="section-image section3"></div>
-                    </div>
-                </li>
-                <li class="col-xs-6 col-md-3">
-                    <div>
-                    <div class="section-header">OTHER SERVICES</div>
-                    <div class="section-text">
-                        Sterling offers a wide range of other services
-                    </div>
-                    <div class="section-image section4"></div>
-                    </div>
-                </li>
-            </ul>
-            <div class="clear"></div>
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 40px;font-weight: 700"
+                                    >Construction
+                            </div>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption customin"
+                                 data-x="700"
+                                 data-y="340"
+                                 data-customin="x:-100;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
 
-        </div>
-        <div id="footer">
-            <div class="col-xs-12 col-md-5">
-                <div class="blocktitle">CONTACTS</div>
-                <ul class="list-unstyled">
-                    <li>
-                        <label>Address </label>: 363/5 Binh Loi St, Ward 13, Binh Thanh Dist, HCMC
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 60px;font-weight: 900"
+                                    >ARCHITECT PLAN
+                            </div>
                         </li>
-                    <li>
-                        <label>Tel </label>: +84 94 247 4747
-                    </li>
-                    <!--<li>-->
-                        <!--<label>Fax </label>: +84 3825 8333-->
-                    <!--</li>-->
-                    <li>
-                        <label>Website </label>: wwww.sotaco.vn
-                    </li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-md-7">
-                <div class="blocktitle">CLIENT</div>
-                <ul class="list-inline">
-                    <li class="col-xs-3"><a href="#" class="client client1"></a></li>
-                    <li class="col-xs-3"><a href="#" class="client client2"></a></li>
+                        <li data-transition="scaledownfromright" data-slotamount="5" data-masterspeed="700" >
+                            <!-- MAIN IMAGE -->
+                            <img src="src/img/slider/baner3.png"  alt="slidebg2"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption customin"
+                                 data-x="50"
+                                 data-y="300"
+                                 data-customin="x:0;y:-200;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:75% 25%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 40px;font-weight: 700"
+                                    >Construction
+                            </div>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption customin"
+                                 data-x="50"
+                                 data-y="340"
+                                 data-customin="x:1000;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 60px;font-weight: 900"
+                                    >ARCHITECT PLAN
+                            </div>
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption customin"
+                                 data-x="50"
+                                 data-y="420"
+                                 data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="2000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="none"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 32px;font-weight: 400;background: #333;color:#fff;border-radius: 4px;height: 36px;padding: 2px;line-height: 32px;"
+                                    >ON WORKING
+                            </div>
+                        </li>
+                        <li data-transition="incube-horizontal" data-slotamount="5" data-masterspeed="700" >
+                            <!-- MAIN IMAGE -->
+                            <img src="src/img/slider/baner4.png"  alt="slidebg3"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption customin"
+                                 data-x="600"
+                                 data-y="100"
+                                 data-customin="x:1000;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:75% 25%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 40px;font-weight: 700"
+                                    >Construction
+                            </div>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption customin"
+                                 data-x="600"
+                                 data-y="140"
+                                 data-customin="x:-100;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 60px;font-weight: 900"
+                                    >ARCHITECT PLAN
+                            </div>
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption customin"
+                                 data-x="600"
+                                 data-y="220"
+                                 data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1500"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="none"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 32px;font-weight: 300;"
+                                    >ON WORKING
+                            </div>
+                        </li>
+                        <li data-transition="cubic" data-slotamount="5" data-masterspeed="700" >
+                            <!-- MAIN IMAGE -->
+                            <img src="src/img/slider/baner5.png"  alt="slidebg4"  data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption customin"
+                                 data-x="center"
+                                 data-y="100"
+                                 data-customin="x:1000;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:75% 25%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 40px;font-weight: 700"
+                                    >Construction
+                            </div>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption customin"
+                                 data-x="center"
+                                 data-y="140"
+                                 data-customin="x:-100;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 60px;font-weight: 700;letter-spacing: 10px;"
+                                    >ARCHITECT PLAN
+                            </div>
+
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption customin"
+                                 data-x="center"
+                                 data-y="220"
+                                 data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1500"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="none"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 32px;font-weight: 300;"
+                                    >ON WORKING
+                            </div>
+                        </li>
+                        <li data-transition="flyin" data-slotamount="5" data-masterspeed="700" >
+                            <!-- MAIN IMAGE -->
+                            <img src="src/img/slider/baner6.png"  alt="slidebg5"  data-bgfit="cover" data-bgposition="right top" data-bgrepeat="no-repeat">
+                            <!-- LAYERS -->
+                            <!-- LAYER NR. 1 -->
+                            <div class="tp-caption customin"
+                                 data-x="300"
+                                 data-y="200"
+                                 data-customin="x:1000;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:75% 25%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 40px;font-weight: 700"
+                                    >Construction
+                            </div>
+                            <!-- LAYER NR. 2 -->
+                            <div class="tp-caption customin"
+                                 data-x="80"
+                                 data-y="240"
+                                 data-customin="x:-100;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1000"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="lines"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 60px;font-weight: 900"
+                                    >ARCHITECT PLAN
+                            </div>
+                            <!-- LAYER NR. 3 -->
+                            <div class="tp-caption customin"
+                                 data-x="300"
+                                 data-y="320"
+                                 data-customin="x:0;y:100;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:1;scaleY:1;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:0% 0%;"
+                                 data-start="1500"
+                                 data-speed="600"
+                                 data-easing="Circ.easeIn"
+
+                                 data-splitin="none"
+                                 data-elementdelay="0.1"
+                                 style="font-size: 32px;font-weight: 300;"
+                                    >ON WORKING
+                            </div>
+                        </li>
                     </ul>
                 </div>
-            <div class="clear"></div>
+            </div>
+                <div class="clear"></div>
+            </div>
+            <div id="section">
+                <ul style="padding: 0">
+                    <li class="col-xs-6 col-md-3">
+                        <div>
+                            <div class="section-header">ARCHITECTURE</div>
+                            <div class="section-text">
+                                Sterling can handle all architectural needs in your current and or future office
+                            </div>
+                            <div class="section-image section1"></div>
+                        </div>
+                    </li>
+                    <li class="col-xs-6 col-md-3">
+                        <div>
+                            <div class="section-header">CONSTRUCTION</div>
+                            <div class="section-text">
+                                Sterling responsibly manages the intricate and time-consuming details of construction
+                            </div>
+                            <div class="section-image section2"></div>
+                        </div>
+                    </li>
+
+                    <li class="col-xs-6 col-md-3">
+                        <div>
+                            <div class="section-header">FURNITURE</div>
+                            <div class="section-text">
+                                Invest wisely in your company's physical surroundings by creating a more productive
+                                workplace
+                            </div>
+                            <div class="section-image section3"></div>
+                        </div>
+                    </li>
+                    <li class="col-xs-6 col-md-3">
+                        <div>
+                            <div class="section-header">OTHER SERVICES</div>
+                            <div class="section-text">
+                                Sterling offers a wide range of other services
+                            </div>
+                            <div class="section-image section4"></div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+
+            </div>
+            <div id="footer">
+                <div class="col-xs-12 col-md-5">
+                    <div class="blocktitle">CÔNG TY KIẾN TRÚC - XÂY DỰNG SOTACO</div>
+                    <ul class="list-unstyled" style="margin-left: 0">
+                        <li>
+                            <label>MST:</label> 0312911801
+                        </li>
+                        <li>
+                            <label>Address: </label> 363/5 Bình Lợi, P.13, Q.Bình Thạnh, Tp,HCM
+                        </li>
+                        <li>
+                            <label>Điện thoại: </label> 0866 839 839 <label> - Fax: </label> 0862 947 947
+                        </li>
+                        <li>
+                            <label>Số tài khoản: </label> 0721000558830 - NH Vietcombank - CN Kỳ Đồng
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-md-7">
+                    <div class="blocktitle">&nbsp;</div>
+                    <ul class="list-inline">
+                        <li class="col-xs-3"><a href="#" class="client client1"></a></li>
+                        <li class="col-xs-3"><a href="#" class="client client2"></a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
         </div>
     </div>
-</div>
-<div id="endfooter"></div>
+    <div id="endfooter">Copyright &copy; SOTACO CONSTRUCTION</div>
 
 </body>
 </html>
 <script src="src/js/jquery.js"></script>
 <script src="src/js/angular.min.js"></script>
+<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+<script type="text/javascript" src="src/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+<script type="text/javascript" src="src/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+
 <script src="src/bootstrap/js/bootstrap.min.js"></script>
 <script>
-app = angular.module('shopApp',[]);
-app.controller('mainController',['$scope',function($scope){
+    app = angular.module('shopApp', []);
+    app.controller('mainController', ['$scope', function ($scope) {
 
-}]);
+    }]);
+</script>
+<!-- THE SCRIPT INITIALISATION -->
+<!-- LOOK THE DOCUMENTATION FOR MORE INFORMATIONS -->
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('.tp-banner').revolution(
+                {
+                    delay:3000,
+                    startwidth:1170,
+                    startheight:500,
+                    hideThumbs:10
+                });
+    });
 </script>
