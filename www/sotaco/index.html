@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="src/rs-plugin/css/settings.css" media="screen" />
 </head>
 <body ng-controller="mainController">
-<div class="wrap">
+<div >
     <div class="row-fluid">
-        <div id="header">
+        <div id="header" class="wrap">
             <div class="col-xs-4">
                 <a href="/" id="logo"></a>
             </div>
@@ -261,7 +261,8 @@
             </div>
                 <div class="clear"></div>
             </div>
-            <div id="section">
+        <div class="row-fluid wrap">
+            <div id="section" class="">
                 <ul style="padding: 0">
                     <li class="col-xs-6 col-md-3">
                         <div>
@@ -332,6 +333,7 @@
                 </div>
                 <div class="clear"></div>
             </div>
+            </div>
         </div>
     </div>
     <div id="endfooter">Copyright &copy; SOTACO CONSTRUCTION</div>
@@ -360,7 +362,10 @@
                     delay:3000,
                     startwidth:1170,
                     startheight:500,
-                    hideThumbs:10
+                    hideThumbs:10,
+                    fullWidth:"on",
+                    fullScreen:"off",
+                    onHoverStop:"off"
                 });
     });
 </script>
