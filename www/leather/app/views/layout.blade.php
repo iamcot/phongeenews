@@ -22,6 +22,7 @@
     {{HTML::style('src/bootstrap/css/datepicker.css')}}
     {{HTML::style('src/'.Config::get('shop.theme').'/jquery.raty.css')}}
     {{HTML::style('src/'.Config::get('shop.theme').'/angular-motion.min.css')}}
+    {{HTML::style('src/'.Config::get('shop.theme').'/autocomplete.css')}}
     @if (isset($typeEnd) && $typeEnd=='admin')
     {{HTML::style('src/style.css')}}
     @else
@@ -63,10 +64,12 @@
 {{HTML::script('src/'.Config::get('shop.theme').'/jquery.raty.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/angular.min.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/angular-animate.min.js')}}
+{{HTML::script('src/'.Config::get('shop.theme').'/ui-bootstrap-tpls-0.12.0.min.js')}}
+{{HTML::script('src/'.Config::get('shop.theme').'/autocomplete.js')}}
 {{HTML::script('src/'.Config::get('shop.theme').'/cloud-zoom.1.0.3.js')}}
 {{HTML::script('src/bootstrap/js/bootstrap-datepicker.js')}}
 <script>
-   app = angular.module('shopApp', []);
+   app = angular.module('shopApp', ['ui.bootstrap','autocomplete']);
    app.filter('paging', function() {
        return function(input, total) {
            total = parseInt(total);

@@ -1,10 +1,100 @@
 @extends('layout')
 @section('body')
-<div class="span12">
+<div ng-controller="adminordercontroller">
+<style>
+.no-padding{
+padding-left: 0 !important;
+padding-right: 0 !important;
+}
+.autocomplete input{
+    font-size: 1em!important;
+    padding: 2px !important;
+}
+</style>
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Tạo đơn hàng mới</h3>
+        </div>
+        <div class="modal-body">
+            <p ng-if="nofi" class="alert alert-info">@{{ nofi }}</p>
+            <form role="form">
+              <div class="form-group col-xs-6">
+                <label for="ordername">Tên khách hàng</label>
+                <input type="text" class="form-control" id="ordername" ng-model="order.name" placeholder="Tên khách hàng">
+              </div>
+              <div class="form-group col-xs-6">
+                <label for="ordersdt">Số điện thoại</label>
+                <input type="text" class="form-control" id="ordersdt" ng-model="order.sdt" placeholder="Số điện thoại">
+              </div>
+              <div class="form-group col-xs-12">
+                <label for="orderaddress">Địa chỉ giao hàng</label>
+                <input type="text" class="form-control" id="orderaddress" ng-model="order.address" placeholder="Địa chỉ giao hàng">
+              </div>
+              <div>
+                 <div class="form-group col-xs-5">
+                    <label for="newitemname">Tên Sản phẩm</label>
+                    <autocomplete placeholder="" ng-model="newitem.title" data="searchresult" on-type="searchproduct"></autocomplete>
+                  </div>
+                 <div class="form-group col-xs-1 no-padding">
+                    <label for="newitemid">ID</label>
+                    <label class="form-control" >@{{ newitem.id }}</label>
+                  </div>
+                 <div class="form-group col-xs-1 no-padding">
+                    <label for="newitemslg">S/lg</label>
+                    <input type="text" class="form-control" id="newitemslg" ng-model="newitem.amount" placeholder="S/lg">
+                  </div>
+                 <div class="form-group col-xs-2 no-padding">
+                    <label for="newitemgia">Giá</label>
+                    <input type="text" class="form-control" id="newitemgia" ng-model="newitem.price" placeholder="Giá">
+                  </div>
+                 <div class="form-group col-xs-2 no-padding">
+                    <label for="newitemthanhtien" >Thành tiền</label>
+                    <label class="form-control" >@{{ newitem.amount * newitem.price }}</label>
+                  </div>
+                 <div class="form-group col-xs-1">
+                 <label for="">&nbsp;</label>
+                    <button class="btn btn-success pull-right" ng-click="addproduct()"><i class="glyphicon glyphicon-plus"></i></button>
+                  </div>
+                </div>
+                              <div class="clear"></div>
+                <div ng-repeat="item in order.orderitems">
+                       <div class="form-group col-xs-5">
+                          <input type="text" class="form-control" id="itemname@{{$index}}" ng-model="item.title" placeholder="Tên SP">
+                        </div>
+                       <div class="form-group col-xs-1 no-padding">
+                          <label class="form-control" >@{{ item.id }}</label>
+                        </div>
+                       <div class="form-group col-xs-1 no-padding">
+                          <input type="text" class="form-control" id="itemslg@{{$index}}" ng-model="item.amount" placeholder="S/lg">
+                        </div>
+                       <div class="form-group col-xs-2 no-padding">
+                          <input type="text" class="form-control" id="itemgia@{{$index}}" ng-model="item.price" placeholder="Giá">
+                        </div>
+                       <div class="form-group col-xs-2 no-padding">
+                          <label class="form-control" >@{{ item.amount * item.price }}</label>
+                          </div>
+                       <div class="form-group col-xs-1">
+                          <button class="btn btn-dagger pull-right" ng-click="delproduct($index)"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                        </div>
+                        </div>
+                        <div class="clear"></div>
+                    <div>
+              </div>
+              </form>
+              <div class="clear"></div>
+        </div>
+        <div class="modal-footer">
+        <div class="pull-left">Tổng tiền: <strong>@{{ ordertotal() }}</strong></div>
+            <button class="btn btn-success" ng-click="ok()">Lưu</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+<div class="col-xs-12">
     {{--*/ $adminNav = Config::get('admin.adminnav') /*--}}
     {{--*/ $strActCat = $adminNav[$actCat] /*--}}
-    <h2><strong>{{trans('common.'.$strActCat['title'])}}</strong></h2>
-
+    <h2><strong>{{trans('common.'.$strActCat['title'])}}</strong>
+        <button class="btn btn-primary pull-right" ng-click="openformorder()"><i class="glyphicon glyphicon-bookmark"></i> Thêm đơn hàng</button>
+</h2>
 </div>
 
 <div class="col-xs-12">
@@ -66,8 +156,130 @@
     <table class="table table-responsive table-bordered" id="trackcontent">
     </table>
 </div>
+
+</div>
 @stop
 @section('jscript')
+<script>
+    app.controller('adminordercontroller',['$scope','$modal',function($scope,$modal){
+            $scope.openformorder = function(){
+                var modalInstance = $modal.open({
+                      templateUrl: 'myModalContent.html',
+                      controller: 'ModalInstanceCtrl',
+                      size: 'lg'
+                    });
+
+                    modalInstance.result.then(function (rs) {
+                        if(rs == 1){
+                            window.location.reload();
+                        }
+                    }, function () {
+                    });
+            }
+       }]);
+       app.controller('ModalInstanceCtrl', function ($scope, $modalInstance,$http) {
+            $scope.newitem = {
+                 id:'',
+                 title:'',
+                 amount:1,
+                 price:''
+            };
+            $scope.order = {
+                name:'',
+                sdt:'',
+                address:'',
+                orderitems:[],
+                sum:0
+
+            }
+            $scope.addproduct = function(){
+                if($scope.newitem.id==''){
+                    $scope.nofi = 'Không thể thêm sản phẩm không có ID';
+                    return;
+                }
+                $scope.order.orderitems.push($scope.newitem);
+                 $scope.newitem = {
+                                 id:'',
+                                 title:'',
+                                 amount:1,
+                                 price:''
+                            };
+            };
+            $scope.ordertotal = function(){
+                var sum = 0;
+                angular.forEach($scope.order.orderitems, function(val,key){
+                    sum += val.amount * val.price;
+                });
+            $scope.order.sum = sum;
+                return sum;
+            };
+            $scope.searchflag='';
+            $scope.searchresult = [];
+            $scope.searchmin = 3;
+            $scope.searchproduct = function(typed){
+                if(typed.length >= $scope.searchmin ){
+                    if($scope.searchflag==''){
+                        $scope.searchflag = typed;
+                        $scope.searchresult = [];
+                        $http.get('searchproduct/'+$scope.searchflag)
+                            .success(function(data){
+                                if(data.length == 1){
+                                    value = data[0];
+                                    $scope.newitem = {
+                                         id:value.id,
+                                         title:value.latitle,
+                                         amount:1,
+                                         price:value.laprice,
+                                         image:value.laimage,
+                                        url:value.laurl,
+                                        varname:value.lashortinfo
+                                    };
+                                }
+                                else{
+                                    angular.forEach(data,function(value,key){
+                                        $scope.searchresult.push(value.latitle);
+                                    });
+                                }
+
+                            $scope.searchflag = '';
+                            });
+                    }
+                }
+                if(typed.length < $scope.searchmin){
+                    //reset search key
+                    $scope.searchflag = '';
+                }
+            };
+            $scope.delproduct = function(index){
+                $scope.order.orderitems.splice(index,1);
+            }
+
+             $scope.ok = function () {
+             $scope.nofi = null;
+                if($scope.order.name == '' || $scope.order.sdt == '' || $scope.order.address == '' || $scope.order.orderitems.length == 0){
+                    $scope.nofi = 'Bạn chưa nhập đủ thông tin đơn hàng hoặc chưa có sản phẩm nào.';
+                    return;
+                }
+                $http.post('saveorder',{
+                    _token: '<?php echo Session::get('_token');?>',
+                    order: $scope.order
+                }).success(function(data){
+                    if(data == 1){
+                        $modalInstance.close(1);
+                    }
+                    else{
+                        $scope.nofi = data;
+                    }
+                });
+//             console.log($scope.order);
+//               $modalInstance.close();
+             };
+
+             $scope.cancel = function () {
+               $modalInstance.dismiss('cancel');
+             };
+           });
+</script>
      <script>
      function changestatus(orderid,status){
          $.ajax({

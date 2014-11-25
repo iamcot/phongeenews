@@ -591,4 +591,48 @@ class ShopAdminController extends BaseController
         }
 
     }
+    public function getSearchproduct($key){
+        $product = Product::where('latitle','like','%'.$key.'%')->limit(10)->get();
+        if(count($product) > 0) return $product->toJson();
+        else return null;
+    }
+    public function postSaveorder(){
+        $input = Input::get('order');
+        if($input){
+            $orderinfo = array(
+                'laordername' => $input['name'],
+                'laordertel' => $input['sdt'],
+                'laorderaddr' => $input['address'],
+                'sumsanpham' => $input['sum'],
+                'laordernote' => 'from_admin',
+            );
+            $orderinfo['user_id'] = Auth::user()->id;
+            $order = Orders::create($orderinfo);
+            if($order){
+                $rs = 0;
+                foreach($input['orderitems'] as $item){
+                    $cart = array(
+                        'product_id' => $item['id'],
+                        'latitle' => $item['title'],
+                        'amount' => $item['amount'],
+                        'laprice' => $item['price'],
+                        'variantname' => $item['varname'],
+//                        'caturl' => $input['caturl'],
+                        'producturl' => $item['url'],
+//                        'variantid' => $product->lavariant_id,
+                        'laimage' => $item['image'],
+                        'order_id' => $order->id,
+                    );
+                    $cartitem = Orderitem::create($cart);
+                    if($cartitem) $rs++;
+                }
+                if ($rs == count($input['orderitems'])) echo 1;
+                else echo -2;
+            }
+            else{
+                echo -1;
+            }
+        }
+        else echo 0;
+    }
 }
