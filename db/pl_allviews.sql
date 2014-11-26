@@ -33,7 +33,7 @@ CREATE OR REPLACE
         COALESCE(c3.id,0) cat3id, COALESCE(c3.latitle,'') cat3name,COALESCE(c3.laurl,'') cat3url,
         f.id factorid, f.latitle factorname, f.laurl factorurl,
         (p.laoldprice - p.laprice) pricechange,
-        (SELECT SUM(i.amount) FROM laorderitems i WHERE i.product_id = p.id OR i.variantid = p.id) numorder
+        (SELECT SUM(i.amount) FROM pl_laorderitems i WHERE i.product_id = p.id OR i.variantid = p.id) numorder
          FROM pl_laproducts p
         LEFT OUTER JOIN pl_lamanufactors f
         ON f.id = p.lamanufactor_id
