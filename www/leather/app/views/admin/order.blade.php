@@ -221,7 +221,11 @@ padding-right: 0 !important;
                     if($scope.searchflag==''){
                         $scope.searchflag = typed;
                         $scope.searchresult = [];
-                        $http.get('searchproduct/'+$scope.searchflag)
+                        $http.post('searchproduct',{
+                            search:$scope.searchflag,
+                            _token: '<?php echo Session::get('_token');?>'
+
+                        })
                             .success(function(data){
                                 if(data.length == 1){
                                     value = data[0];

@@ -591,7 +591,8 @@ class ShopAdminController extends BaseController
         }
 
     }
-    public function getSearchproduct($key){
+    public function anySearchproduct(){
+        $key = Input::get('search');
         $product = Product::where('latitle','like','%'.$key.'%')->limit(10)->get();
         if(count($product) > 0) return $product->toJson();
         else return null;
