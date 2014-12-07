@@ -20,8 +20,8 @@
             </div>
             <div ng-if="billaddress.type==0">
                 <div class="form-group col-xs-12">
-                    <select name="billid" class="form-control no-radius-right">
-                        <option ng-repeat="address in oldaddress" value="@{{address.id}}" ng-selected="currentbillid == address.id">@{{address.name +"|" +address.tel + "|"+address.address}}</option>
+                    <select name="billid" class="form-control no-radius-right" >
+                        <option ng-if="address.address && address.name" ng-repeat="address in oldaddress" value="@{{address.id}}" ng-selected="currentbillid == address.id">@{{address.name +"|" +address.tel + "|"+address.address}}</option>
                     </select>
                 </div>
             </div>

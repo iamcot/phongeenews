@@ -33,12 +33,18 @@
                 <div id="infopayment1" class="col-xs-12" ng-if="paymenttype==1">
                     <div class="panel  panel-default">
                         <div class="panel-heading cartblock">
-                            <b>THÔNG TIN TÀI KHOẢN PHONGEE COLOR</b>
+                            <b>THÔNG TIN TÀI KHOẢN PHONGEE LEATHER</b>
                         </div>
                         <div class="panel-body">
                             <b>Vietcombank</b><br>
-                            <b>Tên Tài khoản:</b> Cty CPTM Dịch vụ Nhất Phong<br>
-                            <b>Số Tài khoản:</b> 1234567890
+                            <b>Tên Tài khoản:</b> Nguyễn Thị Quỳnh Chi<br>
+                            <b>Số Tài khoản:</b> 072 1000 561 584<br>
+                             <b>Chi nhánh</b> Phan Xích Long, Q.Phú Nhuận
+                            <hr>
+                            <b>Eximbank</b><br>
+                            <b>Tên Tài khoản:</b> Nguyễn Thị Quỳnh Chi<br>
+                            <b>Số Tài khoản:</b> 21111 4949  143 640 <br>
+                            <b>Chi nhánh</b> Văn Thánh, Q.Bình Thạnh
                             <hr>
                         </div>
                     </div>

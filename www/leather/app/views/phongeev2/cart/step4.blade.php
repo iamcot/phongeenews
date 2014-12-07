@@ -11,7 +11,6 @@
              <p>Mã đơn hàng của bạn là #{{Session::get('orderid')}}</p>
              <p>Thời gian giao hàng dự kiến là <b>48 giờ</b>, không kể thứ 7 & Chủ nhật.</p>
             <br>
-             <p><b>Lưu ý:</b> Nhằm xử lí đơn hàng nhanh,<br> có thể chúng tôi sẽ không gọi điện để xác nhận đơn hàng.</p>
          </div>
         <div class="clear"></div>
         @endif
