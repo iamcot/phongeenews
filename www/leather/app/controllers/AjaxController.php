@@ -1,16 +1,18 @@
 <?php
 class AjaxController extends BaseController{
-    public function anyGetvariant($id){
+    public function anyGetvariant($id,$orgid){
+        if($id==0){
+            $id = $orgid;
+        }
         $variants = Product::find($id);
         $otherpics = Image::where('laproduct_id','=',$id)
             ->where('lapic','!=',$variants->laimage)
-            ->take(1)
+            ->take(4)
             ->get();
         if(count($otherpics)>0){
-            $otherpic = $otherpics[0];
-            $variants['lapic'] = $otherpic->lapic;
+            $variants['lapic'] = $otherpics->toArray();
         }
-          else $variants['lapic'] = $variants->laimage;
+          else $variants['lapic'] = [['lapic'=>$variants->laimage]];
         return Response::json($variants);
     }
 

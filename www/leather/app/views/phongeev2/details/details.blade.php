@@ -64,6 +64,7 @@
         </div>
 
         <div id="picbox" class="tab-pane active">
+        @if($oProduct->laimage != '')
             <div id="picbox-mainimg" >
                 <a href="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" class="cloud-zoom" rel="adjustX: 50, adjustY:-4" id="zoom1">
                     <img  rel="image_src" id="mainpicimg" src="{{URL::to('/uploads/product/'.$oProduct->laimage)}}" >
@@ -81,6 +82,7 @@
                 @endforeach
 
             </div>
+            @endif
             <div class="clearfix"></div>
             <br>
 
@@ -95,9 +97,10 @@
                         <dd>
                             <ul id="variant" class="list-inline">
                                 <li style="font-size:9pt">Chọn mẫu:</li>
+                                <li><a class="variantthumb" title="Reset" href="javascript:changevariant(0,{{$oProduct->id}})"><i class="glyphicon glyphicon-refresh"></i></a></li>
                                 @foreach($variants as $vari)
                                 <li>
-                                    <a href="javascript:changevariant({{$vari->id}})"
+                                    <a href="javascript:changevariant({{$vari->id}},{{$oProduct->id}})"
                                        class="bbcloud-zoom-gallery" rel="useZoom: 'zoom1', smallImage: '{{URL::to('/uploads/product/'.$vari->laimage)}}' " >
                                         <img src="{{URL::to('/uploads/thumbnails/product/'.$vari->laimage)}}"
                                              title="{{$vari->lashortinfo}}" class="variantthumb">
@@ -288,10 +291,7 @@
 
     <div class="row  no-padding widgetcontent detailsrelate">
 
-            <a class="details-relate-indi details-relate-left mycarousel-control" href="#carousel-example-genericnews" data-slide="prev">
-            </a>
-            <a class="details-relate-indi details-relate-right  mycarousel-control" href="#carousel-example-genericnews" data-slide="next">
-            </a>
+
         {{--*/ $lists = Vproduct::where('isnews','0')
         ->orderby('laview','desc')
         ->orderby('id','desc')
@@ -324,23 +324,40 @@
     })
     function changepic(file) {
         $("#mainpicimg").attr('src', "{{URL::to('/uploads/product/')}}/" + file);
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+
     }
-    function changevariant(id) {
+    function changevariant(id,orgid) {
         $("#variantselectname").html("");
         $("#variantselectname").removeClass("label label-warning");
         $("#variantselectname").addClass("ajaxload");
         $.ajax({
-            url: "{{URL::to('/ajax/getvariant')}}/" + id,
+            url: "{{URL::to('/ajax/getvariant')}}/" + id+"/"+orgid,
             success: function (msg) {
                 var response = eval(msg);
-                $("#mainpicimg").attr('src', "{{URL::to('/uploads/product/')}}/" + msg.lapic);
-                $("#variantselect").val(msg.id);
-                $("#variantselectname").html(msg.lashortinfo);
-                $("#variantselectname").removeClass("ajaxload");
-                $("#variantselectname").addClass("label label-warning");
-                $("input[name=laproduct_id]").val(msg.id);
-                $("#variantselectnameinput").val(msg.lashortinfo);
-                $("#addtocart").removeAttr("disabled");
+                $("#mainpicimg").attr('src', "{{URL::to('/uploads/product/')}}/" + response.lapic[0].lapic);
+                var morepic = '';
+                for(var i=0;i<response.lapic.length;i++){
+                    morepic += '<a href="{{URL::to("/uploads/product/")}}/'+response.lapic[i].lapic+'"  ' +
+                     'class="cloud-zoom-gallery" rel="useZoom: \'zoom1\', smallImage: \'{{URL::to('/uploads/product/')}}/'+response.lapic[i].lapic+'\' ">' +
+                      '<img src="{{URL::to('/uploads/thumbnails/product/')}}/'+response.lapic[i].lapic+'"' +
+                       '></a>';
+                }
+
+                $("#picbox-morepic").html(morepic);
+                $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();
+                if (id!=0){
+                    $("input[name=laproduct_id]").val(msg.id);
+                    $("#variantselectnameinput").val(msg.lashortinfo);
+                    $("#addtocart").removeAttr("disabled");
+                }
+                else {
+                    $("input[name=laproduct_id]").val('');
+                    $("#variantselectnameinput").val('');
+                    $("#addtocart").addAttr("disabled");
+                }
+                $(".variantthumb").tooltip();
+
             }
         });
     }
