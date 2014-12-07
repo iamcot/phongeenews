@@ -225,18 +225,13 @@
         <button type="button" class="btn btn-white">+</button>
     </div>
     <div class="col-xs-12 col-sm-7 no-padding text-right">
-        <button class=" details-cart-button buynow "
-        {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>
-        <div style="text-align: center;line-height: 10px;vertical-align: baseline;position: relative">
-            <span class="carticon"></span>
-
-            <div style="display: inline-block;vertical-align: top;line-height: 20px">Mua ngay</div>
-        </div>
-
-        </button>
         <button id="addtocart" class="  details-cart-button addcart"
         {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>
-            <div style="display: inline-block;vertical-align: top;line-height: 20px">Thêm vào giỏ</div>
+            <div style="text-align: center;line-height: 10px;vertical-align: baseline;position: relative">
+                        <span class="carticon"></span>
+
+                        <div style="display: inline-block;vertical-align: top;line-height: 20px">Mua hàng</div>
+                    </div>
         </button>
     </div>
     {{ Form::close() }}

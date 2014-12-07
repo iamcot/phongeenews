@@ -72,31 +72,7 @@
                         </span>
                     </a>
                 </div>
-                @if(Session::has('cart'))
-                <div id="basketflybox">
-                    <span class="flybutton glyphicon glyphicon-eject " style="left:180px;top:-15px;color:#fff"></span>
-                    <table class="table flybasketcontent">
-                        {{--*/ $sumprice = 0 /*--}}
 
-                        @foreach(Session::get('cart') as $item)
-                        <tr>
-                            <td class="col-xs-8 text-left"><strong>{{$item['latitle']}}</strong>
-                                {{$item['variantname']}} x {{$item['amount']}}
-                            </td>
-                            <td class="text-right"><span class="glyphicon glyphicon-usd"></span>
-                                {{number_format($item['amount'] * $item['laprice'],0,',','.')}}
-                            </td>
-                        </tr>
-                        {{--*/ $sumprice += ($item['amount'] * $item['laprice']) /*--}}
-                        @endforeach
-
-                        <tr>
-                            <td colspan="2" class="text-right"><a href="{{URL::to('/cart/')}}" class="pull-right">Thanh toán <span
-                                        class="glyphicon glyphicon-play"></span></a></td>
-                        </tr>
-                    </table>
-                </div>
-                @endif
 
             </div>
 
@@ -119,10 +95,48 @@
     <!-- end container -->
     <div class="clearfix"></div>
 </div>
+@if(Session::has('cart'))
+<div id="basketflybox">
+    <div class="overlay"></div>
+    <div class="contentbasket">
+        {{--<span class="flybutton glyphicon glyphicon-eject " style="left:180px;top:-15px;color:#fff"></span>--}}
+        <div class="col-xs-8" style=" padding:20px;background: #fff;">
+        <p><a href="" ><img src="{{URL::to('public/logo.png')}}" style="width: 100px"></a></p>
+        <table class="table flybasketcontent">
+                    {{--*/ $sumprice = 0 /*--}}
+                    @foreach(Session::get('cart') as $item)
+                    <tr>
+                        <td class="col-xs-2 no-padding">
+                        @if($item['laimage'])
+                            <img style="100%" src="{{URL::to('uploads/medium/product/'.$item['laimage'])}}">
+                            @endif
+                        </td>
+                        <td class="col-xs-6 text-left">
 
-<!--    <a title="Xem giỏ hàng" href="{{URL::to('/cart/')}}" class="bag pull-right col-sm-1 col-xs-4 hidden-print" >-->
-<!--        {{--*/ $sumcart = Orders::getSumCartItem()/*--}}-->
-<!--        @if($sumcart>0)-->
-<!--        <span class="badge">{{$sumcart}}</span>-->
-<!--        @endif-->
-<!--    </a>-->
+                        <strong>{{$item['latitle']}}</strong><br>
+                            {{$item['variantname']}}
+                        </td>
+                        <td class="text-right col-xs-4">{{$item['amount']}} x {{number_format( $item['laprice'],0,',','.')}}
+                        </td>
+                    </tr>
+                    {{--*/ $sumprice += ($item['amount'] * $item['laprice']) /*--}}
+                    @endforeach
+
+                    <tr>
+                        <td colspan="3" class="text-right">
+                            TỔNG: <b>{{number_format($sumprice,'0',',','.')}}</b>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+        <div class="col-xs-4 flybasketfunction" style="vertical-align: middle">
+
+        <p style="margin-top: 30px;text-align: center;font-size: 10pt;">Cảm ơn bạn đã đặt hàng tại {{ Config::get('shop.title') }}</p>
+        <a href="javascript:hideflybasket()" style="position: absolute;top:10px; right:10px;"><i class="glyphicon glyphicon-remove"></i></a>
+            <a href="{{URL::to('/cart/')}}" style="width: 90%;margin-top: 20px;" class="details-cart-button addcart">Thanh toán</a>
+            <a href="javascript:hideflybasket()" style="width: 90%;margin-top: 5px; text-align: center" class="details-cart-button cancel">Tiếp tục mua hàng</a>
+        </div>
+
+    </div>
+</div>
+@endif
