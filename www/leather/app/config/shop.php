@@ -94,8 +94,14 @@ return array(
         ),
         'pay_cod' => array(
             'id' => 'pay_cod',
-            'value' => 'COD (thanh toán khi nhận bưu phẩm)',
+            'value' => 'COD',
         ),
+    ),
+    'loaihang' => array(
+        'store' => 'Cửa hàng',
+        'ngoaigiao' => 'Ngoại giao',
+        'kygui' => 'Ký gửi',
+        'khac' => 'Khác'
     ),
     'province' => array(
         'hcm' => array( 'id' => 'hcm','title' =>'TP Hồ Chí Minh' ,'group' => 0,'guixe'=>'0','code'=>'70,76'),

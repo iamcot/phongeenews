@@ -13,7 +13,7 @@
     @foreach($orderitems as $cart)
     <tr>
         <td class="text-center">{{$count}}</td>
-        <td class="cartimg hidden-print">{{HTML::image('/uploads/thumbnails/product/'.$cart->laimage)}}</td>
+        <td class="cartimg hidden-print">{{($cart->laimage != '')?HTML::image('/uploads/thumbnails/product/'.$cart->laimage):''}}</td>
         <td><a href="{{URL::to($cart->caturl.'/'.$cart->producturl.'.html')}}" target="_BLANK">{{$cart->latitle}}</a>
             {{$cart->variantname}}
         </td>

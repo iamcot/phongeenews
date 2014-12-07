@@ -26,6 +26,23 @@ padding-right: 0 !important;
                 <label for="ordersdt">Số điện thoại</label>
                 <input type="text" class="form-control" id="ordersdt" ng-model="order.sdt" placeholder="Số điện thoại">
               </div>
+              <div class="form-group col-xs-6">
+                <label for="orderthanhtoan">Thanh toán</label>
+                <select class="form-control" id="orderthanhtoan" ng-model="order.lapayment">
+                    <option value="pay_tienmat">Trực tiếp</option>
+                    <option value="pay_cod">COD</option>
+                    <option value="pay_chuyenkhoan">Chuyển khoản</option>
+                </select>
+              </div>
+              <div class="form-group col-xs-6">
+                <label for="orderloaihang">Loại hàng</label>
+                 <select class="form-control" id="orderloaihang" ng-model="order.loaihang">
+                    <option value="store">Cửa hàng</option>
+                    <option value="ngoaigiao">Ngoại giao</option>
+                    <option value="kygui">Ký gửi</option>
+                    <option value="khac">Khác</option>
+                </select>
+              </div>
               <div class="form-group col-xs-12">
                 <label for="orderaddress">Địa chỉ giao hàng</label>
                 <input type="text" class="form-control" id="orderaddress" ng-model="order.address" placeholder="Địa chỉ giao hàng">
@@ -93,7 +110,7 @@ padding-right: 0 !important;
     {{--*/ $adminNav = Config::get('admin.adminnav') /*--}}
     {{--*/ $strActCat = $adminNav[$actCat] /*--}}
     <h2><strong>{{trans('common.'.$strActCat['title'])}}</strong>
-        <button class="btn btn-primary pull-right" ng-click="openformorder()"><i class="glyphicon glyphicon-bookmark"></i> Thêm đơn hàng</button>
+        <button class="btn btn-primary pull-right" ng-click="openformorder('new')"><i class="glyphicon glyphicon-bookmark"></i> Thêm đơn hàng</button>
 </h2>
 </div>
 
@@ -110,6 +127,7 @@ padding-right: 0 !important;
             <th>Giao hàng</th>
             <th style="width: 185px">Mã Bưu phẩm</th>
             <th>Thanh toán</th>
+            <th>Loại hàng</th>
             <th>Ghi chú</th>
             <th>Trạng thái</th>
             <th></th>
@@ -126,7 +144,9 @@ padding-right: 0 !important;
             {{--*/ $oPayment = Config::get('shop.payment.'.$order->lapayment) /*--}}
             {{--*/ $oProvince = Config::get('shop.province.'.$order->laorderprovince) /*--}}
             {{--*/ $oDistrict = Config::get('shop.hcm_district.'.$order->laorderdistrict) /*--}}
-            <td><a class="label label-primary" id="a{{$order->id}}" href="javascript:viewDetail({{$order->id}})"> {{$order->id}} </a></td>
+            <td><a class="label label-primary" id="a{{$order->id}}" href="javascript:viewDetail({{$order->id}})"> {{$order->id}} </a>
+            <a class="pull-right" href="" ng-click="openformorder({{$order->id}})"><i class="glyphicon glyphicon-pencil"></i></a>
+            </td>
             <td>{{date("H:i d/m/Y",strtotime($order->created_at))}}</td>
             <td><a class="sumpopup" title="{{$details}}" data-placement="right">{{number_format($order->sumsanpham - $order->giamvoucher + $order->lafeeshipping,0,',','.')}}</a></td>
             <td>{{$order->laordername}}</td>
@@ -138,6 +158,7 @@ padding-right: 0 !important;
             <td>{{$order->lashipping}}</td>
             <td><input style="width: 130px" id="trackid{{$order->id}}" value="{{$order->latrackid}}"><a class="glyphicon glyphicon-save" href="javascript:savetrackid({{$order->id}})"></a><a class="glyphicon glyphicon-eye-open" href="javascript:findtrackid({{$order->id}})"></a></td>
             <td>{{$oPayment['value']}}</td>
+            <td>{{Config::get('shop.loaihang.'.$order['loaihang'])}}</td>
             <td>{{nl2br($order->laordernote)}}</td>
             <td id="status{{$order->id}}"><span class="label label-{{Config::get('shop.orderstatus.'.$order->order_status.'.color')}}">{{Config::get('shop.orderstatus.'.$order->order_status.'.value')}}</span></td>
             <td>
@@ -161,37 +182,86 @@ padding-right: 0 !important;
 @stop
 @section('jscript')
 <script>
-    app.controller('adminordercontroller',['$scope','$modal',function($scope,$modal){
-            $scope.openformorder = function(){
+    app.controller('adminordercontroller',['$scope','$modal','$http',function($scope,$modal,$http){
+            $scope.openformorder = function(type){
+                if(type == 'new'){
+                    actionopenform(null);
+                }
+                else {
+                    $http.get('orderjx/'+type)
+                    .success(function(data){
+                        actionopenform(data);
+                    });
+                }
+            };
+            function actionopenform(order){
                 var modalInstance = $modal.open({
-                      templateUrl: 'myModalContent.html',
-                      controller: 'ModalInstanceCtrl',
-                      size: 'lg'
-                    });
+                  templateUrl: 'myModalContent.html',
+                  controller: 'ModalInstanceCtrl',
+                  size: 'lg',
+                  resolve: {
+                  data: function ()
+                     {
+                       return order;
+                     }
+                 }
+                });
 
-                    modalInstance.result.then(function (rs) {
-                        if(rs == 1){
-                            window.location.reload();
-                        }
-                    }, function () {
-                    });
+                modalInstance.result.then(function (rs) {
+                    if(rs == 1){
+                        window.location.reload();
+                    }
+                }, function () {
+                });
             }
        }]);
-       app.controller('ModalInstanceCtrl', function ($scope, $modalInstance,$http) {
+       app.controller('ModalInstanceCtrl', function ($scope, $modalInstance,$http,data) {
             $scope.newitem = {
                  id:'',
                  title:'',
                  amount:1,
                  price:''
             };
-            $scope.order = {
-                name:'',
-                sdt:'',
-                address:'',
-                orderitems:[],
-                sum:0
 
+            console.log(data);
+            if(data == null){
+                $scope.order = {
+                    name:'',
+                    sdt:'',
+                    address:'',
+                    loaihang:'store',
+                    lapayment:'pay_tienmat',
+                    orderitems:[],
+                    sum:0
+                };
             }
+            else {
+                $scope.order = {
+                    id:data.order.id,
+                    name:data.order.laordername,
+                    sdt:data.order.laordertel,
+                    address: data.order.laorderaddr,
+                    loaihang: data.order.loaihang,
+                    lapayment:data.order.lapayment,
+                    orderitems:[],
+                    sum:0
+                }
+                for(var i=0;i<data.orderitem.length;i++){
+                    var value = data.orderitem[i];
+                    $scope.order.orderitems[i] = {
+                        id:value.id,
+                         title:value.latitle,
+                         amount:value.amount,
+                         price:value.laprice,
+                         image:value.laimage,
+                         url:value.producturl,
+                         varname:value.variantname
+                    };
+                    $scope.order.sum += (value.amount * value.laprice);
+                }
+            }
+
+
             $scope.addproduct = function(){
                 if($scope.newitem.id==''){
                     $scope.nofi = 'Không thể thêm sản phẩm không có ID';

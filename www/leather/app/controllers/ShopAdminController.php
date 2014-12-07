@@ -301,9 +301,13 @@ class ShopAdminController extends BaseController
     public function getEditproduct($id, $variant = 0)
     {
         if ($variant == 0)
+        {
             $dbCat = Product::find($id);
+        }
         else if ($variant == 1)
+        {
             $dbCat = Vproduct::find($id);
+        }
         $this->data['actCat'] = 'product';
         $this->data['sidecat'] = 'create';
         $this->data['variant'] = $variant;
@@ -604,12 +608,27 @@ class ShopAdminController extends BaseController
                 'laordername' => $input['name'],
                 'laordertel' => $input['sdt'],
                 'laorderaddr' => $input['address'],
+                'lapayment' => $input['lapayment'],
+                'loaihang' => $input['loaihang'],
                 'sumsanpham' => $input['sum'],
                 'laordernote' => 'from_admin',
+                'user_id' => Auth::user()->id,
             );
-            $orderinfo['user_id'] = Auth::user()->id;
-            $order = Orders::create($orderinfo);
+
+            $editorder = false;
+            if(isset($input['id']) && $input['id']!=''){
+                $order = Orders::find($input['id']);
+                $order->update($orderinfo);
+                $editorder = true;
+            }
+            else{
+                $order = Orders::create($orderinfo);
+            }
             if($order){
+                //delete all order item if edit
+                if($editorder){
+                    Orderitem::where('order_id',$order->id)->delete();
+                }
                 $rs = 0;
                 foreach($input['orderitems'] as $item){
                     $cart = array(
@@ -635,5 +654,15 @@ class ShopAdminController extends BaseController
             }
         }
         else echo 0;
+    }
+    public function getOrderjx($id){
+        $order = Orders::find($id)->toArray();;
+        $data = array();
+        if($order){
+            $data['order'] = $order;
+            $orderitems = Orderitem::where('order_id',$id)->get()->toArray();
+            $data['orderitem'] = $orderitems;
+        }
+        return Response::json($data);
     }
 }
