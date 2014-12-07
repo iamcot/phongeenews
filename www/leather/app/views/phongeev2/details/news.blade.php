@@ -25,7 +25,7 @@
                     </div>
                     @endif
                     <div class="entry-content">
-                        {{$news->lainfo}}
+                        {{str_replace('\\','',$news->lainfo)}}
 
                     </div>
 

@@ -931,9 +931,14 @@ textarea, select {
     /* Standard syntax */
     /*transition-duration: 500ms;*/
 }
-.widget-product .imgHolder img:hover{
-   /*max-height: 180px;*/
-    /*max-width: 100%;*/
+.widget-product:hover  .image1{
+   display: none;
+}
+.widget-product:hover  .image2{
+   display: inline-block;
+}
+.widget-product  .image2{
+   display: none;
 }
 .widgetinfo {
     margin-top:10px;

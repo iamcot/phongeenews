@@ -194,8 +194,8 @@ array(
 <br>
 <div class="">
     {{ Form::label('lainfo','Thông tin ',array()) }}
-    {{ Form::textarea('lainfo',(($catedit != null && $variant == 0)?$catedit->lainfo:'') ,array("class"=>"ckeditor") )
-    }}
+        <textarea name="lainfo" class="ckeditor">{{{(($catedit != null && $variant == 0)?str_replace('\\','',$catedit->lainfo):'')}}}</textarea>
+
 </div>
 <br>
 

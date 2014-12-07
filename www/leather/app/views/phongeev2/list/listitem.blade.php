@@ -1,13 +1,16 @@
 <li class="col col-sm-3 col-xs-6 listpage" itemprop="itemListElement" itemscope itemtype="http://schema.org/Product">
     <div class="widget-product ">
         <div class="tophover">
-    @if($list->laimage !='')
         <a class="imgHolder" href="{{URL::to($list->cat1url.'/'.$list->laurl.'.html')}}">
-            <img src="{{URL::to('/uploads/medium/product/'.$list->laimage)}}">
+        @if($list->laimage =='') {{--*/ $list->laimage=URL::to('public/noimage.png'); /*--}}
+        @else
+        {{--*/ $list->laimage = URL::to('/uploads/medium/product/'.$list->laimage)/*--}}
+        @endif
+            <img src="{{$list->laimage}}" class="image1">
+            <img src="{{($list->laimage2!='')?URL::to('/uploads/medium/product/'.$list->laimage2):$list->laimage}}" class="image2">
                 <a href="" class="col-xs-6 favor"><span>Yêu thích</span></a>
                 <a href="" class="col-xs-6 addcart">Thêm vào giỏ</a>
         </a>
-        @endif
         </div>
         <div class="widgetinfo">
          <a class="buttoncart" href="{{URL::to($list->cat1url.'/'.$list->laurl.'.html')}}"></a>

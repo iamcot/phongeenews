@@ -161,6 +161,7 @@ array(
         <tr id='tr{{$currmorepic}}'>
             <td style='padding: 3px;'>
                 <input type='radio' name='laimage' value='{{$pic->lapic}}' {{(($pic->lapic == $catedit->laimage)?'checked=checked':'')}}>
+                <input type='radio' name='laimage2' value='{{$pic->lapic}}' {{(($pic->lapic == $catedit->laimage2)?'checked=checked':'')}}>
                 <input type='hidden' name='mprepictype{{$currmorepic}}' value="old">
                 <img style='max-height: 50px;max-width: 50px;' src='{{URL::to('/uploads/thumbnails/product/'.$pic->lapic)}}'>
                 </td>
@@ -194,8 +195,7 @@ array(
 <br>
 <div class="">
     {{ Form::label('lainfo','Thông tin ',array()) }}
-    {{ Form::textarea('lainfo',(($catedit != null && $variant == 0)?$catedit->lainfo:'') ,array("class"=>"ckeditor") )
-    }}
+    <textarea name="lainfo" class="ckeditor">{{{(($catedit != null && $variant == 0)?str_replace('\\','',$catedit->lainfo):'')}}}</textarea>
 </div>
 <br>
 
@@ -257,6 +257,7 @@ array(
                         $('#uploadlinks').append( "<tr id='tr"+$("#currmorepic").val()+"'>" +
                             "<td style='padding: 3px;'>" +
                             "<input type='radio' name='laimage' value='"+file.name+"' "+((parseInt($("#currmorepic").val())==0)?"checked=checked":"")+"> " +
+                            "<input type='radio' name='laimage2' value='"+file.name+"' "+((parseInt($("#currmorepic").val())==0)?"checked=checked":"")+"> " +
                             "<input type='hidden' name='mprepictype"+$("#currmorepic").val()+"' value='new'>" +
                             "<img style='max-height: 50px;max-width: 50px;' src='"+file.thumbnailUrl+"'>" +
                             "</td> <td> Order"+

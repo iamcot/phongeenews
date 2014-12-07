@@ -3,13 +3,25 @@
     itemtype="http://schema.org/Product">
     <div class="widget-product ">
         <div class="tophover">
-            <a class="imgHolder"
+            <a class="imgHolder" ng-if="list.laimage!=''"
                href="{{URL::to('/')}}/@{{list.cat1url+'/'+list.laurl+'.html'}}">
                 <img
-                    src="{{URL::to('/uploads/medium/product')}}/@{{list.laimage}}">
+                    src="{{URL::to('/uploads/medium/product')}}/@{{list.laimage}}" class="image1">
+                <img
+                    src="{{URL::to('/uploads/medium/product')}}/@{{(list.image2!=''?list.laimage2:list.image)}}" class="image2">
                 <a href="" class="col-xs-6 favor"><span>Yêu thích</span></a>
                 <a href="" class="col-xs-6 addcart">Thêm vào giỏ</a>
             </a>
+            <a class="imgHolder" ng-if="list.laimage==''"
+               href="{{URL::to('/')}}/@{{list.cat1url+'/'+list.laurl+'.html'}}">
+                <img
+                    src="{{URL::to('public/noimage.png')}}" class="image1">
+                <img
+                    src="{{URL::to('public/noimage.png')}}" class="image2">
+                <a href="" class="col-xs-6 favor"><span>Yêu thích</span></a>
+                <a href="" class="col-xs-6 addcart">Thêm vào giỏ</a>
+            </a>
+
         </div>
         <div class="widgetinfo">
             <a class="buttoncart" href="{{URL::to('/')}}/@{{list.cat1url+'/'+list.laurl+'.html'}}"></a>

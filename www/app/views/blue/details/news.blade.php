@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="entry-content">
-                        {{str_replace("[CLIP]",'<iframe width="100%" height="315" src="//www.youtube.com/embed/'.$news->youtubeid.'" frameborder="0" allowfullscreen></iframe>', $news->lainfo)}}
+                        {{str_replace("[CLIP]",'<iframe width="100%" height="315" src="//www.youtube.com/embed/'.$news->youtubeid.'" frameborder="0" allowfullscreen></iframe>', str_replace('\\','',$news->lainfo))}}
 
                     </div>
 

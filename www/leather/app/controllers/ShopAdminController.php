@@ -258,6 +258,9 @@ class ShopAdminController extends BaseController
                     if (isset($input['laimage']))
                         $dbCat->laimage = $input['laimage'];
                     else $dbCat->laimage="";
+                    if (isset($input['laimage2']))
+                        $dbCat->laimage2 = $input['laimage2'];
+                    else $dbCat->laimage2="";
                     $dbCat->save();
                     for ($i = 0; $i < $input['currmorepic']; $i++) {
                         if (isset($input['morepic' . $i]) && $input['morepic' . $i] != '' && $input['mprepictype' . $i] == 'new') {

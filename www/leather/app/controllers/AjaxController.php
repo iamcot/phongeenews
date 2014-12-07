@@ -12,7 +12,7 @@ class AjaxController extends BaseController{
         if(count($otherpics)>0){
             $variants['lapic'] = $otherpics->toArray();
         }
-          else $variants['lapic'] = [['lapic'=>$variants->laimage]];
+          else $variants['lapic'] = array(array('lapic'=>$variants->laimage));
         return Response::json($variants);
     }
 
