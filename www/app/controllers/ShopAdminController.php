@@ -295,7 +295,13 @@ class ShopAdminController extends BaseController
         }
         $this->data['sidecat'] = $flag;
         $this->data['variant'] = 0;
-        return View::make('admin/product', $this->data);
+        if(isset($input['export'])) {
+            $filter = (isset($input['filtercat'])?'-cat-'.$input['filtercat']:'').(isset($input['filter'])?'-filter-'.$input['filter']:'');
+            return Response::download(Product::createProductsCsv($filter,$this->data['products']));
+        }
+        else{
+            return View::make('admin/product', $this->data);
+        }
     }
 
     public function getEditproduct($id, $variant = 0)

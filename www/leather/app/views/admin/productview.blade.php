@@ -1,14 +1,17 @@
 <div class="col-xs-8">
     {{Form::open(array('method'=>'get'))}}
-    <div class="col-xs-6">
+    <div class="col-xs-4">
     {{Form::text('filter',(( Input::has('filter') )?Input::get('filter'):''),array('class'=>'form-control','placeholder'=>'Lọc theo tên sản phẩm ','style'=>'display:inline-block'))}}
     </div>
-    <div class="col-xs-6">
-        <select name='filtercat'>
+    <div class="col-xs-4">
+        <select name='filtercat' class="form-control">
             <option value="all">Tất cả</option>
             {{$cats}}
         </select>
-        <button class="btn btn-primary btn-sm">Lọc</button>
+        </div>
+        <div class="col-xs-4">
+        <button class="btn btn-primary btn-sm" name="butfilter">Lọc</button>
+        <button class="btn btn-default btn-sm" name="export" value="csv">Xuất báo cáo</button>
     </div>
 </div>
 <div class="col-xs-4">

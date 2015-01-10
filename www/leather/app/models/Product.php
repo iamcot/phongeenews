@@ -17,10 +17,36 @@ class Product extends Eloquent
                 ->orwhere('v_productsadmin.cat2id','=', $input['filtercat'])
                 ->orwhere('v_productsadmin.cat3id','=', $input['filtercat']);
             });
-        $products = $products->orderBy('v_productsadmin.id', 'DESC')
-            ->paginate(Config::get('shop.tablepp'));
-
+        $products = $products->orderBy('v_productsadmin.id', 'DESC');
+        if(!isset($input['export'])) {
+            $products = $products->paginate(Config::get('shop.tablepp'));
+        }
+        else {
+            $products = $products->get();
+        }
         return $products;
+    }
+
+    public static function createProductsCsv($file,$products){
+        $path =  base_path().'/uploads/csv/reportProduct'.$file.'-'.date('Y-m-d').'.csv';
+        $file = fopen($path, 'w');
+        header("Content-Type: text/csv; charset=UTF-8");
+        fputcsv($file,array('ID','Title','URL','Price','Shortinfo','Variant','View'));
+        foreach ($products as $row) {
+            $array = array(
+                $row->id,
+                $row->latitle,
+                $row->laurl,
+                $row->laprice,
+                $row->lashortinfo,
+                $row->lavariant_id,
+                $row->laview,
+            );
+            header("Content-Type: text/csv; charset=UTF-8");
+            fputcsv($file, $array);
+        }
+        fclose($file);
+        return $path;
     }
 
     public function validate($input)
