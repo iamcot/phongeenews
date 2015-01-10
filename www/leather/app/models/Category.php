@@ -74,6 +74,9 @@ class Category extends Eloquent
                 case 3:
                     $html .= "Liên kết";
                     break;
+                case 4:
+                    $html .= "Gallery";
+                    break;
             }
             $html .= "</td><td>" . $cat['laurl'] . "</td>
                     <td>" . str_limit($cat['lainfo'], 40) . "</td>

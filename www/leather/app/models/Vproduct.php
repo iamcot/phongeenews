@@ -30,16 +30,16 @@ class Vproduct extends Eloquent{
 
     }
     public static function getNewsArchive(){
-        return DB::table('v_products AS v')
-            ->where('v.layear','!=','')
-            ->where('v.isnews','=','1')
-            ->groupby('v.layear')
-            ->groupby('v.lamonth')
-            ->orderby('v.layear','DESC')
-            ->orderby('v.lamonth','DESC')
-            ->select('v.layear','v.lamonth',
-                DB::raw(' (SELECT COUNT(v2.id) FROM v_products AS v2 WHERE v2.layear=v.layear AND v2.lamonth = v.lamonth) AS countmonth'),
-                DB::raw(' (SELECT COUNT(v2.id) FROM v_products AS v2 WHERE v2.layear=v.layear ) AS countyear')
+        return DB::table('v_products')
+            ->where('v_products.layear','!=','')
+            ->where('v_products.isnews','=','1')
+            ->groupby('v_products.layear')
+            ->groupby('v_products.lamonth')
+            ->orderby('v_products.layear','DESC')
+            ->orderby('v_products.lamonth','DESC')
+            ->select('v_products.layear','v_products.lamonth',
+                DB::raw(' (SELECT COUNT(id) FROM v_products WHERE layear=v_products.layear AND lamonth = v_products.lamonth) AS countmonth'),
+                DB::raw(' (SELECT COUNT(id) FROM v_products WHERE layear=v_products.layear ) AS countyear')
             )
             ->get();
     }

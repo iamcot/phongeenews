@@ -57,6 +57,10 @@
         <input type="radio" name="isnews"  value="3" {{((isset($catedit) && $catedit->isnews==3)?'checked=checked':'')}}> Là liên kết
     </label>
     <br>
+    <label>
+        <input type="radio" name="isnews"  value="4" {{((isset($catedit) && $catedit->isnews==4)?'checked=checked':'')}}> Là Gallery
+    </label>
+    <br>
     <div class="input-group">
     {{ Form::submit("Lưu",array('class'=>'btn btn-success')) }}
     </div>

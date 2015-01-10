@@ -174,7 +174,7 @@
                         {{date('d/m',$oProduct->ladatenew)}} có hàng
                     @endif
                 </div>
-                <div><strong>Bảo hành:</strong> 12 tháng</div>
+                <div><strong>Bảo hành:</strong> {{($oProduct->cat1url =='phu-kien' || $oProduct->cat2url =='phu-kien' || $oProduct->cat3url =='phu-kien')?'1':'12'}} tháng</div>
             </li>
             <li style="float:right">
                 <div><strong>Giao hàng:</strong> trong vòng 48 giờ</div>
@@ -222,7 +222,7 @@
         <button type="button" class="btn btn-white">+</button>
     </div>
     <div class="col-xs-12 col-sm-7 no-padding text-right">
-        <button class=" details-cart-button buynow "
+        <button class=" details-cart-button buynow " style="display:none"
         {{(($oProduct->sumvariant > 0)?'disabled="disabled"':'')}}>
         <div style="text-align: center;line-height: 10px;vertical-align: baseline;position: relative">
             <span class="carticon"></span>

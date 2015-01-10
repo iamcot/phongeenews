@@ -102,7 +102,12 @@ class ListController extends  BaseController
             App::abort(404);
         }
 
-        return View::make(Config::get('shop.theme')."/list/list",$this->data);
+        if($this->data['actCat']->isnews == 4) {
+            return View::make(Config::get('shop.theme')."/list/listgallery",$this->data);
+        }
+        else {
+            return View::make(Config::get('shop.theme')."/list/list",$this->data);
+        }
     }
     public function showsearch(){
         $searchkey = Input::get('search');
