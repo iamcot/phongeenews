@@ -29,6 +29,7 @@
             <th>Nhà SX</th>
             <th>Lượt xem</th>
             <th style="width: 20%">Thông tin ngắn</th>
+            <th>Số ảnh</th>
             <th>Ảnh</th>
             <th></th>
         </tr>
@@ -44,6 +45,7 @@
                 <td>{{$product->factorname}}</td>
                 <td>{{$product->laview}}</td>
                 <td>{{str_limit($product->lashortinfo,40)}}</td>
+                <td>{{$product->countimage}}</td>
                 <td class='imgthumb'>{{ HTML::image('uploads/thumbnails/product/' . $product->laimage, 'IMG') }}</td>
                 <td>
                     @if($product->lavariant_id == 0)

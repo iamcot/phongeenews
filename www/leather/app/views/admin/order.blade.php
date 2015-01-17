@@ -109,8 +109,22 @@ padding-right: 0 !important;
 <div class="col-xs-12">
     {{--*/ $adminNav = Config::get('admin.adminnav') /*--}}
     {{--*/ $strActCat = $adminNav[$actCat] /*--}}
-    <h2><strong>{{trans('common.'.$strActCat['title'])}}</strong>
-        <button class="btn btn-primary pull-right" ng-click="openformorder('new')"><i class="glyphicon glyphicon-bookmark"></i> Thêm đơn hàng</button>
+    <h2>
+        <strong>{{trans('common.'.$strActCat['title'])}}</strong>
+        <div class="col col-xs-8 pull-right">
+        {{Form::open(array(
+            'method'=>'get',
+        ))}}
+            <div class="col col-xs-3"><input type="date" name="from" class="form-control" value="{{Input::has('from')?Input::get('from'):''}}"></div>
+            <div class="col col-xs-3"><input type="date" name="to" class="form-control" value="{{Input::has('to')?Input::get('to'):''}}"></div>
+            <div class="col col-xs-6">
+                <button class="btn btn-default" name="submit" value="view">Xem</button>
+                <button class="btn btn-default" name="submit" value="csv">Xuất báo cáo</button>
+                <button class="btn btn-primary pull-right" ng-click="openformorder('new')"><i class="glyphicon glyphicon-bookmark"></i> Thêm đơn hàng</button>
+            </div>
+            {{Form::close()}}
+        </div>
+
 </h2>
 </div>
 

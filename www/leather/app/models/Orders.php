@@ -27,4 +27,32 @@ class Orders extends Eloquent{
         return DB::table('laorders')->insertGetId($array);
     }
 
+    public static function createOrdersCsv($oders){
+        $path =  base_path().'/uploads/csv/reportOrders'.'-'.date('Y-m-d').'.csv';
+        $file = fopen($path, 'w');
+        fputcsv($file,array('ID','Date Order','Total','Customer','Tel','Address','Payment','Type','Status','Note','Updated_at'));
+        foreach ($oders as $order) {
+            $oShipping = Config::get('shop.shipping.'.$order->lashipping);
+            $oPayment = Config::get('shop.payment.'.$order->lapayment);
+            $oProvince = Config::get('shop.province.'.$order->laorderprovince);
+            $oDistrict = Config::get('shop.hcm_district.'.$order->laorderdistrict);
+            $array = array(
+                $order->id,
+                $order->created_at,
+                ($order->sumsanpham - $order->giamvoucher + $order->lafeeshipping),
+                Product::removesign($order->laordername),
+                $order->laordertel,
+                Product::removesign($order->laorderaddr.(($oDistrict!=null)?', '.$oDistrict['title'].',':'').$oProvince['title']),
+                Product::removesign($oPayment['value']),
+                Product::removesign(Config::get('shop.loaihang.'.$order['loaihang'])),
+                Product::removesign(Config::get('shop.orderstatus.'.$order->order_status.'.value')),
+                Product::removesign($order->laordernote),
+                $order->updated_at,
+            );
+            fputcsv($file, $array);
+        }
+        fclose($file);
+
+        return $path;
+    }
 }

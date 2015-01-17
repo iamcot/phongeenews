@@ -341,7 +341,22 @@ class ShopAdminController extends BaseController
     public function anyOrder()
     {
         $this->data['actCat'] = 'order';
-        $this->data['oOrders'] = Orders::orderBy('order_status')->orderBy('id', 'desc')->paginate(Config::get('shop.tablepp'));
+        if(Input::has('submit') && Input::get('submit') == 'csv') {
+            $oOrders = Orders::where('created_at','>=',date('Y-m-d 00:00:00',strtotime(Input::get('from'))))
+                ->where('created_at','<=',date('Y-m-d 23:59:59',strtotime(Input::get('to'))))
+                ->orderBy('order_status')->orderBy('id', 'desc')->get();
+            return Response::download(Orders::createOrdersCsv($oOrders));
+
+        }
+        else if(Input::has('from') && Input::has('to')){
+            $this->data['oOrders'] = Orders::where('created_at','>=',date('Y-m-d 00:00:00',strtotime(Input::get('from'))))
+                ->where('created_at','<=',date('Y-m-d 23:59:59',strtotime(Input::get('to'))))
+                ->orderBy('order_status')->orderBy('id', 'desc')
+                ->paginate(Config::get('shop.tablepp'));
+        }
+        else{
+            $this->data['oOrders'] = Orders::orderBy('order_status')->orderBy('id', 'desc')->paginate(Config::get('shop.tablepp'));
+        }
         return View::make('admin/order', $this->data);
     }
 
