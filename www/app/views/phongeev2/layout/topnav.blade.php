@@ -2,11 +2,8 @@
     <div class="">
         <div class="navbar-inner">
             {{--*/ $categories = Vcategory::getCategoriesTree(); /*--}}
-            {{--*/ $cattree = Vcategory::shopCatTree(((isset($actCat))?$actCat->id:0),$categories) /*--}}
+            {{--*/ $cattree = Vcategory::shopCatTree(((isset($actCat->id))?$actCat->id:0),$categories); /*--}}
             {{$cattree}}
-<!--            <ul class="nav navbar-nav navbar-right" id="facebookprofile">-->
-<!--                @include("user")-->
-<!--            </ul>-->
         </div>
     </div>
 </div>

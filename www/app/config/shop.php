@@ -33,11 +33,11 @@ return array(
             'url' => 'http://phongee.vn/phongeetv',
             'title' => 'Phongee Color TV',
         ),
-        'leather' => array(
-            'id' => 'leather',
-            'url' => 'http://leather.phongee.vn',
-            'title' => 'Phongee Leather',
-        ),
+//        'leather' => array(
+//            'id' => 'leather',
+//            'url' => 'http://leather.phongee.vn',
+//            'title' => 'Phongee Leather',
+//        ),
 
     ),
     'accountmenu' => array(

@@ -174,7 +174,14 @@
                         {{date('d/m',$oProduct->ladatenew)}} có hàng
                     @endif
                 </div>
-                <div><strong>Bảo hành:</strong> {{($oProduct->cat1url =='phu-kien' || $oProduct->cat2url =='phu-kien' || $oProduct->cat3url =='phu-kien')?'1':'12'}} tháng</div>
+                <div><strong>Bảo hành:</strong>
+                @if(!$oProduct->lachucnang)
+                {{($oProduct->cat1url =='phu-kien' || $oProduct->cat2url =='phu-kien' || $oProduct->cat3url =='phu-kien')?'1':'12'}} tháng
+                @else
+                {{$oProduct->lachucnang}}
+                @endif
+                </div>
+
             </li>
             <li style="float:right">
                 <div><strong>Giao hàng:</strong> trong vòng 48 giờ</div>

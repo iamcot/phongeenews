@@ -300,7 +300,9 @@ class ShopAdminController extends BaseController
         $this->data['variant'] = 0;
         if(isset($input['export'])) {
             $filter = (isset($input['filtercat'])?'-cat-'.$input['filtercat']:'').(isset($input['filter'])?'-filter-'.$input['filter']:'');
-            return Response::download(Product::createProductsCsv($filter,$this->data['products']));
+            $filename = Product::createProductsCsv($filter,$this->data['products']);
+            $path =  base_path().'/uploads/csv/'.$filename;
+            return Response::download($path,$filename,array('Content-Type: text/cvs'));
         }
         else{
             return View::make('admin/product', $this->data);
@@ -345,7 +347,9 @@ class ShopAdminController extends BaseController
             $oOrders = Orders::where('created_at','>=',date('Y-m-d 00:00:00',strtotime(Input::get('from'))))
                 ->where('created_at','<=',date('Y-m-d 23:59:59',strtotime(Input::get('to'))))
                 ->orderBy('order_status')->orderBy('id', 'desc')->get();
-            return Response::download(Orders::createOrdersCsv($oOrders));
+            $filename = Orders::createOrdersCsv($oOrders);
+            $path =  base_path().'/uploads/csv/'.$filename;
+            return Response::download($path,$filename,array('Content-Type: text/cvs'));
 
         }
         else if(Input::has('from') && Input::has('to')){

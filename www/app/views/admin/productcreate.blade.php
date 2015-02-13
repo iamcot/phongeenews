@@ -116,9 +116,9 @@ array(
     </div>
     <br>
     <div class="input-group">
-        {{ Form::label('lachucnang','Chức năng',array("class"=>"input-group-addon"))
+        {{ Form::label('lachucnang','Bảo hành',array("class"=>"input-group-addon"))
         }}
-        {{ Form::text('lachucnang',(($catedit != null)?$catedit->lachucnang:''),array("class"=>"form-control",'title'=>'chức năng của sản phẩm' ) ) }}
+        {{ Form::text('lachucnang',(($catedit != null)?$catedit->lachucnang:''),array("class"=>"form-control",'title'=>'Thời gian bảo hành' ) ) }}
     </div>
     <br>
     <div class="input-group">

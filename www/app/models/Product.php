@@ -5,21 +5,41 @@ class Product extends Eloquent
 
     public static function adminViewProduct($input)
     {
-        $products = DB::table('v_productsadmin as p')
-            ->leftJoin('lacategories as c', 'c.id', '=', 'p.lacategory_id')
-            ->leftJoin('lamanufactors as f', 'p.lamanufactor_id', '=', 'f.id')
-            ->select('p.*', 'c.latitle as catname', 'f.latitle as factorname',
-                DB::raw('(SELECT COUNT(image.id) from laimages as image where image.laproduct_id = v_productsadmin.id) as countimage'));
-        if (isset($input['filter']))
-            $products = $products->where('p.latitle', 'like', '%'.$input['filter'].'%');
-        if(isset($input['filtercat']) && $input['filtercat']!='all')
-            $products = $products->where(function($query) use ($input){
-                $query->where('p.cat1id','=', $input['filtercat'])
-                ->orwhere('p.cat2id','=', $input['filtercat'])
-                ->orwhere('p.cat3id','=', $input['filtercat']);
-            });
-        $products = $products->orderBy('p.id', 'DESC')
-            ->paginate(Config::get('shop.tablepp'));
+
+        if(!isset($input['export'])) {
+            $products = DB::table('v_productsadmin as p')
+                ->leftJoin('lacategories as c', 'c.id', '=', 'p.lacategory_id')
+                ->leftJoin('lamanufactors as f', 'p.lamanufactor_id', '=', 'f.id')
+                ->select('p.*', 'c.latitle as catname', 'f.latitle as factorname',
+                    DB::raw('(SELECT COUNT(image.id) from laimages as image where image.laproduct_id = p.id) as countimage'));
+            if (isset($input['filter']))
+                $products = $products->where('p.latitle', 'like', '%'.$input['filter'].'%');
+            if(isset($input['filtercat']) && $input['filtercat']!='all')
+                $products = $products->where(function($query) use ($input){
+                    $query->where('p.cat1id','=', $input['filtercat'])
+                        ->orwhere('p.cat2id','=', $input['filtercat'])
+                        ->orwhere('p.cat3id','=', $input['filtercat']);
+                });
+            $products = $products->orderBy('p.id', 'DESC');
+            $products = $products->paginate(Config::get('shop.tablepp'));
+        }
+        else {
+            $products = DB::table('v_products as p')
+                ->leftJoin('lacategories as c', 'c.id', '=', 'p.lacategory_id')
+                ->leftJoin('lamanufactors as f', 'p.lamanufactor_id', '=', 'f.id')
+                ->select('p.*', 'c.latitle as catname', 'f.latitle as factorname',
+                    DB::raw('(SELECT COUNT(image.id) from laimages as image where image.laproduct_id = p.id) as countimage'));
+            if (isset($input['filter']))
+                $products = $products->where('p.latitle', 'like', '%'.$input['filter'].'%');
+            if(isset($input['filtercat']) && $input['filtercat']!='all')
+                $products = $products->where(function($query) use ($input){
+                    $query->where('p.cat1id','=', $input['filtercat'])
+                        ->orwhere('p.cat2id','=', $input['filtercat'])
+                        ->orwhere('p.cat3id','=', $input['filtercat']);
+                });
+            $products = $products->orderBy('p.id', 'DESC');
+            $products = $products->get();
+        }
 
         return $products;
     }
@@ -64,7 +84,8 @@ class Product extends Eloquent
     }
 
     public static function createProductsCsv($file,$products){
-        $path =  base_path().'/uploads/csv/reportProduct'.$file.'-'.date('Y-m-d').'.csv';
+        $filename = 'reportProduct'.$file.'-'.date('Y-m-d').'.csv';
+        $path =  base_path().'/uploads/csv/'.$filename;
         $file = fopen($path, 'w');
         fputcsv($file,array('ID','Title','URL','Price','Shortinfo','Variant','View','Images Num','Created at'));
         foreach ($products as $row) {
@@ -82,7 +103,7 @@ class Product extends Eloquent
             fputcsv($file, $array);
         }
         fclose($file);
-        return $path;
+        return $filename;
     }
 
     public function validate($input)

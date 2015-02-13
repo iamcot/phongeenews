@@ -297,7 +297,9 @@ class ShopAdminController extends BaseController
         $this->data['variant'] = 0;
         if(isset($input['export'])) {
             $filter = (isset($input['filtercat'])?'-cat-'.$input['filtercat']:'').(isset($input['filter'])?'-filter-'.$input['filter']:'');
-            return Response::download(Product::createProductsCsv($filter,$this->data['products']));
+            $filename = Product::createProductsCsv($filter,$this->data['products']);
+            $path =  base_path().'/uploads/csv/'.$filename;
+            return Response::download($path,$filename,array('Content-Type: text/cvs'));
         }
         else{
             return View::make('admin/product', $this->data);

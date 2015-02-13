@@ -28,7 +28,8 @@ class Orders extends Eloquent{
     }
 
     public static function createOrdersCsv($oders){
-        $path =  base_path().'/uploads/csv/reportOrders'.'-'.date('Y-m-d').'.csv';
+        $filename = 'reportOrders'.'-'.date('Y-m-d').'.csv';
+        $path =  base_path().'/uploads/csv/'.$filename;
         $file = fopen($path, 'w');
         fputcsv($file,array('ID','Date Order','Total','Customer','Tel','Address','Payment','Type','Status','Note','Updated_at'));
         foreach ($oders as $order) {
@@ -53,6 +54,6 @@ class Orders extends Eloquent{
         }
         fclose($file);
 
-        return $path;
+        return $filename;
     }
 }
