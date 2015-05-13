@@ -33,10 +33,28 @@
 </div>
     @include(Config::get('shop.theme').'/start/topfooter')
     @include(Config::get('shop.theme').'/start/store')
+    <div id="popup-video" class="hide">
+        <a href="javascript:closePopup()" class="popup-close"><i class="fa fa-times"></i></a>
+    </div>
 @stop
 @section('jscript')
     @parent
     <script>
+    $(function(){
+        openPopup();
+    });
+
+    function openPopup() {
+        $("#popup-video").removeClass("hide").addClass("popup").append('<iframe width="560" height="315" src="https://www.youtube.com/embed/JOWqk6RZjH0" frameborder="0" allowfullscreen></iframe>');
+        $("#popup-video").parent().append("<div id='popup-overlay'></div>");
+
+    }
+
+    function closePopup() {
+        $("#popup-video").removeClass("popup").addClass("hide").find("iframe").remove();
+        $("#popup-video").parent().find("#popup-overlay").remove();
+
+    }
     app.controller('startController',['$scope','$http',function($scope,$http){
         $scope.bestsell = {
             per_page:4,
